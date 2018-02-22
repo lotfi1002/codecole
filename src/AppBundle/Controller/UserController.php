@@ -40,8 +40,7 @@ class UserController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			//$user = $this->container->get('security.token_storage')->getToken()->getUser();
 			
-		
-					
+				
 					$user->setUsername($request->get('username'));
 					
 					$user->setName($request->get('name'));
