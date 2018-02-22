@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerDdo70xe;
+namespace ContainerJ3uuy4m;
 
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
@@ -37,6 +37,8 @@ class appProdDebugProjectContainer extends Container
             'appbundle\\controller\\defaultcontroller' => 'AppBundle\\Controller\\DefaultController',
             'appbundle\\controller\\registrationcontroller' => 'AppBundle\\Controller\\RegistrationController',
             'appbundle\\controller\\securitycontroller' => 'AppBundle\\Controller\\SecurityController',
+            'appbundle\\controller\\spacecontroller' => 'AppBundle\\Controller\\SpaceController',
+            'appbundle\\controller\\usercontroller' => 'AppBundle\\Controller\\UserController',
             'symfony\\bundle\\frameworkbundle\\controller\\redirectcontroller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\RedirectController',
             'symfony\\bundle\\frameworkbundle\\controller\\templatecontroller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController',
         );
@@ -106,6 +108,8 @@ class appProdDebugProjectContainer extends Container
             'AppBundle\\Controller\\DefaultController' => __DIR__.'/getDefaultControllerService.php',
             'AppBundle\\Controller\\RegistrationController' => __DIR__.'/getRegistrationControllerService.php',
             'AppBundle\\Controller\\SecurityController' => __DIR__.'/getSecurityControllerService.php',
+            'AppBundle\\Controller\\SpaceController' => __DIR__.'/getSpaceControllerService.php',
+            'AppBundle\\Controller\\UserController' => __DIR__.'/getUserControllerService.php',
             'Symfony\\Bundle\\FrameworkBundle\\Controller\\RedirectController' => __DIR__.'/getRedirectControllerService.php',
             'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController' => __DIR__.'/getTemplateControllerService.php',
             'annotations.cache' => __DIR__.'/getAnnotations_CacheService.php',

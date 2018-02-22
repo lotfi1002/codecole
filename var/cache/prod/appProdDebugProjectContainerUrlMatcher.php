@@ -63,6 +63,11 @@ class appProdDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBun
             return array (  '_controller' => 'AppBundle\\Controller\\SecurityController::logoutAction',  '_route' => 'logout',);
         }
 
+        // app_space_index
+        if ('/myspace' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\SpaceController::indexAction',  '_route' => 'app_space_index',);
+        }
+
         // app_user_index
         if ('/user/register' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\UserController::indexAction',  '_route' => 'app_user_index',);
