@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User implements UserInterface, \Serializable
+class User implements UserInterface 
 {
     /**
      * @ORM\Column(type="integer")
@@ -37,6 +37,25 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+	
+	/**
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+	private $name ;
+	
+	 /**
+		 * @var string
+		 *
+		 * @ORM\Column(name="type", type="string", length=255, nullable=true)
+		 */
+			private $type;
+	
+	 /**
+		 * @var string
+		 *
+		 * @ORM\Column(name="role", type="string", length=255, nullable=true)
+		 */
+			private $role;
 
     public function __construct()
     {
@@ -57,10 +76,6 @@ class User implements UserInterface, \Serializable
         return null;
     }
 
-    public function getPassword()
-    {
-        return $this->password;
-    }
 
     public function getRoles()
     {
@@ -71,28 +86,165 @@ class User implements UserInterface, \Serializable
     {
     }
 
-    /** @see \Serializable::serialize() */
-    public function serialize()
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return Compte
+     */
+    public function setName($name)
     {
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
-        ));
+        $this->name = $name;
+
+        return $this;
     }
 
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getName()
     {
-        list (
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
-        ) = unserialize($serialized);
+        return $this->name;
+    }
+
+    
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Compte
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+	
+	/**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Compte
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+	
+	/**
+     * Set type
+     *
+     * @param string $role
+     *
+     * @return Compte
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+	
+	
+	/**
+     * Set type
+     *
+     * @param string $isActive
+     *
+     * @return Compte
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+  
+/**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return Compte
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+   
+	
+	
+	public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+	
+	/**
+     * Set type
+     *
+     * @param string $role
+     *
+     * @return Compte
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }
 

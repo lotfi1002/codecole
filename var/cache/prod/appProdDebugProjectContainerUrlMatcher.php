@@ -63,6 +63,11 @@ class appProdDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBun
             return array (  '_controller' => 'AppBundle\\Controller\\SecurityController::logoutAction',  '_route' => 'logout',);
         }
 
+        // app_user_saveuser
+        if ('/user/saveuser' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\UserController::saveUserAction',  '_route' => 'app_user_saveuser',);
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }
