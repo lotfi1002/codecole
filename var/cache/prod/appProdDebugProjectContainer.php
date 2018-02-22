@@ -16,6 +16,6 @@ if (!\class_exists(appProdDebugProjectContainer::class, false)) {
 
 return new \ContainerRebuyhn\appProdDebugProjectContainer(array(
     'container.build_hash' => 'Rebuyhn',
-    'container.build_id' => 'c527ad8d',
-    'container.build_time' => 1519307119,
+    'container.build_id' => 'a38d471b',
+    'container.build_time' => 1519309839,
 ));

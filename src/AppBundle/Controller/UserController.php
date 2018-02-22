@@ -13,6 +13,20 @@ class UserController extends Controller
 {
 
 	 /**
+     * @Route("/user/register")
+     */
+    public function indexAction()
+    {
+	   // replace this example code with whatever you need
+        return $this->render('register/register.html.php', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        ]);
+	   
+	   
+    }
+
+
+	 /**
      * @Route("/user/saveuser")
 	 *
      */

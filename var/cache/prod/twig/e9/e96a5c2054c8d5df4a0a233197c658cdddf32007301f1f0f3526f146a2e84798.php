@@ -15,8 +15,8 @@ class __TwigTemplate_f9dfb5e1648e6cbeee0bc1c51799c0ccc33020c9ebfb9e4e2164ac945b2
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_a48020c80503ba2cc067a8e44ad1a13f68958e52888b28e96bb9ddab8ea75414 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_a48020c80503ba2cc067a8e44ad1a13f68958e52888b28e96bb9ddab8ea75414->enter($__internal_a48020c80503ba2cc067a8e44ad1a13f68958e52888b28e96bb9ddab8ea75414_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "register/register.html.php"));
+        $__internal_2e63504296a61b564d6ab60019fdfd9b71f9f25a971d19cd44bb7d31f90ea4dc = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_2e63504296a61b564d6ab60019fdfd9b71f9f25a971d19cd44bb7d31f90ea4dc->enter($__internal_2e63504296a61b564d6ab60019fdfd9b71f9f25a971d19cd44bb7d31f90ea4dc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "register/register.html.php"));
 
         // line 1
         echo "<html>
@@ -26,11 +26,11 @@ class __TwigTemplate_f9dfb5e1648e6cbeee0bc1c51799c0ccc33020c9ebfb9e4e2164ac945b2
 <body>
 <form action=\"user/saveuser\" method=\"post\">
 <label> Name : </label>
-<input name=\"name\" id=\"name \" type=\"text\" /> </br>
+<input name=\"name\" id=\"name\" type=\"text\" /> </br>
 <label> Email : </label>
-<input name=\"email\" id=\"email \" type=\"text\" /></br>
+<input name=\"email\" id=\"email\" type=\"text\" /></br>
 <label> Login : </label>
-<input name=\"username\" id=\"username \" type=\"text\" /></br>
+<input name=\"username\" id=\"username\" type=\"text\" /></br>
 <label> Password : </label>
 <input name=\"plainPassword\" id=\"plainPassword\" type=\"password\"  /></br>
 
@@ -40,7 +40,7 @@ class __TwigTemplate_f9dfb5e1648e6cbeee0bc1c51799c0ccc33020c9ebfb9e4e2164ac945b2
 
 </html>";
         
-        $__internal_a48020c80503ba2cc067a8e44ad1a13f68958e52888b28e96bb9ddab8ea75414->leave($__internal_a48020c80503ba2cc067a8e44ad1a13f68958e52888b28e96bb9ddab8ea75414_prof);
+        $__internal_2e63504296a61b564d6ab60019fdfd9b71f9f25a971d19cd44bb7d31f90ea4dc->leave($__internal_2e63504296a61b564d6ab60019fdfd9b71f9f25a971d19cd44bb7d31f90ea4dc_prof);
 
     }
 
@@ -71,11 +71,11 @@ class __TwigTemplate_f9dfb5e1648e6cbeee0bc1c51799c0ccc33020c9ebfb9e4e2164ac945b2
 <body>
 <form action=\"user/saveuser\" method=\"post\">
 <label> Name : </label>
-<input name=\"name\" id=\"name \" type=\"text\" /> </br>
+<input name=\"name\" id=\"name\" type=\"text\" /> </br>
 <label> Email : </label>
-<input name=\"email\" id=\"email \" type=\"text\" /></br>
+<input name=\"email\" id=\"email\" type=\"text\" /></br>
 <label> Login : </label>
-<input name=\"username\" id=\"username \" type=\"text\" /></br>
+<input name=\"username\" id=\"username\" type=\"text\" /></br>
 <label> Password : </label>
 <input name=\"plainPassword\" id=\"plainPassword\" type=\"password\"  /></br>
 
