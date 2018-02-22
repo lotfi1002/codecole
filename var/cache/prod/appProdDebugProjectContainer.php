@@ -16,6 +16,6 @@ if (!\class_exists(appProdDebugProjectContainer::class, false)) {
 
 return new \ContainerJ3uuy4m\appProdDebugProjectContainer(array(
     'container.build_hash' => 'J3uuy4m',
-    'container.build_id' => 'a29eff27',
-    'container.build_time' => 1519311650,
+    'container.build_id' => '72868901',
+    'container.build_time' => 1519313002,
 ));
