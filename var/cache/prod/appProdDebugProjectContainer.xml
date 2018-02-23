@@ -1802,7 +1802,7 @@
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id="security.request_matcher..d27ba9"/>
+        <argument type="service" id="security.request_matcher.yk6k2aj"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
         </argument>
@@ -2299,8 +2299,8 @@
     <service id="security.request_matcher.x_mqxya" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/myspace</argument>
     </service>
-    <service id="security.request_matcher..d27ba9" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/adminspace</argument>
+    <service id="security.request_matcher.yk6k2aj" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/admin</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>

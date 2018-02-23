@@ -40,8 +40,7 @@ class UserController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			//$user = $this->container->get('security.token_storage')->getToken()->getUser();
 			
-		
-					
+				
 					$user->setUsername($request->get('username'));
 					
 					$user->setName($request->get('name'));
@@ -65,8 +64,8 @@ class UserController extends Controller
 				}
 					
 
-					$user->setType('User');
-					$user->setRole('ROLE_USER');
+					$user->setType('Prof');
+					$user->setRole('ROLE_PROF');
 					$user->setIsActive(true);
 					$em->persist($user);
 					$em->flush();
