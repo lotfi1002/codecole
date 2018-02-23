@@ -2012,7 +2012,7 @@
     </service>
     <service id="security.encoder_factory.generic" class="Symfony\Component\Security\Core\Encoder\EncoderFactory" public="false">
       <argument type="collection">
-        <argument key="AppBundle\Entity\Compte" type="collection">
+        <argument key="AppBundle\Entity\User" type="collection">
           <argument key="algorithm">sha512</argument>
           <argument key="hash_algorithm">sha512</argument>
           <argument key="key_length">40</argument>
@@ -2135,8 +2135,7 @@
         <argument type="service" id="security.request_matcher.x_mqxya"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
-          <argument>ROLE_EXPERT</argument>
-          <argument>ROLE_USER</argument>
+          <argument>ROLE_PROF</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -2645,7 +2644,7 @@
       <tag name="console.command" command="security:encode-password"/>
       <argument type="service" id="security.encoder_factory.generic"/>
       <argument type="collection">
-        <argument>AppBundle\Entity\Compte</argument>
+        <argument>AppBundle\Entity\User</argument>
       </argument>
       <call method="setName">
         <argument>security:encode-password</argument>

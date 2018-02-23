@@ -1675,13 +1675,10 @@
     <service id="security.encoder_factory.generic" class="Symfony\Component\Security\Core\Encoder\EncoderFactory" public="false">
       <argument type="collection">
         <argument key="AppBundle\Entity\User" type="collection">
-          <argument key="algorithm">sha512</argument>
-          <argument key="hash_algorithm">sha512</argument>
-          <argument key="key_length">40</argument>
-          <argument key="ignore_case">false</argument>
-          <argument key="encode_as_base64">true</argument>
-          <argument key="iterations">5000</argument>
-          <argument key="cost">13</argument>
+          <argument key="class">Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder</argument>
+          <argument key="arguments" type="collection">
+            <argument>13</argument>
+          </argument>
         </argument>
       </argument>
     </service>
@@ -1813,7 +1810,7 @@
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.main"/>
+        <argument type="service" id="security.user.provider.concrete.our_db_provider"/>
       </argument>
       <argument></argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -2106,9 +2103,9 @@
       <argument type="service" id="debug.event_dispatcher"/>
       <argument type="service" id="security.logout_url_generator"/>
     </service>
-    <service id="security.user.provider.concrete.main" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider" public="false">
+    <service id="security.user.provider.concrete.our_db_provider" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider" public="false">
       <argument type="service" id="doctrine"/>
-      <argument>AppBundle\Entity\User</argument>
+      <argument>AppBundle:User</argument>
       <argument>username</argument>
       <argument>null</argument>
     </service>
@@ -2140,7 +2137,7 @@
       <argument>null</argument>
       <argument>true</argument>
       <argument>false</argument>
-      <argument>security.user.provider.concrete.main</argument>
+      <argument>security.user.provider.concrete.our_db_provider</argument>
       <argument>main</argument>
       <argument>security.authentication.form_entry_point.main</argument>
       <argument>null</argument>
@@ -2156,7 +2153,7 @@
     <service id="security.context_listener.0" class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
       <argument type="service" id="security.token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.main"/>
+        <argument type="service" id="security.user.provider.concrete.our_db_provider"/>
       </argument>
       <argument>main</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -2184,7 +2181,7 @@
       <argument>/</argument>
     </service>
     <service id="security.authentication.provider.dao.main" class="Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider" public="false">
-      <argument type="service" id="security.user.provider.concrete.main"/>
+      <argument type="service" id="security.user.provider.concrete.our_db_provider"/>
       <argument type="service" id="security.user_checker"/>
       <argument>main</argument>
       <argument type="service" id="security.encoder_factory.generic"/>
@@ -2221,7 +2218,7 @@
       </call>
     </service>
     <service id="security.authentication.listener.form.main" class="Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener" public="false">
-      <tag name="security.remember_me_aware" id="main" provider="security.user.provider.concrete.main"/>
+      <tag name="security.remember_me_aware" id="main" provider="security.user.provider.concrete.our_db_provider"/>
       <argument type="service" id="security.token_storage"/>
       <argument type="service" id="security.authentication.manager"/>
       <argument type="service" id="security.authentication.session_strategy"/>

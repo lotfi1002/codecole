@@ -25,7 +25,7 @@ class SpaceController extends Controller
 		}
 			
 			 return $this->render('myspace/index.html.php', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..')
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
         ));
        
     }
