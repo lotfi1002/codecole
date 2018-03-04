@@ -65,7 +65,7 @@ class UserController extends Controller
 					
 
 					$user->setType('Prof');
-					$user->setRole('ROLE_PROF');
+					$user->setRole('ROLE_USER');
 					$user->setIsActive(true);
 					$em->persist($user);
 					$em->flush();

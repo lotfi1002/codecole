@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> Welcome Keltoum</h1>
+
+<a href="{{path('logout')}}"> Logout</a>
+
+
+<table>
+<th>
+Nom
+</th>
+<th>
+Adresse
+</th>
+<th>
+Logo
+</th>
+
+{% for ecole in ecoles %}
+
+<tr><td>{{ ecole.nom }}</td> <td>{{ ecole.adresse }}</td> <td>{{ ecole.logo }}</td></tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
+
+

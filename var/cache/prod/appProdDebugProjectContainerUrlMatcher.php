@@ -40,6 +40,19 @@ class appProdDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBun
             return $ret;
         }
 
+        if (0 === strpos($pathinfo, '/myspace')) {
+            // app_ecole_listecole
+            if ('/myspace/ecole' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\EcoleController::listEcoleAction',  '_route' => 'app_ecole_listecole',);
+            }
+
+            // app_space_index
+            if ('/myspace' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\SpaceController::indexAction',  '_route' => 'app_space_index',);
+            }
+
+        }
+
         // register
         if ('/register' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\RegistrationController::indexAction',  '_route' => 'register',);
@@ -61,11 +74,6 @@ class appProdDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBun
         // logout
         if ('/logout' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\SecurityController::logoutAction',  '_route' => 'logout',);
-        }
-
-        // app_space_index
-        if ('/myspace' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\SpaceController::indexAction',  '_route' => 'app_space_index',);
         }
 
         // app_user_index
