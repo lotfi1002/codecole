@@ -19,8 +19,8 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_622fe1bc908356a543d73bafa41f74c6c95cd15c3848ecba649bfa425a178fdc = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_622fe1bc908356a543d73bafa41f74c6c95cd15c3848ecba649bfa425a178fdc->enter($__internal_622fe1bc908356a543d73bafa41f74c6c95cd15c3848ecba649bfa425a178fdc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "base.html.twig"));
+        $__internal_31bc2753d9814ebe5d55a97c32cc2be6bdf0317ef2af0416010cd5cf1c523222 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_31bc2753d9814ebe5d55a97c32cc2be6bdf0317ef2af0416010cd5cf1c523222->enter($__internal_31bc2753d9814ebe5d55a97c32cc2be6bdf0317ef2af0416010cd5cf1c523222_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "base.html.twig"));
 
         // line 1
         echo "<!DOCTYPE html>
@@ -31,7 +31,10 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
     <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
     <meta name=\"description\" content=\"\">
     <meta name=\"author\" content=\"\">
-    <link rel=\"shortcut icon\" href=\"assets/img/logo-fav.png\">
+    <link rel=\"shortcut icon\" href=\"";
+        // line 9
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/logo-fav.png"), "html", null, true);
+        echo "\">
     <title>Beagle</title>
 \t<title>";
         // line 11
@@ -53,7 +56,10 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
           <div class=\"navbar-header\"><a href=\"index.html\" class=\"navbar-brand\"></a></div>
           <div class=\"be-right-navbar\">
             <ul class=\"nav navbar-nav navbar-right be-user-nav\">
-              <li class=\"dropdown\"><a href=\"#\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\" class=\"dropdown-toggle\"><img src=\"assets/img/avatar.png\" alt=\"Avatar\"><span class=\"user-name\">Túpac Amaru</span></a>
+              <li class=\"dropdown\"><a href=\"#\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\" class=\"dropdown-toggle\"><img src=\"";
+        // line 31
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar.png"), "html", null, true);
+        echo "')}}\" alt=\"Avatar\"><span class=\"user-name\">Túpac Amaru</span></a>
                 <ul role=\"menu\" class=\"dropdown-menu\">
                   <li>
                     <div class=\"user-info\">
@@ -79,22 +85,34 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
                         <div class=\"content\">
                           <ul>
                             <li class=\"notification notification-unread\"><a href=\"#\">
-                                <div class=\"image\"><img src=\"assets/img/avatar2.png\" alt=\"Avatar\"></div>
+                                <div class=\"image\"><img src=\"";
+        // line 57
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar2.png"), "html", null, true);
+        echo "')}}\" alt=\"Avatar\"></div>
                                 <div class=\"notification-info\">
                                   <div class=\"text\"><span class=\"user-name\">Jessica Caruso</span> accepted your invitation to join the team.</div><span class=\"date\">2 min ago</span>
                                 </div></a></li>
                             <li class=\"notification\"><a href=\"#\">
-                                <div class=\"image\"><img src=\"assets/img/avatar3.png\" alt=\"Avatar\"></div>
+                                <div class=\"image\"><img src=\"";
+        // line 62
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar3.png"), "html", null, true);
+        echo "')}}\" alt=\"Avatar\"></div>
                                 <div class=\"notification-info\">
                                   <div class=\"text\"><span class=\"user-name\">Joel King</span> is now following you</div><span class=\"date\">2 days ago</span>
                                 </div></a></li>
                             <li class=\"notification\"><a href=\"#\">
-                                <div class=\"image\"><img src=\"assets/img/avatar4.png\" alt=\"Avatar\"></div>
+                                <div class=\"image\"><img src=\"";
+        // line 67
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar4.png"), "html", null, true);
+        echo "')}}\" alt=\"Avatar\"></div>
                                 <div class=\"notification-info\">
                                   <div class=\"text\"><span class=\"user-name\">John Doe</span> is watching your main repository</div><span class=\"date\">2 days ago</span>
                                 </div></a></li>
                             <li class=\"notification\"><a href=\"#\">
-                                <div class=\"image\"><img src=\"assets/img/avatar5.png\" alt=\"Avatar\"></div>
+                                <div class=\"image\"><img src=\"";
+        // line 72
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar5.png"), "html", null, true);
+        echo "')}}\" alt=\"Avatar\"></div>
                                 <div class=\"notification-info\"><span class=\"text\"><span class=\"user-name\">Emily Carter</span> is now following you</span><span class=\"date\">5 days ago</span></div></a></li>
                           </ul>
                         </div>
@@ -110,14 +128,32 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
                     <div class=\"list\">
                       <div class=\"content\">
                         <div class=\"row\">
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/github.png\" alt=\"Github\"><span>GitHub</span></a></div>
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/bitbucket.png\" alt=\"Bitbucket\"><span>Bitbucket</span></a></div>
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/slack.png\" alt=\"Slack\"><span>Slack</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"";
+        // line 88
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/github.png"), "html", null, true);
+        echo "')}}\" alt=\"Github\"><span>GitHub</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"";
+        // line 89
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/bitbucket.png"), "html", null, true);
+        echo "')}}\" alt=\"Bitbucket\"><span>Bitbucket</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"";
+        // line 90
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/slack.png"), "html", null, true);
+        echo "')}}\" alt=\"Slack\"><span>Slack</span></a></div>
                         </div>
                         <div class=\"row\">
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/dribbble.png\" alt=\"Dribbble\"><span>Dribbble</span></a></div>
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/mail_chimp.png\" alt=\"Mail Chimp\"><span>Mail Chimp</span></a></div>
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/dropbox.png\" alt=\"Dropbox\"><span>Dropbox</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"";
+        // line 93
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/dribbble.png"), "html", null, true);
+        echo "')}}\" alt=\"Dribbble\"><span>Dribbble</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"";
+        // line 94
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/mail_chimp.png"), "html", null, true);
+        echo "'))}}\" alt=\"Mail Chimp\"><span>Mail Chimp</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"";
+        // line 95
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/dropbox.png"), "html", null, true);
+        echo "'))}}\" alt=\"Dropbox\"><span>Dropbox</span></a></div>
                         </div>
                       </div>
                     </div>
@@ -320,20 +356,38 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
                       <div class=\"content\">
                         <h2>Recent</h2>
                         <div class=\"contact-list contact-list-recent\">
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar1.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"";
+        // line 293
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar1.png"), "html", null, true);
+        echo "\" alt=\"Avatar\">
                               <div class=\"user-data\"><span class=\"status away\"></span><span class=\"name\">Claire Sassu</span><span class=\"message\">Can you share the...</span></div></a></div>
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar2.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"";
+        // line 295
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar2.png"), "html", null, true);
+        echo "\" alt=\"Avatar\">
                               <div class=\"user-data\"><span class=\"status\"></span><span class=\"name\">Maggie jackson</span><span class=\"message\">I confirmed the info.</span></div></a></div>
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar3.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"";
+        // line 297
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar3.png"), "html", null, true);
+        echo "\" alt=\"Avatar\">
                               <div class=\"user-data\"><span class=\"status offline\"></span><span class=\"name\">Joel King\t\t</span><span class=\"message\">Ready for the meeti...</span></div></a></div>
                         </div>
                         <h2>Contacts</h2>
                         <div class=\"contact-list\">
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar4.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"";
+        // line 302
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar4.png"), "html", null, true);
+        echo "\" alt=\"Avatar\">
                               <div class=\"user-data2\"><span class=\"status\"></span><span class=\"name\">Mike Bolthort</span></div></a></div>
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar5.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"";
+        // line 304
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar5.png"), "html", null, true);
+        echo "\" alt=\"Avatar\">
                               <div class=\"user-data2\"><span class=\"status\"></span><span class=\"name\">Maggie jackson</span></div></a></div>
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar6.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"";
+        // line 306
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar6.png"), "html", null, true);
+        echo "\" alt=\"Avatar\">
                               <div class=\"user-data2\"><span class=\"status offline\"></span><span class=\"name\">Jhon Voltemar</span></div></a></div>
                         </div>
                       </div>
@@ -345,7 +399,10 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
                 </div>
                 <div class=\"chat-window\">
                   <div class=\"title\">
-                    <div class=\"user\"><img src=\"assets/img/avatar2.png\" alt=\"Avatar\">
+                    <div class=\"user\"><img src=\"";
+        // line 318
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/avatar2.png"), "html", null, true);
+        echo "\" alt=\"Avatar\">
                       <h2>Maggie jackson</h2><span>Active 1h ago</span>
                     </div><span class=\"icon return mdi mdi-chevron-left\"></span>
                   </div>
@@ -530,27 +587,27 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
 </html>
 ";
         
-        $__internal_622fe1bc908356a543d73bafa41f74c6c95cd15c3848ecba649bfa425a178fdc->leave($__internal_622fe1bc908356a543d73bafa41f74c6c95cd15c3848ecba649bfa425a178fdc_prof);
+        $__internal_31bc2753d9814ebe5d55a97c32cc2be6bdf0317ef2af0416010cd5cf1c523222->leave($__internal_31bc2753d9814ebe5d55a97c32cc2be6bdf0317ef2af0416010cd5cf1c523222_prof);
 
     }
 
     // line 11
     public function block_title($context, array $blocks = array())
     {
-        $__internal_caba19659e6620b9903914dd44eb4e6e30ca928d73396681cd60ba1e7c29cf1c = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_caba19659e6620b9903914dd44eb4e6e30ca928d73396681cd60ba1e7c29cf1c->enter($__internal_caba19659e6620b9903914dd44eb4e6e30ca928d73396681cd60ba1e7c29cf1c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_a4e751ff15c30935a5132d7b2a6eaeb6b58d21a912160fad5a3ac05b9349d37d = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_a4e751ff15c30935a5132d7b2a6eaeb6b58d21a912160fad5a3ac05b9349d37d->enter($__internal_a4e751ff15c30935a5132d7b2a6eaeb6b58d21a912160fad5a3ac05b9349d37d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
         echo "Welcome!";
         
-        $__internal_caba19659e6620b9903914dd44eb4e6e30ca928d73396681cd60ba1e7c29cf1c->leave($__internal_caba19659e6620b9903914dd44eb4e6e30ca928d73396681cd60ba1e7c29cf1c_prof);
+        $__internal_a4e751ff15c30935a5132d7b2a6eaeb6b58d21a912160fad5a3ac05b9349d37d->leave($__internal_a4e751ff15c30935a5132d7b2a6eaeb6b58d21a912160fad5a3ac05b9349d37d_prof);
 
     }
 
     // line 12
     public function block_stylesheets($context, array $blocks = array())
     {
-        $__internal_b38c351e5de42992b61e161e219df5bd9079d611dfba1738bd937961e1803930 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_b38c351e5de42992b61e161e219df5bd9079d611dfba1738bd937961e1803930->enter($__internal_b38c351e5de42992b61e161e219df5bd9079d611dfba1738bd937961e1803930_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
+        $__internal_ca04f88923b98b9ad9c6b850c6c6161bce063dbe08b84571f802682a3a89a777 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_ca04f88923b98b9ad9c6b850c6c6161bce063dbe08b84571f802682a3a89a777->enter($__internal_ca04f88923b98b9ad9c6b850c6c6161bce063dbe08b84571f802682a3a89a777_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 13
         echo "\t\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"";
@@ -570,29 +627,29 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
 \t\t 
 \t\t";
         
-        $__internal_b38c351e5de42992b61e161e219df5bd9079d611dfba1738bd937961e1803930->leave($__internal_b38c351e5de42992b61e161e219df5bd9079d611dfba1738bd937961e1803930_prof);
+        $__internal_ca04f88923b98b9ad9c6b850c6c6161bce063dbe08b84571f802682a3a89a777->leave($__internal_ca04f88923b98b9ad9c6b850c6c6161bce063dbe08b84571f802682a3a89a777_prof);
 
     }
 
     // line 268
     public function block_body($context, array $blocks = array())
     {
-        $__internal_22efa3d47d68828ec863db9b5976662f11afddc58c7cd272aa856f4438a4ce32 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_22efa3d47d68828ec863db9b5976662f11afddc58c7cd272aa856f4438a4ce32->enter($__internal_22efa3d47d68828ec863db9b5976662f11afddc58c7cd272aa856f4438a4ce32_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_601fdbfb64020971eb74b72a722d8e91f2725168d6a8f641b67b3df0a073ceb2 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_601fdbfb64020971eb74b72a722d8e91f2725168d6a8f641b67b3df0a073ceb2->enter($__internal_601fdbfb64020971eb74b72a722d8e91f2725168d6a8f641b67b3df0a073ceb2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         
-        $__internal_22efa3d47d68828ec863db9b5976662f11afddc58c7cd272aa856f4438a4ce32->leave($__internal_22efa3d47d68828ec863db9b5976662f11afddc58c7cd272aa856f4438a4ce32_prof);
+        $__internal_601fdbfb64020971eb74b72a722d8e91f2725168d6a8f641b67b3df0a073ceb2->leave($__internal_601fdbfb64020971eb74b72a722d8e91f2725168d6a8f641b67b3df0a073ceb2_prof);
 
     }
 
     // line 269
     public function block_javascripts($context, array $blocks = array())
     {
-        $__internal_c4825026f805f95db871968c9f458ad810986e6cd3d4d9eda8b46ab73443798c = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_c4825026f805f95db871968c9f458ad810986e6cd3d4d9eda8b46ab73443798c->enter($__internal_c4825026f805f95db871968c9f458ad810986e6cd3d4d9eda8b46ab73443798c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_6968fc5c18e49a41e440acb7517d730ccec72ad36e3236e6b5c97365fdc89226 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_6968fc5c18e49a41e440acb7517d730ccec72ad36e3236e6b5c97365fdc89226->enter($__internal_6968fc5c18e49a41e440acb7517d730ccec72ad36e3236e6b5c97365fdc89226_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
         
-        $__internal_c4825026f805f95db871968c9f458ad810986e6cd3d4d9eda8b46ab73443798c->leave($__internal_c4825026f805f95db871968c9f458ad810986e6cd3d4d9eda8b46ab73443798c_prof);
+        $__internal_6968fc5c18e49a41e440acb7517d730ccec72ad36e3236e6b5c97365fdc89226->leave($__internal_6968fc5c18e49a41e440acb7517d730ccec72ad36e3236e6b5c97365fdc89226_prof);
 
     }
 
@@ -608,7 +665,7 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
 
     public function getDebugInfo()
     {
-        return array (  589 => 269,  578 => 268,  568 => 18,  561 => 14,  556 => 13,  550 => 12,  538 => 11,  520 => 479,  516 => 478,  512 => 477,  508 => 476,  300 => 270,  297 => 269,  295 => 268,  44 => 21,  42 => 12,  38 => 11,  26 => 1,);
+        return array (  646 => 269,  635 => 268,  625 => 18,  618 => 14,  613 => 13,  607 => 12,  595 => 11,  577 => 479,  573 => 478,  569 => 477,  565 => 476,  404 => 318,  389 => 306,  384 => 304,  379 => 302,  371 => 297,  366 => 295,  361 => 293,  336 => 270,  333 => 269,  331 => 268,  155 => 95,  151 => 94,  147 => 93,  141 => 90,  137 => 89,  133 => 88,  114 => 72,  106 => 67,  98 => 62,  90 => 57,  61 => 31,  47 => 21,  45 => 12,  41 => 11,  36 => 9,  26 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -629,7 +686,7 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
     <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
     <meta name=\"description\" content=\"\">
     <meta name=\"author\" content=\"\">
-    <link rel=\"shortcut icon\" href=\"assets/img/logo-fav.png\">
+    <link rel=\"shortcut icon\" href=\"{{asset('img/logo-fav.png')}}\">
     <title>Beagle</title>
 \t<title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
@@ -651,7 +708,7 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
           <div class=\"navbar-header\"><a href=\"index.html\" class=\"navbar-brand\"></a></div>
           <div class=\"be-right-navbar\">
             <ul class=\"nav navbar-nav navbar-right be-user-nav\">
-              <li class=\"dropdown\"><a href=\"#\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\" class=\"dropdown-toggle\"><img src=\"assets/img/avatar.png\" alt=\"Avatar\"><span class=\"user-name\">Túpac Amaru</span></a>
+              <li class=\"dropdown\"><a href=\"#\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\" class=\"dropdown-toggle\"><img src=\"{{asset('img/avatar.png')}}')}}\" alt=\"Avatar\"><span class=\"user-name\">Túpac Amaru</span></a>
                 <ul role=\"menu\" class=\"dropdown-menu\">
                   <li>
                     <div class=\"user-info\">
@@ -677,22 +734,22 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
                         <div class=\"content\">
                           <ul>
                             <li class=\"notification notification-unread\"><a href=\"#\">
-                                <div class=\"image\"><img src=\"assets/img/avatar2.png\" alt=\"Avatar\"></div>
+                                <div class=\"image\"><img src=\"{{asset('img/avatar2.png')}}')}}\" alt=\"Avatar\"></div>
                                 <div class=\"notification-info\">
                                   <div class=\"text\"><span class=\"user-name\">Jessica Caruso</span> accepted your invitation to join the team.</div><span class=\"date\">2 min ago</span>
                                 </div></a></li>
                             <li class=\"notification\"><a href=\"#\">
-                                <div class=\"image\"><img src=\"assets/img/avatar3.png\" alt=\"Avatar\"></div>
+                                <div class=\"image\"><img src=\"{{asset('img/avatar3.png')}}')}}\" alt=\"Avatar\"></div>
                                 <div class=\"notification-info\">
                                   <div class=\"text\"><span class=\"user-name\">Joel King</span> is now following you</div><span class=\"date\">2 days ago</span>
                                 </div></a></li>
                             <li class=\"notification\"><a href=\"#\">
-                                <div class=\"image\"><img src=\"assets/img/avatar4.png\" alt=\"Avatar\"></div>
+                                <div class=\"image\"><img src=\"{{asset('img/avatar4.png')}}')}}\" alt=\"Avatar\"></div>
                                 <div class=\"notification-info\">
                                   <div class=\"text\"><span class=\"user-name\">John Doe</span> is watching your main repository</div><span class=\"date\">2 days ago</span>
                                 </div></a></li>
                             <li class=\"notification\"><a href=\"#\">
-                                <div class=\"image\"><img src=\"assets/img/avatar5.png\" alt=\"Avatar\"></div>
+                                <div class=\"image\"><img src=\"{{asset('img/avatar5.png')}}')}}\" alt=\"Avatar\"></div>
                                 <div class=\"notification-info\"><span class=\"text\"><span class=\"user-name\">Emily Carter</span> is now following you</span><span class=\"date\">5 days ago</span></div></a></li>
                           </ul>
                         </div>
@@ -708,14 +765,14 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
                     <div class=\"list\">
                       <div class=\"content\">
                         <div class=\"row\">
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/github.png\" alt=\"Github\"><span>GitHub</span></a></div>
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/bitbucket.png\" alt=\"Bitbucket\"><span>Bitbucket</span></a></div>
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/slack.png\" alt=\"Slack\"><span>Slack</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"{{asset('img/github.png')}}')}}\" alt=\"Github\"><span>GitHub</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"{{asset('img/bitbucket.png')}}')}}\" alt=\"Bitbucket\"><span>Bitbucket</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"{{asset('img/slack.png')}}')}}\" alt=\"Slack\"><span>Slack</span></a></div>
                         </div>
                         <div class=\"row\">
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/dribbble.png\" alt=\"Dribbble\"><span>Dribbble</span></a></div>
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/mail_chimp.png\" alt=\"Mail Chimp\"><span>Mail Chimp</span></a></div>
-                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"assets/img/dropbox.png\" alt=\"Dropbox\"><span>Dropbox</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"{{asset('img/dribbble.png')}}')}}\" alt=\"Dribbble\"><span>Dribbble</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"{{asset('img/mail_chimp.png')}}'))}}\" alt=\"Mail Chimp\"><span>Mail Chimp</span></a></div>
+                          <div class=\"col-xs-4\"><a href=\"#\" class=\"connection-item\"><img src=\"{{asset('img/dropbox.png')}}'))}}\" alt=\"Dropbox\"><span>Dropbox</span></a></div>
                         </div>
                       </div>
                     </div>
@@ -913,20 +970,20 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
                       <div class=\"content\">
                         <h2>Recent</h2>
                         <div class=\"contact-list contact-list-recent\">
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar1.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"{{asset('img/avatar1.png')}}\" alt=\"Avatar\">
                               <div class=\"user-data\"><span class=\"status away\"></span><span class=\"name\">Claire Sassu</span><span class=\"message\">Can you share the...</span></div></a></div>
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar2.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"{{asset('img/avatar2.png')}}\" alt=\"Avatar\">
                               <div class=\"user-data\"><span class=\"status\"></span><span class=\"name\">Maggie jackson</span><span class=\"message\">I confirmed the info.</span></div></a></div>
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar3.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"{{asset('img/avatar3.png')}}\" alt=\"Avatar\">
                               <div class=\"user-data\"><span class=\"status offline\"></span><span class=\"name\">Joel King\t\t</span><span class=\"message\">Ready for the meeti...</span></div></a></div>
                         </div>
                         <h2>Contacts</h2>
                         <div class=\"contact-list\">
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar4.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"{{asset('img/avatar4.png')}}\" alt=\"Avatar\">
                               <div class=\"user-data2\"><span class=\"status\"></span><span class=\"name\">Mike Bolthort</span></div></a></div>
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar5.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"{{asset('img/avatar5.png')}}\" alt=\"Avatar\">
                               <div class=\"user-data2\"><span class=\"status\"></span><span class=\"name\">Maggie jackson</span></div></a></div>
-                          <div class=\"user\"><a href=\"#\"><img src=\"assets/img/avatar6.png\" alt=\"Avatar\">
+                          <div class=\"user\"><a href=\"#\"><img src=\"{{asset('img/avatar6.png')}}\" alt=\"Avatar\">
                               <div class=\"user-data2\"><span class=\"status offline\"></span><span class=\"name\">Jhon Voltemar</span></div></a></div>
                         </div>
                       </div>
@@ -938,7 +995,7 @@ class __TwigTemplate_823413fad8685df7a0e8a3e74910966ac196e6442d8bec3726b5de72302
                 </div>
                 <div class=\"chat-window\">
                   <div class=\"title\">
-                    <div class=\"user\"><img src=\"assets/img/avatar2.png\" alt=\"Avatar\">
+                    <div class=\"user\"><img src=\"{{asset('img/avatar2.png')}}\" alt=\"Avatar\">
                       <h2>Maggie jackson</h2><span>Active 1h ago</span>
                     </div><span class=\"icon return mdi mdi-chevron-left\"></span>
                   </div>
