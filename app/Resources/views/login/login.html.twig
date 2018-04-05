@@ -1,33 +1,77 @@
 <!DOCTYPE html>
-
-<html>
-<head>
-<title>Sign In</title>
-</head>
-<body>
-    {# app/Resources/views/security/login.html.twig #}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/img/logo-fav.png">
+    <title>Beagle</title>
+    <link rel="stylesheet" type="text/css" href="{{asset('lib/perfect-scrollbar/css/perfect-scrollbar.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('lib/material-design-icons/css/material-design-iconic-font.min.css')}}"/><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css"/>
+  </head>
+  <body class="be-splash-screen">
+     {# app/Resources/views/security/login.html.twig #}
     {# ... you will probably extend your base template, like base.html.twig #}
 
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
-    <form action="{{ path('login_check') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
-
-        {#
+xwdfdfdfsdfd
+    <div class="be-wrapper be-login">
+      <div class="be-content">
+        <div class="main-content container-fluid">
+          <div class="splash-container">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+              <div class="panel-heading"><img src="assets/img/logo-xx.png" alt="logo" width="102" height="27" class="logo-img"><span class="splash-description">Veuillez entrer vos informations.</span></div>
+              <div class="panel-body">
+                <form action="{{ path('login_check') }}" method="post">
+                  <div class="form-group">
+                    <input  id="username" name="_username" value="{{ last_username }}" type="text" placeholder="Nom d'utlisateur" autocomplete="off" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="password" name="_password" type="password" placeholder="Mot de passe" class="form-control">
+                    {#
             If you want to control the URL the user
             is redirected to on success (more details below)
             <input type="hidden" name="_target_path" value="/account" />
         #}
-
-        <button type="submit">login</button>
-    </form>
-
-</body>
-
+                  </div>
+                  <div class="form-group row login-tools">
+                    <div class="col-xs-6 login-remember">
+                      <div class="be-checkbox">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Se souvient de moi </label>
+                      </div>
+                    </div>
+                    <div class="col-xs-6 login-forgot-password"><a href="#">Mot de passe Oublié?</a></div>
+                  </div>
+                  <div class="form-group login-submit">
+                    <button data-dismiss="modal" type="submit" class="btn btn-primary btn-xl"> Se Connecter</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{asset('lib/jquery/jquery.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/main.js" type="text/javascript')}}"></script>
+    <script src="{{asset('lib/bootstrap/dist/js/bootstrap.min.js')}}" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        //initialize the javascript
+        App.init();
+      });
+      
+    </script>
+  </body>
 </html>
