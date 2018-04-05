@@ -24,11 +24,8 @@ class Evaluation
     /**
      * @ORM\Column(type="integer")
      */
-    private $id_classe;
-/**
-     * @ORM\Column(type="integer")
-     */
-    private $id_enseignant;
+    private $id_matiere;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -49,28 +46,19 @@ public function __construct()
         return $this->id;
     }
 
-    public function getId_classe()
+    public function getId_matiere()
     {
-        return $this->id_classe;
+        return $this->id_matiere;
     }
 
-    public function setId_classe($id_classe)
+    public function setId_classe($id_matiere)
     {
-        $this->id_classe = $id_classe;
-
-        return $this;
-    }
-     public function getId_enseignant()
-    {
-        return $this->id_enseignant;
-    }
-
-    public function setId_enseignant($id_enseignant)
-    {
-        $this->id_enseignant = $id_enseignant;
+        $this->id_matiere = $id_matiere;
 
         return $this;
     }
+    
+    
 
     public function getDate()
     {
