@@ -371,6 +371,9 @@
   <services>
     <service id="service_container" class="Symfony\Component\DependencyInjection\ContainerInterface" public="true" synthetic="true"/>
     <service id="AppBundle\AppBundle" class="AppBundle\AppBundle" public="false" autowire="true" autoconfigure="true"/>
+    <service id="AppBundle\Controller\AdminSpaceController" class="AppBundle\Controller\AdminSpaceController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
@@ -405,7 +408,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.nsyh1xl"/>
+      <argument type="service" id="service_locator.pyks1qv"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -1802,7 +1805,7 @@
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id="security.request_matcher.yk6k2aj"/>
+        <argument type="service" id="security.request_matcher..d27ba9"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
         </argument>
@@ -2299,8 +2302,8 @@
     <service id="security.request_matcher.x_mqxya" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/myspace</argument>
     </service>
-    <service id="security.request_matcher.yk6k2aj" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/admin</argument>
+    <service id="security.request_matcher..d27ba9" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/adminspace</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>
@@ -3213,6 +3216,8 @@
     <service id="framework_extra_bundle.argument_name_convertor" class="Sensio\Bundle\FrameworkExtraBundle\Request\ArgumentNameConverter" public="false">
       <argument type="service" id="argument_metadata_factory"/>
     </service>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\AdminSpaceController" class="AppBundle\Controller\AdminSpaceController" public="true" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\AdminSpaceController" class="AppBundle\Controller\AdminSpaceController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\EcoleController" class="AppBundle\Controller\EcoleController" public="true" autowire="true" abstract="true"/>
@@ -3225,6 +3230,10 @@
     <service id="abstract.instanceof.AppBundle\Controller\SpaceController" class="AppBundle\Controller\SpaceController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\UserController" class="AppBundle\Controller\UserController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\UserController" class="AppBundle\Controller\UserController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="service_locator.ib8yaa2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
     <service id="service_locator.f4ewnep" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
@@ -3249,7 +3258,7 @@
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
-    <service id="service_locator.nsyh1xl" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.pyks1qv" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>

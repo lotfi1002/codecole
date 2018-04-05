@@ -30,6 +30,11 @@ class appProdDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBun
         }
 
 
+        // app_adminspace_index
+        if ('/adminspace' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\AdminSpaceController::indexAction',  '_route' => 'app_adminspace_index',);
+        }
+
         // homepage
         if ('' === $trimmedPathinfo) {
             $ret = array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);

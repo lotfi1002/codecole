@@ -7,24 +7,46 @@ class __TwigTemplate_452c97201890c7668c62690d8b94a497b7fdef52b6fa20ed342a1fee137
     {
         parent::__construct($env);
 
-        $this->parent = false;
-
+        // line 1
+        $this->parent = $this->loadTemplate("base.html.twig", "myspace/index.html.twig", 1);
         $this->blocks = array(
+            'body' => array($this, 'block_body'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "base.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_91861ce691d646912955bb04f54714780e64f87b9d357749de270937cb6327f3 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_91861ce691d646912955bb04f54714780e64f87b9d357749de270937cb6327f3->enter($__internal_91861ce691d646912955bb04f54714780e64f87b9d357749de270937cb6327f3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "myspace/index.html.twig"));
+        $__internal_aa70736774e45eb955877a3986473857f2d2ae259644bc1a35ffd8590a736670 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_aa70736774e45eb955877a3986473857f2d2ae259644bc1a35ffd8590a736670->enter($__internal_aa70736774e45eb955877a3986473857f2d2ae259644bc1a35ffd8590a736670_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "myspace/index.html.twig"));
 
-        // line 1
-        echo "<a href=\"";
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+        
+        $__internal_aa70736774e45eb955877a3986473857f2d2ae259644bc1a35ffd8590a736670->leave($__internal_aa70736774e45eb955877a3986473857f2d2ae259644bc1a35ffd8590a736670_prof);
+
+    }
+
+    // line 3
+    public function block_body($context, array $blocks = array())
+    {
+        $__internal_1cc93620a80ea7c9cdc15c172ba85d6d67b8f0a20c50524d3863e7d8859db305 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_1cc93620a80ea7c9cdc15c172ba85d6d67b8f0a20c50524d3863e7d8859db305->enter($__internal_1cc93620a80ea7c9cdc15c172ba85d6d67b8f0a20c50524d3863e7d8859db305_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+
+        // line 4
+        echo "
+<h1> Welcome Keltoum</h1>
+
+<a href=\"";
+        // line 7
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
         echo "\"> Logout</a>
-TOTO";
+";
         
-        $__internal_91861ce691d646912955bb04f54714780e64f87b9d357749de270937cb6327f3->leave($__internal_91861ce691d646912955bb04f54714780e64f87b9d357749de270937cb6327f3_prof);
+        $__internal_1cc93620a80ea7c9cdc15c172ba85d6d67b8f0a20c50524d3863e7d8859db305->leave($__internal_1cc93620a80ea7c9cdc15c172ba85d6d67b8f0a20c50524d3863e7d8859db305_prof);
 
     }
 
@@ -40,7 +62,7 @@ TOTO";
 
     public function getDebugInfo()
     {
-        return array (  22 => 1,);
+        return array (  45 => 7,  40 => 4,  34 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -53,7 +75,13 @@ TOTO";
 
     public function getSourceContext()
     {
-        return new Twig_Source("<a href=\"{{path('logout')}}\"> Logout</a>
-TOTO", "myspace/index.html.twig", "C:\\xampp\\htdocs\\codecole\\app\\Resources\\views\\myspace\\index.html.twig");
+        return new Twig_Source("{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> Welcome Keltoum</h1>
+
+<a href=\"{{path('logout')}}\"> Logout</a>
+{% endblock %}", "myspace/index.html.twig", "C:\\xampp\\htdocs\\codecole\\app\\Resources\\views\\myspace\\index.html.twig");
     }
 }

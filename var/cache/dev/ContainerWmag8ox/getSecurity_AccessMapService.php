@@ -8,6 +8,6 @@ use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 $this->services['security.access_map'] = $instance = new \Symfony\Component\Security\Http\AccessMap();
 
 $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/myspace'), array(0 => 'ROLE_ADMIN', 1 => 'ROLE_USER'), NULL);
-$instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/admin'), array(0 => 'ROLE_ADMIN'), NULL);
+$instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/adminspace'), array(0 => 'ROLE_ADMIN'), NULL);
 
 return $instance;
