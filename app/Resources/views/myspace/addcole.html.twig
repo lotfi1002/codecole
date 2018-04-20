@@ -3,6 +3,10 @@
 {% block body %}
 
 <h1> Ajouter une ecole</h1>
+<form action="{{path('save_ecole')}}" method="post">
+<input type="text" name="nom" id="nom"/></br>
+<input type="submit" value="Enregistrer" name="ok"/>
+</form>
 
 <a href="{{path('logout')}}"> Logout</a>
 {% endblock %}

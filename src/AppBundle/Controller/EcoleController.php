@@ -11,7 +11,7 @@ class EcoleController extends Controller
 {
 	
 	/**
-     * @Route("/myspace/ecole")
+     * @Route("/myspace/ecole", name="ecole")
      */
     public function ecoleAction(Request $request)
     {
@@ -31,7 +31,7 @@ class EcoleController extends Controller
     }
 
 	/**
-     * @Route("/myspace/ecoles")
+     * @Route("/myspace/ecoles" , name="liste_ecoles")
      */
     public function listEcoleAction(Request $request)
     {
@@ -59,22 +59,26 @@ class EcoleController extends Controller
 
 	
 	/**
-     * @Route("/myspace/saveecole")
+     * @Route("/myspace/saveecole" , name="save_ecole")
      */
     public function saveAction(Request $request)
     {
 		 $user = null ;
+		 $ecole = null;
 		if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
 			$user = $this->container->get('security.token_storage')->getToken()->getUser();
 			$em = $this->getDoctrine()->getManager();
-			
-	
+			$ecole = new Ecole();
+			$ecole->setNom($request->request->get('nom'));
+			$em->persist($ecole);
+
+				// actually executes the queries (i.e. the INSERT query)
+		    $em->flush();
 		
 		}
-			
-			 return $this->render('myspace/addcole.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
-        ));
+			// params  array('max' => 10)
+			  return $this->redirectToRoute('liste_ecoles', array());
+        
        
     }
 
