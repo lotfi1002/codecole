@@ -4,5 +4,9 @@
 
 <h1> Liste des ecoles</h1>
 
+{% for ecole in ecoles %}
+{{ecole.nom}} </br>
+{% endfor %}
+
 <a href="{{path('logout')}}"> Logout</a>
 {% endblock %}
