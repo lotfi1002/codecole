@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+          <h3 class="text-center"></h3>
+           
+           <div class="form-group">
+    
+                   <p class="xs-mt-10 xs-mb-10">
+                  <a href="{{path('transportCSL')}}">  <button class="btn btn-rounded btn-space btn-warning" style="font-size:17px;width:155px;"> Parc véhicules</button></a>
+                  <a href="{{path('transportAFF')}}">  <button class="btn btn-rounded btn-space btn-success"style="font-size:17px;width:170px;">Affectation élèves</button></a>
+                  <a href="{{path('transportCSL')}}">  <button class="btn btn-rounded btn-space btn-danger"style="font-size:17px;width:155px;"></i> Consultation</button></a>
+                  <a href="{{path('transportEDT')}}">  <button class="btn btn-rounded btn-space btn-primary"style="font-size:17px;width:155px;"></i> Edition Listes</button></a>
+                    <button class="btn btn-rounded btn-space btn-default"style="font-size:17px;width:155px;"> Synthèse</button>
+                  </p>
+                      </div>
+                    </div>
+
+       <div class="form-group">
+              <div class="icon-container">
+                      <label class="col-sm-1 control-label " style= "font-size:14px;">Véhicule</label>
+                      <div class="col-sm-2">
+                        <select class="form-control">
+                          <option>V1</option>
+                          <option>V2</option>
+                          <option>V3</option>
+                          <option>V4</option>
+                          <option>V5</option>
+                        </select>
+                      </div>
+                       <label class="col-sm-1 control-label"style= "font-size:14px;">Tournée</label>
+                      <div class="col-sm-2">
+                        <select class="form-control">
+                          <option>T1</option>
+                          <option>T2</option>
+                          <option>T3</option>
+                          <option>T4</option>
+                          <option>T5</option>
+                        </select>
+                      </div>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                    
+                      <label class="col-sm-1 control-label " style= "font-size:14px;">Cycle</label>
+                      <div class="col-sm-2">
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                       <label class="col-sm-1 control-label"style= "font-size:14px;">Niveau</label>
+                      <div class="col-sm-2">
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                       <label class="col-sm-1 control-label"style= "font-size:14px;">Classe</label>
+                      <div class="col-sm-2">
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                      <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="form-group">
+                      <div class="col-sm-6">
+                        <div class="be-radio inline">
+                          <input type="radio" checked="" name="rad3" id="rad6">
+                          <label for="rad6">Utilisateurs inscrits</label>
+                        </div>
+                        <div class="be-radio inline">
+                          <input type="radio" checked="" name="rad3" id="rad7">
+                          <label for="rad7">Elèves</label>
+                        </div>
+                        <div class="be-radio inline">
+                          <input type="radio" checked="" name="rad3" id="rad8">
+                          <label for="rad8">Tous</label>
+                        </div>
+                        </div>   
+                        <div class="icon"style="margin-left:450px;"><span class="mdi mdi-search"></span></div><span class="icon-class"></span>
+                      </div>
+                    </div>
+                  </div>
+            <!--Default Tabs-->
+            <div class="col-sm-12">
+
+              <div class="panel panel-default">
+
+                <div class="panel-heading"></div>
+
+                <div class="tab-container">
+             
+                  <div class="tab-content">
+                    <div id="tous" class="tab-pane active cont">
+                      
+                  <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    
+                    <thead>
+                  <tr>
+                         <th></th>
+                        <th>N° de paiement</th>
+                        <th>Nom et prenom</th>
+                        <th>Nom et prenom (fr)</th>
+                        <th>Genre</th>
+                        <th>Niveau scolaire</th>
+                        <th>Classe</th>
+                        <th>Situation</th>
+                        <th>Véhicule</th>
+                        <th>Tournée</th>
+                        <th>Adresse</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="odd gradeX">
+                        <td><input id="check6" type="checkbox" checked="">
+                          <label for="check6"></label></td>
+                        <td>xxxxxx</td>
+                        <td>أxxxxxxx </td>
+                        <td>xxxxxxx</td>
+                        <td>Fille</td>
+                        <td>xxxxx</td>
+                        <td>x</td>
+                        <td>inscrit</td>
+                        <td>V1</td>
+                        <td>T1</td>
+                        <td> xxxxxxx </td>
+                      </tr>
+                      </tbody>
+                      <tbody>
+                      <tr class="odd gradeX">
+                        <td><input id="check6" type="checkbox" checked="">
+                          <label for="check6"></label></td>
+                        <td>YYYYYYY</td>
+                        <td>XXXXXX </td>
+                        <td>YYYYYYYY</td>
+                        <td>Garçon</td>
+                        <td>YYYYYY</td>
+                        <td>Y</td>
+                        <td>inscrit</td>
+                        <td>V2</td>
+                        <td>T1</td>
+                        <td> YYYYYYY </td>
+                      </tr>
+                      </tbody>
+                      <tbody>
+                      <tr class="odd gradeX">
+                        <td><input id="check6" type="checkbox" checked="">
+                          <label for="check6"></label></td>
+                        <td>wwwww</td>
+                        <td>wwwww </td>
+                        <td>Ywwwwww</td>
+                        <td>Garçon</td>
+                        <td>wwwwww</td>
+                        <td>w</td>
+                        <td>inscrit</td>
+                        <td>V1</td>
+                        <td>T1</td>
+                        <td> wwwwww</td>
+                      </tr>
+                      </tbody>
+
+                    </table>
+
+                  </div>
+                    <div class="row">
+                      <div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="table1_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="table1_previous"><a href="#" aria-controls="table1" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="table1" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="table1_next"><a href="#" aria-controls="table1" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div>
+                    </div>
+                     <div class="row">
+                <label class="col-sm-1 control-label" style="font-size:14px;">Imprimer</label>
+                  <button class="btn btn-rounded btn-space btn-success"> Liste simple </button>
+                <button class="btn btn-rounded btn-space btn-success"> Liste détaillée </button>
+                <button class="btn btn-rounded btn-space btn-success" style="margin-left:800px;"> PDF </button>
+                <button class="btn btn-rounded btn-space btn-success"> XLS </button>
+              </div>
+{% endblock %}                

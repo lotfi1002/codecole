@@ -1,0 +1,200 @@
+ {% extends 'base.html.twig' %}
+
+{% block body %}
+          <h3 class="text-center"></h3>
+           
+           <div class="form-group">
+            <div class="icon-container">
+            <label class="col-sm-2 control-label"  style= "font-size:16px;"for="textinput">Rechercher fiche élève :</label>
+            <div class="col-sm-8">
+              <input type="text" placeholder="Rechercher" class="form-control">
+            </div>
+                
+                        <div class="icon"><span class="mdi mdi-search"></span></div><span class="icon-class"></span>
+                      </div>
+                    </div>
+                  </div>
+            <!--Default Tabs-->
+            <div class="col-sm-12">
+
+              <div class="panel panel-default">
+
+                <div class="panel-heading"></div>
+
+                <div class="tab-container">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tous" data-toggle="tab">Tous</a></li>
+                      <li><a href="#Inscrits" data-toggle="tab">Inscrits</a></li>
+                    <li><a href="#Enattente" data-toggle="tab">En attente</a></li>
+                    <li><a href="#Partis" data-toggle="tab">Partis</a></li>
+                    <li><a href="#Radies" data-toggle="tab">Radiés</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div id="tous" class="tab-pane active cont">
+                      
+                  <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    <thead>
+                      <tr>
+                        <th>Matricule élève</th>
+                        <th>Nom et Prénom</th>
+                        <th>Nom et prénm (fr)</th>
+                        <th>Date de naissance</th>
+                        <th>Genre</th>
+                        <th>Niveau scolaire</th>
+                        <th>Classe</th>
+                        <th>Statut</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="odd gradeX">
+                        <td>1325/02</td>
+                        <td>أمقران هدى </td>
+                        <td>Amakrane houda</td>
+                        <td>17/03/2007</td>
+                        <td>Fille</td>
+                        <td>3° Années Primaire Général</td>
+                        <td></td>
+                        <td>En attente</td>
+                        <td>Fiche élève</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                </div>
+                    <div id="Inscrits" class="tab-pane cont">
+                       <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    <thead>
+                      <tr>
+                        <th>Matricule élève</th>
+                        <th>Nom et Prénom</th>
+                        <th>Nom et prénm (fr)</th>
+                        <th>Date de naissance</th>
+                        <th>Genre</th>
+                        <th>Niveau scolaire</th>
+                        <th>Classe</th>
+                        <th>Statut</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="odd gradeX">
+                        <td>1325/02</td>
+                        <td>أمقران هدى </td>
+                        <td>Amakrane houda</td>
+                        <td>17/03/2007</td>
+                        <td>Fille</td>
+                        <td>3° Années Primaire Général</td>
+                        <td></td>
+                        <td>En attente</td>
+                        <td>Dossier élève</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                    <div id="Enattente" class="tab-pane cont">
+                       <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    <thead>
+                      <tr>
+                        <th>Matricule élève</th>
+                        <th>Nom et Prénom</th>
+                        <th>Nom et prénm (fr)</th>
+                        <th>Date de naissance</th>
+                        <th>Genre</th>
+                        <th>Niveau scolaire</th>
+                        <th>Classe</th>
+                        <th>Statut</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="odd gradeX">
+                        <td>1325/02</td>
+                        <td>أمقران هدى </td>
+                        <td>Amakrane houda</td>
+                        <td>17/03/2007</td>
+                        <td>Fille</td>
+                        <td>3° Années Primaire Général</td>
+                        <td></td>
+                        <td>En attente</td>
+                        <td>Dossier élève</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                    <div id="Partis" class="tab-pane">
+                        <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    <thead>
+                      <tr>
+                        <th>Matricule élève</th>
+                        <th>Nom et Prénom</th>
+                        <th>Nom et prénm (fr)</th>
+                        <th>Date de naissance</th>
+                        <th>Genre</th>
+                        <th>Niveau scolaire</th>
+                        <th>Classe</th>
+                        <th>Statut</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="odd gradeX">
+                        <td>1325/02</td>
+                        <td>أمقران هدى </td>
+                        <td>Amakrane houda</td>
+                        <td>17/03/2007</td>
+                        <td>Fille</td>
+                        <td>3° Années Primaire Général</td>
+                        <td></td>
+                        <td>En attente</td>
+                        <td>Dossier élève</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                        <div id="Radies" class="tab-pane">
+                      <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    <thead>
+                      <tr>
+                        <th>Matricule élève</th>
+                        <th>Nom et Prénom</th>
+                        <th>Nom et prénm (fr)</th>
+                        <th>Date de naissance</th>
+                        <th>Genre</th>
+                        <th>Niveau scolaire</th>
+                        <th>Classe</th>
+                        <th>Statut</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="odd gradeX">
+                        <td>1325/02</td>
+                        <td>أمقران هدى </td>
+                        <td>Amakrane houda</td>
+                        <td>17/03/2007</td>
+                        <td>Fille</td>
+                        <td>3° Années Primaire Général</td>
+                        <td></td>
+                        <td>En attente</td>
+                        <td>Dossier élève</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                  </div>
+           <div class="row">
+                <label class="col-sm-2 control-label" style="margin-left:30px; font-size:14px;">Imprimer fiches sélectionées</label>
+                <div class="col-sm-1 control-label">
+                  <button> PDF </button>
+                </div>
+                <div class="col-sm-1 control-label">
+                <button> XLS </button>
+              </div>
+
+                  <div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="table1_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="table1_previous"><a href="#" aria-controls="table1" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="table1" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="table1_next"><a href="#" aria-controls="table1" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div>
+                </div>
+                </div>
+              </div>
+            </div>
+ {% endblock %}
+ 

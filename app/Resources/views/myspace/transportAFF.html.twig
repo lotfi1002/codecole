@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+          <h3 class="text-center"></h3>
+           
+           <div class="form-group">
+    
+                   <p class="xs-mt-10 xs-mb-10">
+                  <a href="{{path('transportVCL')}}">  <button class="btn btn-rounded btn-space btn-warning" style="font-size:17px;width:155px;"> Parc véhicules</button></a>
+                  <a href="{{path('transportAFF')}}">  <button class="btn btn-rounded btn-space btn-success"style="font-size:17px;width:170px;">Affectation élèves</button></a>
+                  <a href="{{path('transportCSL')}}">  <button class="btn btn-rounded btn-space btn-danger"style="font-size:17px;width:155px;"></i> Consultation</button></a>
+                  <a href="{{path('transportEDT')}}">  <button class="btn btn-rounded btn-space btn-primary"style="font-size:17px;width:155px;"></i> Edition Listes</button></a>
+                    <button class="btn btn-rounded btn-space btn-default"style="font-size:17px;width:155px;"> Synthèse</button>
+                  </p>
+                      </div>
+                    </div>
+            <div class="form-group">
+              <div class="icon-container">
+                      <label class="col-sm-1 control-label " style= "font-size:14px;">Cycle</label>
+                      <div class="col-sm-2">
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                       <label class="col-sm-1 control-label"style= "font-size:14px;">Niveau</label>
+                      <div class="col-sm-2">
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                       <label class="col-sm-1 control-label"style= "font-size:14px;">Classe</label>
+                      <div class="col-sm-2">
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                        <div class="icon"><span class="mdi mdi-search"></span></div><span class="icon-class"></span>
+                      </div>
+                    </div>
+                
+            <!--Default Tabs-->
+            <div class="col-sm-12">
+
+              <div class="panel panel-default">
+
+                <div class="panel-heading"></div>
+
+                <div class="tab-container">
+                    <ul class="nav nav-tabs">
+                    <li class="active"><a href="#Non affectés" data-toggle="tab">Non affectés</a></li>
+                      <li><a href="#V1" data-toggle="tab">V1</a></li>
+                    <li><a href="#V2" data-toggle="tab">V2</a></li>
+                    <li><a href="#V3" data-toggle="tab">V3</a></li>
+                    <li><a href="#V4" data-toggle="tab">V4</a></li>
+                    <li><a href="#V5" data-toggle="tab">V5</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div id="tous" class="tab-pane active cont">
+                      
+                  <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    
+                    <thead>
+                  <tr>
+                         <th></th>
+                        <th>N° de paiement</th>
+                        <th>Nom et prenom</th>
+                        <th>Nom et prenom (fr)</th>
+                        <th>Genre</th>
+                        <th>Niveau scolaire</th>
+                        <th>Classe</th>
+                        <th>Adresse</th>
+                        <th>Véhicule</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="odd gradeX">
+                        <td><input id="check6" type="checkbox" checked="">
+                          <label for="check6"></label></td>
+                        <td>302187</td>
+                        <td>أمقران هدى </td>
+                        <td>Amakrane houda</td>
+                        <td>Fille</td>
+                        <td>3° année Primaire Général</td>
+                        <td></td>
+                        <td>xxxxxxxxxx</td>
+                        <td>V1</td>
+                        <td><a href="#">Fiche de règlement</a></td>
+                        <td><a href="ecole v3.html">Dossier élève</a></td>
+                      </tr>
+                      </tbody>
+                      <tbody>
+                      <tr class="odd gradeX">
+                        <td><input id="check6" type="checkbox" checked="">
+                          <label for="check6"></label></td>
+                        <td>78965</td>
+                        <td>XXXXXX </td>
+                        <td>YYYYYYYY</td>
+                        <td>Garçon</td>
+                        <td>3ere année Primaire Général</td>
+                        <td></td>
+                        <td>xxxxxxxxxx</td>
+                        <td>V2</td>
+                        <td><a href="#">Fiche de règlement</a></td>
+                        <td><a href="ecole v3.html">Dossier élève</a></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+     
+               <div class="form-group">
+                <div class="icon-container">
+                       <label class="col-sm-1 control-label"style ="font-size:17px;">Affecter véhicule </label>
+              <div class="col-sm-1">
+                <select class="form-control">
+                  <option>V1</option>
+                  <option>V2</option>
+                </select>
+              </div>
+                    <br>
+                    <button class="btn btn-rounded btn-space btn-success" style="font-size:17px;width:155px;margin-left:50px;"> Valider </button>
+                    <button class="btn btn-rounded btn-space btn-danger" style="font-size:17px;width:170px;margin-left:600px;"> Annuler affectation</button>
+                    <p>
+             
+      </div>
+    </div>
+              
+{% endblock %}

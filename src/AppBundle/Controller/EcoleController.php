@@ -70,6 +70,8 @@ class EcoleController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$ecole = new Ecole();
 			$ecole->setNom($request->request->get('nom'));
+			$ecole->setAdresse($request->request->get('adressse'));
+			$ecole->setLogo($request->request->get('logo'));
 			$em->persist($ecole);
 
 				// actually executes the queries (i.e. the INSERT query)

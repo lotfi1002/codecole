@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}         
+   <h3 class="text-center"></h3>
+           
+           <div class="form-group">
+    
+                   <p class="xs-mt-10 xs-mb-10">
+                  <a href="{{path('transportVCL')}}">  <button class="btn btn-rounded btn-space btn-warning" style="font-size:17px;width:155px;"> Parc véhicules</button></a>
+                  <a href="{{path('transportAFF')}}">  <button class="btn btn-rounded btn-space btn-success"style="font-size:17px;width:170px;">Affectation élèves</button></a>
+                  <a href="{{path('transportCSL')}}">  <button class="btn btn-rounded btn-space btn-danger"style="font-size:17px;width:155px;"></i> Consultation</button></a>
+                  <a href="{{path('transportEDT')}}">  <button class="btn btn-rounded btn-space btn-primary"style="font-size:17px;width:155px;"></i> Edition Listes</button></a>
+                    <button class="btn btn-rounded btn-space btn-default"style="font-size:17px;width:155px;"> Synthèse</button>
+                  </p>
+                      </div>        
+            <!--Default Tabs-->
+            <div class="col-sm-12">
+
+              <div class="panel panel-default">
+
+                <div class="panel-heading"></div>
+
+                <div class="tab-container">
+                 
+                  <div class="tab-content">
+                    <div id="tous" class="tab-pane active cont">
+                      
+                  <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    <thead>
+                      <tr>
+                        <th>Véh.</th>
+                        <th>Matricule</th>
+                        <th>Chauffeur</th>
+                        <th>N° de téléphone</th>
+                        <th>Accompagnateur</th>
+                        <th>N° de téléphone</th>
+                        <th></th>
+                        <th></th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="odd gradeX">
+                        <td>V1</td>
+                        <td>34567-A-40</td>
+                        <td>M.Abdellatif Sbai</td>
+                        <td>06.61.14.23.56</td>
+                        <td>Mme Fatima khaouja</td>
+                        <td>06.55.00.22.18</td>
+                        <td></td>
+                        <td>Modifier</td>
+                        
+                      </tr>
+                      </tbody>
+                    </table>
+                </div>
+                   
+                    </div>
+                  </div>
+     
+               <div class="form-group">
+                <div class="icon-container">
+                        <div class="icon"><span class="mdi mdi-plus"></span></div><span class="icon-class">Nouveau véhicule</span>
+                      </div>
+                    <br>
+                    <button class="btn btn-rounded btn-space btn-success" style="font-size:17px;width:155px;margin-left:50px;"> Sauvegarder </button>
+                    <button class="btn btn-rounded btn-space btn-danger" style="font-size:17px;width:155px;margin-left:50px;"> Supprimer</button>
+                    <p>
+             <div class="row">
+                <label class="col-sm-2 control-label" style="margin-left:900px; font-size:14px;">Imprimer fiches sélectionées</label>
+      
+                  <button class="btn btn-rounded btn-space btn-success"> PDF </button>
+               
+                <button class="btn btn-rounded btn-space btn-success"> XLS </button>
+
+            </div>
+      </div>
+    </div>
+   {% endblock %}

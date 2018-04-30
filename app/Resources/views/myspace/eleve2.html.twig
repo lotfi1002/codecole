@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+          <h1 class="text-center">Gestion élèves</h1>
+            <div class="container">
+              <table style="width:90%;">
+                <tr style="height: 290px;">
+                  <div class="row">
+                  <td>
+                      <div>
+                       <a href="{{path('ecolev3')}}"><button class="btn btn-space btn-primary btn-big" style="width: 48%; height: 170px;margin-left:200px;font-size:17px;"><i class="icon mdi mdi-assignment-account"></i><br> Nouvelle Inscription </button></a>
+                      </div>
+                    </td><td>
+                    <div>
+                    <a href="{{path('Ficheseleve')}}">  <button class="btn btn-space btn-default btn-big" style="width: 83%; height: 170px;font-size:17px;"><i class="icon mdi mdi-view-web"></i> <br>Fiches élèves </button></a>
+                    </div>
+                    </td>
+                  </div>
+                </tr>
+                <tr  style="height: 290px;">
+                  <div class="row">
+                  <td>
+                    <div>
+                      <a href="{{path('Listeeleve')}}"><button class="btn btn-space btn-danger btn-big"  style="width: 48%; height: 170px;margin-left:200px;font-size:17px;"><i class="icon mdi mdi-collection-text"></i> <br> Listes élèves</button></a>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <button class="btn btn-space btn-warning btn-big"  style="width: 83%; height: 170px;font-size:17px;"><i class="icon mdi mdi-assignment"></i> <br>Suivi des inscriptions </button>  
+                    </div>
+                  </td>
+                  
+                  </div>
+                </tr>
+              </table>
+            </div>
+          </div>
+ {% endblock %}            

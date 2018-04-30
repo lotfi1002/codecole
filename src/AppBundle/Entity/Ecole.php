@@ -36,6 +36,11 @@ class Ecole
      */
     private $logo;
 
+      /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
 public function __construct()
     {
         
@@ -75,6 +80,18 @@ public function __construct()
     public function setLogo($logo)
     {
         $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }

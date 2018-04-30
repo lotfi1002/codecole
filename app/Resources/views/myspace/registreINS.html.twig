@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+          <h1 class="text-center"style="margin-right:150px;">Registre des inscription</h1>
+            <div class="container">
+              <table style="width:90%;">
+                <tr style="height: 290px;">
+                  <div class="row">
+                  <td>
+                      <div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                       <a href="{{path('Ficheseleve')}}"><button class="btn btn-space btn-primary btn-big" style="width: 50%; height: 170px;margin-left:100px;font-size:17px;"><i class="icon mdi mdi-bus"></i><br> Fiches élèves archivées</button></a>
+                      </div>
+                    </td><td>
+                    <div>
+                      <br>
+                        <br>
+                        <br>
+                        <br>
+                    <a href="{{path('editionregistre')}}">  <button class="btn btn-space btn-warning btn-big" style="width: 81%; height: 173px;font-size:17px;"><i class="icon mdi mdi-search-in-page"></i> <br>Edition registre </button></a>
+                    </div>
+                    </td>
+                  </div>
+                </tr>
+                
+                    </div>
+                  </td>
+                  
+                  </div>
+                </tr>
+              </table>
+            </div>
+          </div>
+{% endblock %} 
