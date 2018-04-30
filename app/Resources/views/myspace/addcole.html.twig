@@ -3,12 +3,69 @@
 {% block body %}
 
 <h1> Ajouter une ecole</h1>
-<form action="{{path('save_ecole')}}" method="post">
-<input type="text" name="nom" id="nom"/></br>
-<input type="text" name="adressse" id="adresse"/></br>
-<input type="text" name="logo" id="logo"/></br>
-<input type="submit" value="Enregistrer" name="ok"/>
-</form>
 
+<form action="{{path('save_ecole')}}" novalidate="" class="form-horizontal group-border-dashed" method='post'>
+                    
+                    <div class="form-group xs-pt-10">
+                     <label class="col-sm-2 control-label" for="textinput">Nom</label>
+            <div class="col-sm-10">
+              <input type="text" placeholder="Nom" class="form-control" name='nom' required>
+            </div>
+                    </div>
+                    <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Nbr Cycle</label>
+            <div class="col-sm-10">
+              <input type="text" placeholder="Nbr Cycle" class="form-control" name='nbr_cycle' required>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Adresse</label>
+            <div class="col-sm-10">
+              <input type="text" placeholder="Adresse" class="form-control" name='adresse' required>
+            </div>
+          </div>
+           
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="textinput">الاسم</label>
+            <div class="col-sm-10">
+              <input type="text" placeholder="الاسم" class="form-control" name='nom_ar' required>
+            </div>
+            
+            
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">عدد الدورة</label>
+             <div class="col-sm-10">
+              <input type="text" placeholder="عدد الدورة" class="form-control" name='nbr_semestre' required>
+            </div>
+            
+           
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">العنوان</label>
+              <div class="col-sm-10">
+              <input type="text" placeholder="العنوان" class="form-control" name='adresse_ar' required>
+            </div>
+           
+          </div>
+           <div class="form-group">
+              <label class="col-sm-2 control-label" for="textinput">logo</label>
+               <div class="col-sm-10">
+                <input type="file" class="form-control" name='logo' >
+                </div>
+             </div>
+           
+              <div class="col-xs-6">
+                        <p class="text-right">
+                          <button type="submit" class="btn btn-space btn-primary">Ajouter</button>
+                        </p>
+                      </div>
+                  </form>
 <a href="{{path('logout')}}"> Logout</a>
 {% endblock %}
