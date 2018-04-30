@@ -1,126 +1,159 @@
 <?php
-// src/AppBundle/Entity/User.php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * ecole
+ * Matiere
  *
- * @ORM\Table()
+ * @ORM\Table(name="matiere")
  * @ORM\Entity
  */
-class Matiere 
+class Matiere
 {
     /**
-	* test
-     * @ORM\Column(type="integer")
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var integer
+     *
+     * @ORM\Column(name="id_classe", type="integer", nullable=true)
      */
-    private $id_classe;
-/**
-     * @ORM\Column(type="integer")
-     */
-    private $id_enseignant;
+    private $idClasse;
+
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var integer
+     *
+     * @ORM\Column(name="id_enseignant", type="integer", nullable=true)
      */
-    private $date;
+    private $idEnseignant;
 
-
- /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=200, nullable=true)
      */
-    private $nom ;
+    private $nom;
 
-
- /**
-     * @ORM\Column(type="integer", nullable=true)
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="coef", type="integer", nullable=true)
      */
-    private $coef ;
+    private $coef;
 
 
-   
 
-public function __construct()
-    {
-        
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
-    }
-
-     public function getId()
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getId_classe()
+    /**
+     * Set idClasse
+     *
+     * @param integer $idClasse
+     *
+     * @return Matiere
+     */
+    public function setIdClasse($idClasse)
     {
-        return $this->id_classe;
-    }
-
-    public function setId_classe($id_classe)
-    {
-        $this->id_classe = $id_classe;
-
-        return $this;
-    }
-     public function getId_enseignant()
-    {
-        return $this->id_enseignant;
-    }
-
-    public function setId_enseignant($id_enseignant)
-    {
-        $this->id_enseignant = $id_enseignant;
-
+        $this->idClasse = $idClasse;
+    
         return $this;
     }
 
-    public function getDate()
+    /**
+     * Get idClasse
+     *
+     * @return integer
+     */
+    public function getIdClasse()
     {
-        return $this->date;
+        return $this->idClasse;
     }
 
-    public function setDate($date)
+    /**
+     * Set idEnseignant
+     *
+     * @param integer $idEnseignant
+     *
+     * @return Matiere
+     */
+    public function setIdEnseignant($idEnseignant)
     {
-        $this->date = $date;
-
+        $this->idEnseignant = $idEnseignant;
+    
         return $this;
     }
-	
 
-public function getNom()
+    /**
+     * Get idEnseignant
+     *
+     * @return integer
+     */
+    public function getIdEnseignant()
+    {
+        return $this->idEnseignant;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Matiere
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
     {
         return $this->nom;
     }
 
-    public function setNom($nom)
+    /**
+     * Set coef
+     *
+     * @param integer $coef
+     *
+     * @return Matiere
+     */
+    public function setCoef($coef)
     {
-        $this->nom = $nom;
-
+        $this->coef = $coef;
+    
         return $this;
     }
 
+    /**
+     * Get coef
+     *
+     * @return integer
+     */
     public function getCoef()
     {
         return $this->coef;
     }
-
-    public function setCoef($coef)
-    {
-        $this->coef = $coef;
-
-        return $this;
-    }
-	
 }
-
-?>

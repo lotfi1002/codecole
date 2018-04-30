@@ -1,108 +1,190 @@
 <?php
-// src/AppBundle/Entity/User.php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * ecole
+ * Etudiant
  *
- * @ORM\Table()
+ * @ORM\Table(name="etudiant")
  * @ORM\Entity
  */
-class Etudiant 
+class Etudiant
 {
     /**
-	* test
-     * @ORM\Column(type="integer")
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     *
+     * @ORM\Column(name="id_massar", type="string", length=200, nullable=true)
+     */
+    private $idMassar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cne", type="string", length=200, nullable=true)
+     */
+    private $cne;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=200, nullable=true)
      */
     private $nom;
-     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=200, nullable=true)
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     *
+     * @ORM\Column(name="tel", type="string", length=200, nullable=true)
      */
-    private $CNE;
+    private $tel;
+
+
 
     /**
-     * @ORM\Column(type="integer")
+     * Get id
+     *
+     * @return integer
      */
-
-    private $id_classe ;
-
-   
-
-public function __construct()
-    {
-        
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
-    }
-
-     public function getId()
+    public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Set idMassar
+     *
+     * @param string $idMassar
+     *
+     * @return Etudiant
+     */
+    public function setIdMassar($idMassar)
+    {
+        $this->idMassar = $idMassar;
+    
+        return $this;
+    }
+
+    /**
+     * Get idMassar
+     *
+     * @return string
+     */
+    public function getIdMassar()
+    {
+        return $this->idMassar;
+    }
+
+    /**
+     * Set cne
+     *
+     * @param string $cne
+     *
+     * @return Etudiant
+     */
+    public function setCne($cne)
+    {
+        $this->cne = $cne;
+    
+        return $this;
+    }
+
+    /**
+     * Get cne
+     *
+     * @return string
+     */
+    public function getCne()
+    {
+        return $this->cne;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Etudiant
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
     public function getNom()
     {
         return $this->nom;
     }
 
-    public function setNom($nom)
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return Etudiant
+     */
+    public function setPrenom($prenom)
     {
-        $this->nom = $nom;
-
+        $this->prenom = $prenom;
+    
         return $this;
     }
-     public function getPrenom()
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
     {
         return $this->prenom;
     }
 
-    public function setPrenom($prenom)
+    /**
+     * Set tel
+     *
+     * @param string $tel
+     *
+     * @return Etudiant
+     */
+    public function setTel($tel)
     {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-     public function getCNE()
-    {
-        return $this->CNE;
-    }
-
-    public function setCNE($CNE)
-    {
-        $this->CNE = $CNE;
-
+        $this->tel = $tel;
+    
         return $this;
     }
 
-     public function getId_classe()
+    /**
+     * Get tel
+     *
+     * @return string
+     */
+    public function getTel()
     {
-        return $this->id_classe;
+        return $this->tel;
     }
-
-    public function setId_classe($id_classe)
-    {
-        $this->id_classe = $id_classe;
-
-        return $this;
-    }
-	
-
-	
 }
-
-?>

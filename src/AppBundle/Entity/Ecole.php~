@@ -1,0 +1,75 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Ecole
+ *
+ * @ORM\Table(name="ecole")
+ * @ORM\Entity
+ */
+class Ecole
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=200, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=200, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="logo", type="string", length=200, nullable=true)
+     */
+    private $logo;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr_semestre", type="integer", nullable=true)
+     */
+    private $nbrSemestre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr_cycle", type="integer", nullable=true)
+     */
+    private $nbrCycle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_ar", type="string", length=200, nullable=true)
+     */
+    private $nomAr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse_ar", type="string", length=200, nullable=true)
+     */
+    private $adresseAr;
+
+
+}
+

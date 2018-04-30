@@ -86,52 +86,6 @@ public function __construct()
     }
 
 	
-
-    /**
-     * Set idClasse
-     *
-     * @param integer $idClasse
-     *
-     * @return Enseigner
-     */
-    public function setIdClasse($idClasse)
-    {
-        $this->id_classe = $idClasse;
-    
-        return $this;
-    }
-
-    /**
-     * Get idClasse
-     *
-     * @return integer
-     */
-    public function getIdClasse()
-    {
-        return $this->id_classe;
-    }
-
-    /**
-     * Set idEnseignant
-     *
-     * @param integer $idEnseignant
-     *
-     * @return Enseigner
-     */
-    public function setIdEnseignant($idEnseignant)
-    {
-        $this->id_enseignant = $idEnseignant;
-    
-        return $this;
-    }
-
-    /**
-     * Get idEnseignant
-     *
-     * @return integer
-     */
-    public function getIdEnseignant()
-    {
-        return $this->id_enseignant;
-    }
 }
+
+?>

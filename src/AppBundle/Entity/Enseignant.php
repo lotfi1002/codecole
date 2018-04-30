@@ -1,91 +1,159 @@
 <?php
-// src/AppBundle/Entity/User.php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * ecole
+ * Enseignant
  *
- * @ORM\Table()
+ * @ORM\Table(name="enseignant")
  * @ORM\Entity
  */
-class Enseignant 
+class Enseignant
 {
     /**
-	* test
-     * @ORM\Column(type="integer")
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     *
+     * @ORM\Column(name="mom", type="string", length=200, nullable=true)
      */
-    private $nom;
-/**
-     * @ORM\Column(type="string", length=255, nullable=true)
+    private $mom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=200, nullable=true)
      */
     private $prenom;
+
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=200, nullable=true)
      */
     private $email;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tel", type="string", length=200, nullable=true)
+     */
+    private $tel;
 
-   
 
-public function __construct()
-    {
-        
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
-    }
 
-     public function getId()
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getNom()
+    /**
+     * Set mom
+     *
+     * @param string $mom
+     *
+     * @return Enseignant
+     */
+    public function setMom($mom)
     {
-        return $this->nom;
-    }
-
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
+        $this->mom = $mom;
+    
         return $this;
     }
-     public function getPrenom()
+
+    /**
+     * Get mom
+     *
+     * @return string
+     */
+    public function getMom()
+    {
+        return $this->mom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return Enseignant
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
     {
         return $this->prenom;
     }
 
-    public function setPrenom($prenom)
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Enseignant
+     */
+    public function setEmail($email)
     {
-        $this->prenom = $prenom;
-
+        $this->email = $email;
+    
         return $this;
     }
 
+    /**
+     * Get email
+     *
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    /**
+     * Set tel
+     *
+     * @param string $tel
+     *
+     * @return Enseignant
+     */
+    public function setTel($tel)
     {
-        $this->email = $email;
-
+        $this->tel = $tel;
+    
         return $this;
     }
-	
 
-	
+    /**
+     * Get tel
+     *
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
 }
-
-?>

@@ -1,78 +1,97 @@
 <?php
-// src/AppBundle/Entity/User.php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * ecole
+ * Cycle
  *
- * @ORM\Table()
+ * @ORM\Table(name="cycle")
  * @ORM\Entity
  */
-class Cycle 
+class Cycle
 {
     /**
-	* test
-     * @ORM\Column(type="integer")
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var integer
+     *
+     * @ORM\Column(name="id_ecole", type="integer", nullable=true)
+     */
+    private $idEcole;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=200, nullable=true)
      */
     private $nom;
 
 
+
     /**
-     * @ORM\Column(type="integer")
+     * Get id
+     *
+     * @return integer
      */
-
-    private $id_ecole ;
-
-   
-
-public function __construct()
-    {
-        
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
-    }
-
-     public function getId()
+    public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Set idEcole
+     *
+     * @param integer $idEcole
+     *
+     * @return Cycle
+     */
+    public function setIdEcole($idEcole)
+    {
+        $this->idEcole = $idEcole;
+    
+        return $this;
+    }
+
+    /**
+     * Get idEcole
+     *
+     * @return integer
+     */
+    public function getIdEcole()
+    {
+        return $this->idEcole;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Cycle
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
     public function getNom()
     {
         return $this->nom;
     }
-
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-     public function getId_ecole()
-    {
-        return $this->id_ecole;
-    }
-
-    public function setId_ecole($id_ecole)
-    {
-        $this->id_ecole = $id_ecole;
-
-        return $this;
-    }
-	
-
-	
 }
-
-?>

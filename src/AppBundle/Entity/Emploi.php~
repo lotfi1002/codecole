@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Emploi
+ *
+ * @ORM\Table(name="emploi")
+ * @ORM\Entity
+ */
+class Emploi
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_emploi", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idEmploi;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_matiere", type="integer", nullable=true)
+     */
+    private $idMatiere;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_salle", type="integer", nullable=true)
+     */
+    private $idSalle;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="jour", type="integer", nullable=true)
+     */
+    private $jour;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="seance", type="integer", nullable=true)
+     */
+    private $seance;
+
+
+}
+

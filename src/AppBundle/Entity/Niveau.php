@@ -1,78 +1,97 @@
 <?php
-// src/AppBundle/Entity/User.php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * ecole
+ * Niveau
  *
- * @ORM\Table()
+ * @ORM\Table(name="niveau")
  * @ORM\Entity
  */
-class Niveau 
+class Niveau
 {
     /**
-	* test
-     * @ORM\Column(type="integer")
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var integer
+     *
+     * @ORM\Column(name="id_cycle", type="integer", nullable=true)
+     */
+    private $idCycle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=200, nullable=true)
      */
     private $nom;
 
 
+
     /**
-     * @ORM\Column(type="integer")
+     * Get id
+     *
+     * @return integer
      */
-
-    private $id_cycle ;
-
-   
-
-public function __construct()
-    {
-        
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
-    }
-
-     public function getId()
+    public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Set idCycle
+     *
+     * @param integer $idCycle
+     *
+     * @return Niveau
+     */
+    public function setIdCycle($idCycle)
+    {
+        $this->idCycle = $idCycle;
+    
+        return $this;
+    }
+
+    /**
+     * Get idCycle
+     *
+     * @return integer
+     */
+    public function getIdCycle()
+    {
+        return $this->idCycle;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Niveau
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
     public function getNom()
     {
         return $this->nom;
     }
-
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-     public function getId_cycle()
-    {
-        return $this->id_cycle;
-    }
-
-    public function setId_cycle($id_cycle)
-    {
-        $this->id_cycle = $id_cycle;
-
-        return $this;
-    }
-	
-
-	
 }
-
-?>

@@ -1,0 +1,40 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PlanEvaluation
+ *
+ * @ORM\Table(name="plan_evaluation")
+ * @ORM\Entity
+ */
+class PlanEvaluation
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_evaluation", type="integer", nullable=true)
+     */
+    private $idEvaluation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_competance", type="integer", nullable=true)
+     */
+    private $idCompetance;
+
+
+}
+
