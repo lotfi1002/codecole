@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="panel panel-default panel-border-color panel-border-color-primary">
+  <div class="panel-heading panel-heading-divider"><span class="panel-subtitle"></span></div>
+  <div class="panel-body">
+    <form action="#" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Nom</label>
+        <div class="col-sm-6">
+          <input type="text" name="nom" placeholder="nom" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Adresse</label>
+        <div class="col-sm-6">
+          <input type="text" name="adresse" placeholder="adresse" class="form-control">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="panel panel-default panel-border-color panel-border-color-primary">
+  <div class="panel-heading panel-heading-divider"><span class="panel-subtitle"></span></div>
+  <div class="panel-body">
+   <div class="row" id="addcycle">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label class="col-sm-2 control-label " style= "font-size:14px;">Cycle</label>
+        <div class="col-sm-3">
+          <select class="form-control">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <label class="col-sm-2 control-label"style= "font-size:14px;">Niveau</label>
+        <div class="col-sm-3">
+          <select class="form-control">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="col-sm-1">
+          <div class="icon-container">
+            <div class="icon"  onclick="addCycle();"><span class="mdi mdi-plus"></span></div>
+          </div>
+        </div>
+      <div class="form-group">
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-space btn-success" style="margin-left:130px;">Ajouter</button>
+        </div>
+<script type="text/javascript">
+function addCycle(){
+  /*div1*/
+  var div1 = document.createElement("div");
+  div1.className = 'col-xs-12';
+  /*div2*/
+  var div2 = document.createElement("div");
+  div2.className = 'form-group';
+  /*label1*/
+  var label1 = document.createElement("label");
+  label1.className = 'col-sm-2 control-label';
+  label1.style="font-size:14px;"
+  label1.innerHTML = 'Cycle';
+  /*div3*/
+  var div3 = document.createElement("div");
+  div3.className = 'col-sm-3';
+  /*select1*/
+  var sel1 = document.createElement("select");
+  sel1.className = 'form-control';
+  /*option*5*/
+  for (var i = 1; i <= 5; i++) {
+    var opt1 = document.createElement("option");
+    opt1.value = 'val'.concat(i);
+    opt1.innerHTML = i;
+    sel1.appendChild(opt1);
+  };
+  div3.appendChild(sel1);
+  div2.appendChild(label1);
+  div2.appendChild(div3);
+  div1.appendChild(div2);
+
+  /*div2*/
+  var div2 = document.createElement("div");
+  div2.className = 'form-group';
+  /*label1*/
+  var label1 = document.createElement("label");
+  label1.className = 'col-sm-3 control-label';
+  label1.style="font-size:14px;"
+  label1.innerHTML = 'Niveau';
+  /*div3*/
+  var div3 = document.createElement("div");
+  div3.className = 'col-sm-3';
+  /*select1*/
+  var sel1 = document.createElement("select");
+  sel1.className = 'form-control';
+  /*option*5*/
+  for (var i = 1; i <= 5; i++) {
+    var opt1 = document.createElement("option");
+    opt1.value = 'val'.concat(i);
+    opt1.innerHTML = i;
+    sel1.appendChild(opt1);
+  };
+  div3.appendChild(sel1);
+  div2.appendChild(label1);
+  div2.appendChild(div3);
+  div1.appendChild(div2);
+  document.getElementById('addcycle').appendChild(div1);
+
+
+}
+</script>
+{% endblock %}

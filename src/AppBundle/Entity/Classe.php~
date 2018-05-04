@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Salle
+ * Classe
  *
- * @ORM\Table(name="salle")
+ * @ORM\Table(name="classe")
  * @ORM\Entity
  */
-class Salle
+class Classe
 {
     /**
      * @var integer
@@ -20,6 +20,13 @@ class Salle
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_niveau", type="integer", nullable=true)
+     */
+    private $idNiveau;
 
     /**
      * @var string
@@ -41,11 +48,35 @@ class Salle
     }
 
     /**
+     * Set idNiveau
+     *
+     * @param integer $idNiveau
+     *
+     * @return Classe
+     */
+    public function setIdNiveau($idNiveau)
+    {
+        $this->idNiveau = $idNiveau;
+    
+        return $this;
+    }
+
+    /**
+     * Get idNiveau
+     *
+     * @return integer
+     */
+    public function getIdNiveau()
+    {
+        return $this->idNiveau;
+    }
+
+    /**
      * Set nom
      *
      * @param string $nom
      *
-     * @return Salle
+     * @return Classe
      */
     public function setNom($nom)
     {

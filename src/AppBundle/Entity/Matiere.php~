@@ -50,5 +50,110 @@ class Matiere
     private $coef;
 
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idClasse
+     *
+     * @param integer $idClasse
+     *
+     * @return Matiere
+     */
+    public function setIdClasse($idClasse)
+    {
+        $this->idClasse = $idClasse;
+    
+        return $this;
+    }
+
+    /**
+     * Get idClasse
+     *
+     * @return integer
+     */
+    public function getIdClasse()
+    {
+        return $this->idClasse;
+    }
+
+    /**
+     * Set idEnseignant
+     *
+     * @param integer $idEnseignant
+     *
+     * @return Matiere
+     */
+    public function setIdEnseignant($idEnseignant)
+    {
+        $this->idEnseignant = $idEnseignant;
+    
+        return $this;
+    }
+
+    /**
+     * Get idEnseignant
+     *
+     * @return integer
+     */
+    public function getIdEnseignant()
+    {
+        return $this->idEnseignant;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Matiere
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set coef
+     *
+     * @param integer $coef
+     *
+     * @return Matiere
+     */
+    public function setCoef($coef)
+    {
+        $this->coef = $coef;
+    
+        return $this;
+    }
+
+    /**
+     * Get coef
+     *
+     * @return integer
+     */
+    public function getCoef()
+    {
+        return $this->coef;
+    }
+}
