@@ -1,78 +1,97 @@
 <?php
-// src/AppBundle/Entity/User.php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * ecole
+ * Classe
  *
- * @ORM\Table()
+ * @ORM\Table(name="classe")
  * @ORM\Entity
  */
-class Classe 
+class Classe
 {
     /**
-	* test
-     * @ORM\Column(type="integer")
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var integer
+     *
+     * @ORM\Column(name="id_niveau", type="integer", nullable=true)
+     */
+    private $idNiveau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=200, nullable=true)
      */
     private $nom;
 
 
+
     /**
-     * @ORM\Column(type="integer")
+     * Get id
+     *
+     * @return integer
      */
-
-    private $id_niveau ;
-
-   
-
-public function __construct()
-    {
-        
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
-    }
-
-     public function getId()
+    public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Set idNiveau
+     *
+     * @param integer $idNiveau
+     *
+     * @return Classe
+     */
+    public function setIdNiveau($idNiveau)
+    {
+        $this->idNiveau = $idNiveau;
+    
+        return $this;
+    }
+
+    /**
+     * Get idNiveau
+     *
+     * @return integer
+     */
+    public function getIdNiveau()
+    {
+        return $this->idNiveau;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Classe
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
     public function getNom()
     {
         return $this->nom;
     }
-
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-     public function getId_niveau()
-    {
-        return $this->id_niveau;
-    }
-
-    public function setId_niveau($id_niveau)
-    {
-        $this->id_niveau = $id_niveau;
-
-        return $this;
-    }
-	
-
-	
 }
-
-?>

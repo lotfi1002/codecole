@@ -14,7 +14,7 @@ class SpaceController extends Controller
 	/**
      * @Route("/myspace")
      */
-    public function indexAction(Request $request)
+    public function accueilAction(Request $request)
     {
 		 $user = null ;
 		
@@ -26,7 +26,7 @@ class SpaceController extends Controller
 		
 		}
 			
-			 return $this->render('myspace/index.html.twig', array(
+			 return $this->render('myspace/accueil.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
         ));
        
@@ -95,6 +95,27 @@ class SpaceController extends Controller
         ));
        
     }
+
+    /**
+     * @Route("/myspace/Ficheselevev3/{id} " , name="Ficheselevev3")
+     */
+
+    public function Ficheselevev3Action(Request $request, $id)
+    {
+		$user = null ;
+		if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
+			$user = $this->container->get('security.token_storage')->getToken()->getUser();
+			$em = $this->getDoctrine()->getManager();
+			
+		}
+		$rep = $this->getDoctrine()->getManager()->getRepository(Etudiant::class);
+		$eleve = $rep->find($id);
+		return $this->render('myspace/Ficheselevev3.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
+            'eleve' => $eleve,
+        ));
+	}
+
     /**
      * @Route("/myspace/ecolev3 " , name="ecolev3")
      */
@@ -105,6 +126,7 @@ class SpaceController extends Controller
 		if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
 			$user = $this->container->get('security.token_storage')->getToken()->getUser();
 			$em = $this->getDoctrine()->getManager();
+			
 		}
 
 		if ($request->isMethod('post')){
@@ -173,18 +195,16 @@ class SpaceController extends Controller
      */
     public function FicheseleveAction(Request $request)
     {
-		 $user = null ;
-		
+	    $user = null ;
 		if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
 			$user = $this->container->get('security.token_storage')->getToken()->getUser();
 			$em = $this->getDoctrine()->getManager();
-			
-		
-		
 		}
+		$rep = $this->getDoctrine()->getRepository(Etudiant::class);
+		$etds = $rep->findAll();
 			
 			 return $this->render('myspace/Ficheseleve.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user, 'etds' => $etds,
         ));
        
     }
@@ -198,13 +218,12 @@ class SpaceController extends Controller
 		if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
 			$user = $this->container->get('security.token_storage')->getToken()->getUser();
 			$em = $this->getDoctrine()->getManager();
-			
-		
-		
 		}
+		$rep = $this->getDoctrine()->getRepository(Etudiant::class);
+		$etds = $rep->findAll();
 			
 			 return $this->render('myspace/Listeeleve.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user, 'etds' => $etds, 
         ));
        
     }
@@ -429,7 +448,7 @@ class SpaceController extends Controller
        
     }
              /**
-     * @Route("/myspace/recoleIns" , name="ecoleIns")
+     * @Route("/myspace/ecoleIns" , name="ecoleIns")
      */
     public function  ecoleInsAction(Request $request)
     {

@@ -1,0 +1,65 @@
+  {% extends 'base.html.twig' %}
+
+{% block body %}
+          <h1 class="text-center"> Accueil </h1><br>
+            <div class="container">
+              <table style="width:90%">
+                <tr style="height: 190px">
+                  <div class="row">
+                    <td>
+                      <div>
+                        <a href="{{path('parametrage')}}"><button class="btn btn-space btn-success btn-big"  style="width: 90%; height: 170px;margin-left:60px;font-size:17px;"><i class="icon mdi mdi-settings"></i> <br> paramétrage </button> </a> 
+                      </div>
+                    </td><td>
+                      <div>
+                        <a href="{{path('eleve1')}}"><button class="btn btn-space btn-primary btn-big" style="width: 90%; height: 170px;margin-left:60px;font-size:17px;"><i class="icon mdi mdi-folder-person"></i> <br> Elève </button></a>
+                      </div>
+                    </td><td>
+                    <div>
+                      <button class="btn btn-space btn-default btn-big" style="width: 75%; height: 170px;margin-left:60px;font-size:17px;"><i class="icon mdi mdi-collection-bookmark"></i> <br> Référentiel des compétences</button>
+                    </div>
+                    </td>
+                  </div>
+                </tr>
+                <tr  style="height: 190px">
+                  <div class="row">
+                  <td>
+                    <div>
+                      <a href="page3.html"><button class="btn btn-space btn-warning btn-big"  style="width: 90%; height: 170px;margin-left:60px;font-size:17px;"><i class="icon icon mdi mdi-book"></i><br> Evaluations </button></a>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <button class="btn btn-space btn-danger btn-big"  style="width: 90%; height: 170px;margin-left:60px;font-size:17px;"><i class="icon mdi mdi-assignment"></i><br> Appreciations </button>  
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                         <button class="btn btn-space btn-success btn-big"  style="width: 75%; height: 170px;margin-left:60px;font-size:17px;"><i class="icon mdi mdi-chart"></i> <br>Statistiques  </button>
+                    </div>
+                  </td>
+                  </div>
+                </tr>
+                <tr  style="height: 190px">
+                  <div class="row">
+                    <td>
+                      <div>
+                        <button class="btn btn-space btn-primary btn-big"  style="width: 90%; height: 170px;margin-left:60px;font-size:17px;"><i class="icon mdi mdi-collection-text"></i><br>Livret périodiques  </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <button class="btn btn-space btn-default btn-big"  style="width: 90%; height: 170px;margin-left:60px;font-size:17px;"><i class="icon mdi mdi-file-text"></i><br> Bulletins scolaires </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <button class="btn btn-space btn-warning btn-big"  style="width: 75%; height: 170px;margin-left:60px;font-size:17px;"><i class="icon mdi mdi-local-post-office"></i><br>Massar  </button>
+                      </div>
+                    </td>
+                  </div>
+                </tr>
+              </table>
+            </div>
+          </div>
+{% endblock %}
