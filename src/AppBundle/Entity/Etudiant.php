@@ -248,6 +248,12 @@ class Etudiant
      * @ORM\Column(name="ville2", type="string", length=200, nullable=true)
      */
     private $ville2;
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=200, nullable=true)
+     */
+    private $image;
     /**
      * Get id
      *
@@ -1144,5 +1150,27 @@ class Etudiant
     public function getVille2()
     {
         return $this->ville2;
+    }
+       /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+     /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Etudiant
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
     }
 }

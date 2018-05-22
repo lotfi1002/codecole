@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block body %}
           <section id="fh5co-contact" data-section="contact">
@@ -149,6 +149,7 @@
                     </div>
                     <div class="user-display-avatar2">
                       <img id="b" src="{{ asset('img/avatar-150.png') }}" alt="Avatar">
+                      
                     </div>
                      <!-- Text input-->
                      <div class="form-group xs-pt-10">
@@ -172,8 +173,12 @@
             <label class="col-sm-2 control-label">Niveau de scolarité actuelle </label>
               <div class="col-sm-10">
                 <select class="form-control" name="niveau">
-                  <option value="primaire">primaire</option>
-                  <option value ="secondaire">secondaire</option>
+                  <option value="الأول">الأول</option>
+                  <option value ="الثاني">الثاني</option>
+                  <option value ="الثالث">الثالث</option>
+                  <option value ="الرابع">الرابع</option>
+                  <option value ="الخامس">الخامس</option>
+                  <option value ="السادس">السادس</option>
                 </select>
               </div>
           </div>
@@ -181,8 +186,11 @@
             <label class="col-sm-2 control-label">Niveau de scolarité actuelle (fr)</label>
               <div class="col-sm-10">
                 <select class="form-control" name="niveau2">
-                  <option value="primaire">primaire</option>
-                  <option value="secondaire">secondaire</option>
+                  <option value="CP">CP</option>
+                  <option value="CE1">CE1</option>
+                  <option value="CE2">CE2</option>
+                  <option value="CM1">CM1</option>
+                  <option value="CM2">CEM2</option>
                 </select>
               </div>
           </div>

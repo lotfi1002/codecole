@@ -130,8 +130,8 @@ class SpaceController extends Controller
 		}
 
 		if ($request->isMethod('post')){
-			if ($request->get('cne') == '' || $request->get('cmasar') == '' || $request->get('nom') =='' || $request->get('prenom') == '' || $request->get('nomfr') == '' 
-				|| $request->get('prenomfr') == '' || $request->get('sex') == '' || $request->get('cin') == '' || $request->get('code') == '' || $request->get('adresse') == '')
+			if ($request->get('nom') =='' || $request->get('prenom') == '' || $request->get('nomfr') == '' 
+				|| $request->get('prenomfr') == ''|| $request->get('matricule') == '')
 			{
 							 return $this->render('myspace/ecolev3.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
