@@ -56,7 +56,6 @@
                     
                     <thead>
                   <tr>
-                         <th></th>
                         <th>Matricule élève</th>
                         <th>Nom et prenom</th>
                         <th>Nom et prenom (fr)</th>
@@ -72,26 +71,28 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for etd in etds %}
                       <tr class="odd gradeX">
-                        <td><input id="check6" type="checkbox" checked="">
-                          <label for="check6"></label></td>
-                        <td>xxxxxx</td>
-                        <td>أxxxxxxx </td>
-                        <td>xxxxxxx</td>
-                        <td>xxxx</td>
-                        <td>xxxxx</td>
-                        <td>xxxxxx</td>
-                        <td>xxxxxxx</td>
-                        <td>xxxxxx</td>
-                        <td>xxxxx</td>
-                        <td>xxxxxxx</td>
-                        <td>xxxxxxx</td>
-                        <td> Fiche élève </td>
+                        <td>{{ etd.getMatricule() }}</td>
+                        <td>{{ etd.getNom() }} {{ etd.getPrenom() }}</td>
+                        <td>{{ etd.getNomfr() }} {{ etd.getPrenomfr() }}</td>
+                        <td>{{ etd.getDate()|date('Y-m-d') }}</td>
+                        <td>{{ etd.getSex }}</td>
+                        <td>{{ etd.getNiveau2() }}</td>
+                        <td>{{ etd.getClasse() }}</td>
+                        <td>{{ etd.getEtablissement() }}</td>
+                        <td>{{ etd.getEtablissement2() }}</td>
+                        <td>{{ etd.getVille() }}</td>
+                        <td>{{ etd.getDate2()|date('Y-m-d') }}</td>
+                        <td><a href="Ficheselevev3/{{ etd.getId() }}">Fiche eleve</a></td>
                       </tr>
+                      {% endfor %}
+                    </tr>
                       </tbody>
                       
                     </table>
 
+         
                   </div>
                     <div class="row">
                       <div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="table1_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="table1_previous"><a href="#" aria-controls="table1" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="table1" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="table1_next"><a href="#" aria-controls="table1" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div>
@@ -104,4 +105,8 @@
                <a href="{{path('Listedepart2')}}"> <button class="btn btn-rounded btn-space btn-success"> Arrivés </button></a>
                
               </div>
+                </div>
+
+              </div>
+     
 {% endblock %}

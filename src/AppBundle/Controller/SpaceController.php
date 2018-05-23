@@ -367,46 +367,45 @@ class SpaceController extends Controller
         ));
        
     }
-     /**
-     * @Route("/myspace/Listedepart" , name="Listedepart")
+      /**
+     * @Route("/myspace/Listedepart " , name="Listedepart")
      */
-    public function  ListedepartAction(Request $request)
+    public function ListedepartAction(Request $request)
     {
-		 $user = null ;
-		
+	    $user = null ;
 		if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
 			$user = $this->container->get('security.token_storage')->getToken()->getUser();
 			$em = $this->getDoctrine()->getManager();
-			
-		
-		
 		}
+		$rep = $this->getDoctrine()->getRepository(Etudiant::class);
+		$etds = $rep->findAll();
 			
 			 return $this->render('myspace/Listedepart.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user, 'etds' => $etds,
         ));
        
     }
-     /**
-     * @Route("/myspace/Listedepart2" , name="Listedepart2")
+
+      /**
+     * @Route("/myspace/Listedepart2 " , name="Listedepart2")
      */
-    public function  Listedepart2Action(Request $request)
+    public function Listedepart2Action(Request $request)
     {
-		 $user = null ;
-		
+	    $user = null ;
 		if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
 			$user = $this->container->get('security.token_storage')->getToken()->getUser();
 			$em = $this->getDoctrine()->getManager();
-			
-		
-		
 		}
+		$rep = $this->getDoctrine()->getRepository(Etudiant::class);
+		$etds = $rep->findAll();
 			
 			 return $this->render('myspace/Listedepart2.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user, 'etds' => $etds,
         ));
        
     }
+
+
      /**
      * @Route("/myspace/registreINS" , name="registreINS")
      */
@@ -467,6 +466,44 @@ class SpaceController extends Controller
         ));
        
     }
+      /**
+     * @Route("/myspace/FicheseleveD " , name="FicheseleveD")
+     */
+    public function FicheseleveDAction(Request $request)
+    {
+	    $user = null ;
+		if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
+			$user = $this->container->get('security.token_storage')->getToken()->getUser();
+			$em = $this->getDoctrine()->getManager();
+		}
+		$rep = $this->getDoctrine()->getRepository(Etudiant::class);
+		$etds = $rep->findAll();
+			
+			 return $this->render('myspace/FicheseleveD.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user, 'etds' => $etds,
+        ));
+       
+    }
+
+     /**
+     * @Route("/myspace/Ficheselevev3D/{id} " , name="Ficheselevev3D")
+     */
+
+    public function Ficheselevev3DAction(Request $request, $id)
+    {
+		$user = null ;
+		if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
+			$user = $this->container->get('security.token_storage')->getToken()->getUser();
+			$em = $this->getDoctrine()->getManager();
+			
+		}
+		$rep = $this->getDoctrine()->getManager()->getRepository(Etudiant::class);
+		$eleve = $rep->find($id);
+		return $this->render('myspace/Ficheselevev3D.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
+            'eleve' => $eleve,
+        ));
+	}
 }
 
 
