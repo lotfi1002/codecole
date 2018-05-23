@@ -1,0 +1,315 @@
+
+    {% extends 'base.html.twig' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#emp_con{
+float:left;
+position: relative;}
+.carte:hover {
+opacity: 0.65;
+  
+}
+.heure_g{
+ -moz-box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+border:1px solid black;
+float:left;}
+.heure_g:hover{
+border:3px solid green;}
+.heure{
+ -moz-box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+border:1px solid black;
+display:inline-block;}
+.groupe{
+display:block;
+ -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+border:1px solid black;}
+#groupes{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+border:1px solid black;
+float:left;}
+#emp{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+float:left;}
+.jour{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+border:1px solid black;
+float:right;}
+#cartes .carte {
+width:50px;
+height:50px;
+float:left;
+margin-left:5px;
+margin-top:5px;}
+.carte{
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+text-align: center;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  line-height: 45px; /* changer par la hauteur */
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+  -webkit-transition: opacity .5s, background .5s;
+  transition: opacity .5s, background .5s;
+background:blue;
+width:50px;
+height:50px;
+min-width:50px;}
+#emp_con .carte {
+resize:horizontal;
+position: absolute;
+overflow:auto;}
+div.absolute {
+resize:horizontal;
+overflow:auto;
+background:blue;
+min-width:40px;
+position: absolute;    
+border: 1px solid #73AD21;}
+#cartes{
+width:400px;
+height:200px;
+border: 2px solid red;}
+</style>
+</head>
+<body  id="bdd">
+<div id='cartes' ondrop='drop_c(event)' ondragover='allowDrop(event)' >
+</div>
+<div id='re' class="relative" >
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+var ID=5;
+var elm="";
+var id_elm="";
+var h_title_j=50;
+var h_title_s=20;
+var px_p_g_w=80;
+var px_p_s_w=50;
+var px_p_g_h=50;
+var d_j=[9,30];
+var duree= 30;
+var s_p_j=6;
+var jours = ["lundi", "mardi","merce"];
+var groupes = ["sa3","gp4","sh3","gk5","HI5","LI9","ki"];
+var nbr_g=groupes.length;
+var j_p_s=jours.length;
+var  bd =document.getElementById('re');
+function cal_h(a){
+var dure=duree*a;
+var h=d_j[0]+(Math.floor((dure+d_j[1])/60));
+var m=(dure+d_j[1])%60;
+m=((m==0) ? "00" : m);
+//return "hi";
+return (h+":"+m);
+}
+bd.style.width=(px_p_s_w*s_p_j*j_p_s)+px_p_g_w+'px';
+bd.style.height=(nbr_g*px_p_g_h+h_title_j+h_title_s)+'px';
+bd.innerHTML+="<div id='jours' >"
+for (var i=j_p_s-1;i>=0;i--){
+document.getElementById('jours').innerHTML+="<div id='"+jours[i]+"' class='jour' >"+jours[i]+"<div>";
+document.getElementById(jours[i]).style.width=px_p_s_w*s_p_j+'px';
+document.getElementById(jours[i]).style.height=h_title_j+'px';
+}
+bd.innerHTML+="</div>"
+bd.innerHTML+="<div id='groupes' >"
+document.getElementById('groupes').innerHTML+="<div id='s' class='groupe' >seance</div>";
+document.getElementById('s').style.height=h_title_s+'px';
+for(var i=0;i<nbr_g;i++){
+document.getElementById('groupes').innerHTML+="<div id='"+groupes[i]+"' class='groupe' >"+groupes[i]+"</div>";
+document.getElementById(groupes[i]).style.height=px_p_g_h+'px';
+}
+bd.innerHTML+="</div>";
+document.getElementById('groupes').style.width=px_p_g_w+'px';
+document.getElementById('groupes').style.marginTop=h_title_j+'px';
+document.getElementById('groupes').style.height=nbr_g*px_p_g_h+h_title_s+'px';
+bd.innerHTML+="<div id='emp'></div>";
+document.getElementById('emp').style.width=(px_p_s_w*s_p_j*j_p_s)+'px';
+document.getElementById('emp').style.height=(h_title_s)+'px';
+var emp=document.getElementById('emp');
+for(var i=0;i<s_p_j*j_p_s;i++){
+emp.innerHTML+="<div class='heure' id='s"+i+"'>"+cal_h((i%s_p_j))+"</div>";
+document.getElementById('s'+i).style.width=px_p_s_w+'px';
+document.getElementById('s'+i).style.height=h_title_s+'px';
+}
+bd.innerHTML+="<div id='emp_con' class='emp_cont' ondrop='drop(event)' ondragover='allowDrop(event)'></div>";
+var emp_con=document.getElementById('emp_con');
+document.getElementById('emp_con').style.width=(px_p_s_w*s_p_j*j_p_s)+'px';
+document.getElementById('emp_con').style.height=(h_title_s+(nbr_g*px_p_g_h))+'px';
+var liste=[];
+for (var i=0;i<s_p_j*j_p_s*nbr_g;i++){
+liste.push("");
+emp_con.innerHTML+="<div class='heure_g' id='s_g"+i+"'></div>";
+document.getElementById('s_g'+i).style.width=px_p_s_w+'px';
+document.getElementById('s_g'+i).style.height=px_p_g_h+'px';}
+function allowDrop(ev){ev.preventDefault();}
+function drag(ev) {
+    var w = $(window);
+    ev.dataTransfer.setData("id", ev.target.id);
+    ev.dataTransfer.setData("parent", ev.target.parentElement.className); 
+    var posY = Math.floor((event.clientY-$('#emp_con').offset().top+w.scrollTop())/px_p_g_h);   
+    var posX=Math.floor((event.clientX-$('#emp_con').offset().left+w.scrollLeft())/px_p_s_w);
+    ev.dataTransfer.setData("x", posX);
+    ev.dataTransfer.setData("y", posY);}
+function drop_c(ev){
+ev.preventDefault();
+if(document.getElementById(ev.dataTransfer.getData("id")).parentElement.className!="")
+les_cartes[ev.dataTransfer.getData("id")].out(ev);}
+function drop(ev) {
+    ev.preventDefault();
+    var c=les_cartes[ev.dataTransfer.getData("id")];
+
+  if(document.getElementById(ev.dataTransfer.getData("id")).parentElement.className=="" && ev.target.className!='carte'){
+    var id=(ID++);
+    les_cartes[id]= new carte(id,c.bg_color,c.abr,'','',-1,0);
+    les_cartes[id].create('in');
+    les_cartes[id].to_timetable(ev)}
+    les_cartes[ev.dataTransfer.getData("id")].to_timetable(ev);}
+$("#bdd").mousedown(function(){
+    elm=event.target.className;
+    id_elm=event.target.id;});
+$( "body" ).mouseup(function() {
+  if(elm!="carte")
+return;
+les_cartes[id_elm].resize();});
+function carte(id, bg_color, abr, prof,matiere,seance=0,cls=0,jour=0,n=1) {
+    this.id = id;  
+    this.bg_color = bg_color;
+    this.abr = abr;
+    this.cls=cls;
+    this.jour=jour;
+    this.seance=seance;
+    this.n=n;
+    this.prof = prof;
+    this.matiere=matiere;
+    this.Carte="<div id='"+this.id+"' style='  background:"+this.bg_color+";' draggable='true' ondragstart='drag(event)' class='carte' >"+abr+"</div>"; 
+    this.create = function(action='in'){
+    if(action=='in') document.getElementById('cartes').innerHTML+=this.Carte;
+    else {
+    document.getElementById('emp_con').innerHTML+=this.Carte;
+    document.getElementById(this.id).style.left=px_p_s_w*(this.seance+(this.jour*s_p_j))+'px';
+  document.getElementById(this.id).style.top=px_p_g_h*groupes.indexOf(this.cls)+'px';
+    var i=(s_p_j*j_p_s*this.cls)+this.seance+(this.jour*s_p_j);
+    for(var j=i;j<i+n;j++){
+    liste[j]=this.id;}
+    var pos=this.seance+(this.jour*s_p_j);
+   var pos2=s_p_j-(pos%s_p_j);
+   var wi=pos2*px_p_s_w;
+   document.getElementById(this.id).style.maxWidth=wi+'px';
+   //alert(px_p_s_w*n);
+    document.getElementById(this.id).style.width=(px_p_s_w*n)+'px';}};
+    this.to_timetable = function(ev){
+    var ev_y=event.clientY;
+    var ev_x=event.clientX;
+    var w = $(window);
+    ev.preventDefault();
+    var posY=Math.floor((ev_y-$('#emp_con').offset().top+w.scrollTop())/px_p_g_h);
+    var posX=Math.floor((ev_x-$('#emp_con').offset().left+w.scrollLeft())/px_p_s_w);
+    if(ev.dataTransfer.getData("parent")=="heure_g" || ev.dataTransfer.getData("parent")=="emp_cont"){
+    for (var i=0;i<liste.length;i++){
+    if(liste[i]==this.id)
+    liste[i]="";}}
+    if (liste[(s_p_j*j_p_s*posY)+posX]!=""){return "";}
+    liste[(s_p_j*j_p_s*posY)+posX]=this.id;
+    ev.target.appendChild(document.getElementById(this.id));
+    this.cls=groupes[posY];
+    this.jour=Math.floor(posX/s_p_j);
+    this.n=0;
+    this.seance=posX%seance;
+    document.getElementById(this.id).style.top=(posY)*px_p_g_h+'px';
+    document.getElementById(this.id).style.left=(posX)*px_p_s_w+'px';
+    var pos=Math.floor((ev_x-$('#emp').offset().left+w.scrollLeft())/px_p_s_w);
+    var pos2=s_p_j-(pos%s_p_j);
+    var wi=pos2*px_p_s_w;
+    document.getElementById(this.id).style.maxWidth=wi+'px';
+    document.getElementById(this.id).style.width=px_p_s_w+'px';};
+    this.resize= function(){
+    var width_m=(document.getElementById(this.id).clientWidth/px_p_s_w);
+ var con = true;
+ var n=Math.ceil(width_m);
+  for(var i=0;i<liste.length;i++){
+    if(liste[i]==this.id){
+    con=false;
+    for(var j=0;j<n;j++){
+        if(liste[i+j]!="" && liste[i+j]!=this.id)
+        con=true;}
+    if(con == true){
+    for(var j=1;j<liste.length-i;j++)
+    if(liste[j+i]==this.id)
+    liste[i+j]="";
+     width_m=1;
+    break ;}
+    for(var j=i+1;j<liste.length-i;j++){
+    if(liste[j]==this.id)
+    liste[j]="";} 
+     for(var j=0;j<n;j++)
+    liste[i+j]=this.id;
+    break;}}
+    this.n=Math.ceil(width_m);
+document.getElementById(this.id).style.width=((this.n)*px_p_s_w)+'px';};
+    this.out = function(ev){
+   // this.cls=-1;
+  //  ev.target.appendChild(document.getElementById(this.id));
+//document.getElementById(this.id).style.width=px_p_s_w+'px';
+if(ev.dataTransfer.getData("parent")=="heure_g"){
+    for (var i=0;i<liste.length;i++){
+    if(liste[i]==this.id)
+    liste[i]="";}}
+    document.getElementById(this.id).remove();
+    delete les_cartes[this.id];};}
+
+
+/*
+{'c1': new carte('c1','blue','AR','','',-1,0),
+'c2': new carte('c2','pink','MT','','',-1,0),
+'c3': new carte('c3','orange','SVT','','',1,'gk5',0,18),
+'c4': new carte('c4','red','PC','','',0,0),};
+les_cartes['c1'].create('in');
+les_cartes['c2'].create('in');
+les_cartes['c3'].create('out');
+les_cartes['c4'].create('in');*/
+var les_cartes={
+{% for carte in cartes %}  
+{{carte['id']}} : new carte({{carte['id']}},"{{carte['couleur']}}","{{carte['abreviation']}}","{{carte['nom_p']}}","{{carte['matiere']}}"
+,-1),{% endfor %}
+};
+
+for(key in les_cartes)
+les_cartes[key].create('in');
+
+ID = Object.keys(les_cartes).length+4;
+</script>
+</html>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

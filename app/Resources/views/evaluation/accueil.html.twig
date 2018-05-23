@@ -1,0 +1,37 @@
+    {% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Accueil</h1>
+
+<table style="width:100%">
+	<tbody><tr style="height: 130px">
+		<td colspan="3">
+		   
+		        <a href="#"><button class="btn btn-space btn-warning btn-big" style="width: 99%; height: 120px"><i class="icon mdi mdi-home"></i> Acceuil </button></a>
+		  
+        </td>
+    </tr>
+    <tr style="height: 150px">
+		<td>
+		
+			    <a href="evaluation/add"><button class="btn btn-space btn-primary btn-big" style="width: 98%; height: 139px;"><i class="icon mdi mdi-open-in-new"></i> Ajouter Evaluation </button></a>
+			
+		</td>
+		<td>
+		  
+		        <a href="evaluation/listerEvaluation"><button class="btn btn-space btn-primary btn-big" style="width: 98%; height: 139px;"><i class="icon mdi mdi-upload"></i>lister evaluation</button></a>
+			
+		</td>
+		
+		<td>
+		   
+		        <a href="evaluation/appreciation"><button class="btn btn-space btn-primary btn-big" style="width: 98%; height: 139px;"><i class="icon mdi mdi-upload"></i>gestion d'appreciations</button></a>
+		
+		</td>
+    </tr>
+    
+</tbody></table>
+
+
+{% endblock %}

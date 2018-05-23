@@ -1,0 +1,340 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+          <section id="fh5co-contact" data-section="contact">
+    <div class="container">
+    
+    <div class="row">
+      <a class="btn btn-default loading">Général</a>
+      <a class="btn btn-default loading"> Complément</a>
+      <a class="btn btn-default loading">Curcus</a>
+      <a class="btn btn-default loading">Frais d'écolage</a>
+      <a class="btn btn-default loading">Autres</a>
+      
+    </div>
+
+<br>
+{% if ErrTitle is defined %}
+<div role="alert" class="alert alert-danger alert-dismissible">
+  <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><span class="icon mdi mdi-close-circle-o"></span><strong>{{ ErrTitle }} </strong> {{ ErrMsg }}</div>
+{% endif %}
+      <div class="row row-bottom-padded-md">
+        <div class="col-md-6 to-animate">
+          <form class="form-horizontal" role="form" action="{{ path('ecolev3') }}" method="post">
+              <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Etat civil  <span class="panel-subtitle"></span></div>
+                <div class="panel-body"> 
+                  <formaction="#" data-parsley-validate="" novalidate="">
+                    <div class="form-group xs-pt-10">
+                     <label class="col-sm-2 control-label"  for="textinput">C.N.E</label>
+                      <div class="col-sm-4">
+                        <input type="text" name="cne" disabled value="{{ eleve.getCne() }}" class="form-control">
+                      </div>
+                      <div class="col-sm-2">
+                        <label class="control-label" for="textinput">Code Massar</label>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="text" name="cmasar" disabled value="{{ eleve.getIdMassar() }}" class="form-control">
+                      </div>
+                    </div>
+            <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Nom</label>
+            <div class="col-sm-10">
+              <input type="text" name="nom" disabled value="{{ eleve.getNom() }}" class="form-control">
+            </div>
+          </div>
+           <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Prenom</label>
+            <div class="col-sm-10">
+              <input type="text" name="prenom" disabled value="{{ eleve.getPrenom() }}" class="form-control">
+            </div>
+          </div>
+               <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Nom (fr)</label>
+            <div class="col-sm-10">
+              <input type="text" name="nomfr" disabled value="{{ eleve.getNomfr() }}" class="form-control">
+            </div>
+          </div>
+                 <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Prenom (fr)</label>
+            <div class="col-sm-10">
+              <input type="text" name="prenomfr" disabled value="{{ eleve.getPrenomfr() }}" class="form-control">
+            </div>
+          </div>
+                 <div class="form-group">
+                <label for="date" class="col-sm-2 control-label">Date de naissance</label>
+                  <div class="col-sm-6">
+                    <input type="date" name="date" disabled value="{{ eleve.getDate()|date('Y-m-d') }}" class="form-control">
+                  </div>
+               
+                   
+                      <div class="col-sm-4">
+                        <div class="be-radio-icon inline">
+                          <input type="radio" {% if eleve.getSex() == 'female' %} checked="" {% endif %} disabled name="sex" id="rad1" value="female">
+                          <label for="rad1"><span class="mdi mdi-female"></span></label>
+                        </div>
+                        <div class="be-radio-icon inline">
+                          <input type="radio" {% if eleve.getSex() == 'male' %} checked="" {% endif %} disabled name="sex" id="rad2" value ="male">
+                          <label for="rad2"><span class="mdi mdi-male-alt"></span></label>
+                        </div>
+                      </div>
+                    </div>
+                   <div class="form-group">
+                      <label class="col-sm-2 control-label" for="textinput">Lieu de naissance</label>
+                      <div class="col-sm-4">
+                        <input type="text" name="lieu1" disabled value="{{ eleve.getLieu1() }}" class="form-control">
+                      </div>
+                      <div class="col-sm-2">
+                        <label class="control-label" for="textinput">Autre, précisez</label>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="text" name="autre1" disabled value="{{ eleve.getAutre1() }}" class="form-control">
+                     </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="textinput">Lieu de naissance (fr)</label>
+                      <div class="col-sm-4">
+                        <input type="text" name="lieu2" disabled value="{{ eleve.getLieu2() }}" class="form-control">
+                      </div>
+                      <div class="col-sm-2">
+                        <label class="control-label" for="textinput">Autre, précisez</label>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="text" name="autre2" disabled value="{{ eleve.getAutre2() }}" class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Nationalité</label>
+                      <div class="col-sm-10">
+                            <input type="text" name="nat" class="form-control" id="nat" disabled value="{{ eleve.Nat()}}">
+                      </div>
+                  </div>
+               <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">C.I.N</label>
+            <div class="col-sm-4">
+              <input type="text" name="cin" disabled value="{{ eleve.getCin() }}" class="form-control">
+            </div>
+          </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 form-horizontal">
+              <div class="panel panel-default panel-border-color panel-border-color-primary">
+               <div class="panel-heading panel-heading-divider">Situation Scolaire<span class="panel-subtitle"></span></div>
+                <div class="panel-body">
+                  
+                     <!-- Block image -->
+                    <div class="user-display-info2">
+                      <input type="file" id="a" class="form-control input-file-w65" accept="image/*" onchange="PreviewImage();">
+                    </div>
+                    <div class="user-display-avatar2">
+                      <img id="b" src="{{ asset('img/avatar-150.png') }}" alt="Avatar">
+                    </div>
+                     <!-- Text input-->
+                     <div class="form-group xs-pt-10">
+                     <label class="col-sm-2 control-label" for="textinput">Matricule</label>
+            <div class="col-sm-4">
+             <input type="text" name="matricule" disabled value="{{ eleve.getMatricule() }}" class="form-control">
+            </div>
+             <div class="col-sm-2">
+                        <label class="control-label" for="textinput">Statut</label>
+                      </div>
+                      <div class="col-sm-4">
+                     <input type="text" name="statut" disabled value="{{ eleve.getStatut() }}" class="form-control">
+                      </div>
+          </div>
+                   <div class="form-group">
+            <label class="col-sm-2 control-label">Niveau de scolarité actuelle </label>
+              <div class="col-sm-10">
+               <input type="text" name="niveau" disabled value="{{ eleve.getNiveau() }}" class="form-control">
+              </div>
+          </div>
+                     <div class="form-group">
+            <label class="col-sm-2 control-label">Niveau de scolarité actuelle (fr)</label>
+              <div class="col-sm-10">
+          <input type="text" name="niveau2" disabled value="{{ eleve.getNiveau2() }}" class="form-control">
+              </div>
+          </div>
+           <div class="form-group">
+            <label class="col-sm-2 control-label">Classe actuelle </label>
+              <div class="col-sm-4">
+               <input type="text" name="classe" disabled value="{{ eleve.getclasse() }}" class="form-control">
+              </div>
+               <div class="col-sm-2">
+                        <label class="control-label" for="textinput">Redoublant</label>
+                      </div>
+                      <div class="col-sm-2">
+                        <input type="text" name="red" disabled value="{{ eleve.getRed() }}" class="form-control">
+                      </div>
+          </div>   <div class="form-group xs-pt-10">
+                     <label class="col-sm-2 control-label" for="textinput">Transport scolaire</label>
+            <div class="col-sm-2">
+              <input type="text" name="transport" disabled value="{{ eleve.getTransport() }}" class="form-control">
+            </div>
+          </div>
+              <div class="form-group">
+                <label for="date" class="col-sm-2 control-label">Date d'entrée'</label>
+                  <div class="col-sm-6">
+                    <input type="date" name="date2" disabled value="{{ eleve.getDate2()|date('Y-m-d') }}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">Niveau scolaire d'entrée </label>
+              <div class="col-sm-6">
+               <input type="text" name="niveau3" disabled value="{{ eleve.getNiveau3() }}" class="form-control">
+              </div> 
+            </div>
+                </div>
+              </div>
+           </div>
+          
+            <div class="col-sm-6 form-horizontal">
+              <div class="panel panel-default panel-border-color panel-border-color-primary">
+             <div class="panel-heading panel-heading-divider">Etablissement d'origine<span class="panel-subtitle"></span></div>
+                <div class="panel-body">
+                  
+                         <div class="form-group xs-pt-10">
+                     <label class="col-sm-2 control-label" for="textinput">Etablissement d'origine</label>
+            <div class="col-sm-4">
+              <input type="text" name="etablissement" disabled value="{{ eleve.getEtablissement() }}" class="form-control">
+            </div>
+                  <div class="col-sm-6">
+                        <div class="be-radio inline">
+                          <input type="radio" {% if eleve.getRad3() == 'public'%} checked="" {% endif %} disabled name="rad3" id="Rad6" value="public">
+                          <label for="Rad6">public</label>
+                        </div>
+                        <div class="be-radio inline">
+                          <input type="radio" {% if eleve.getRad3() == 'prive'%} checked=""  {% endif %} disabled name="rad3" id="Rad7" value="prive">
+                          <label for="Rad7">privé</label>
+                        </div>
+                      </div>
+          </div>
+             <div class="form-group">
+                     <label class="col-sm-2 control-label" for="textinput">Code d'Etablissement d'origine</label>
+            <div class="col-sm-4">
+             <input type="text" name="code" disabled value="{{ eleve.getCode() }}" class="form-control">
+            </div>
+             <label class="col-sm-2 control-label"> Ville</label>
+              <div class="col-sm-4">
+               <input type="text" name="ville" disabled value="{{ eleve.getVille() }}" class="form-control">
+          </div>
+        </div>
+         <div class="form-group">
+              <label class="col-sm-2 control-label" for="textinput">Certificat de scolarité d'origine</label>
+               <div class="col-sm-10">
+                <input type="file" class="form-control">
+                </div>
+             </div>
+      
+                </div>
+              </div>
+            </div>
+      <div class="row row-bottom-padded-md">
+        <div class="col-md-6 form-horizontal">
+          
+              <div class="panel panel-default panel-border-color panel-border-color-primary">
+                 <div class="panel-heading panel-heading-divider">Adresse de communication <span class="panel-subtitle"></span></div>
+                <div class="panel-body">
+                  <form>
+                      <div class="form-group xs-pt-10">
+                     <label class="col-sm-2 control-label" for="textinput">Adresse domicile</label>
+            <div class="col-sm-10">
+             <input type="text" name="adresse" disabled value="{{ eleve.getAdresse() }}" class="form-control">
+            </div>
+          </div>
+             <div class="form-group xs-pt-10">
+                     <label class="col-sm-2 control-label" for="textinput">Téléphone domicile</label>
+                      <div class="col-sm-4">
+                        <input type="text" name="telephone" disabled value="{{ eleve.getTel() }}" class="form-control">
+                      </div>
+                      <div class="col-sm-2">
+                        <label class="control-label" for="textinput">Portable élève</label>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="text" name="portable" disabled value="{{ eleve.getPortable() }}" class="form-control">
+                      </div>
+                    </div>
+             
+              <div class="form-group xs-pt-10">
+                     <label class="col-sm-2 control-label" for="textinput">E-mail élève</label>
+            <div class="col-sm-10">
+              <input type="text" name="email" disabled value="{{ eleve.getEmail() }}" class="form-control">
+            </div>
+          </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 form-horizontal">
+              <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Départ<span class="panel-subtitle"></span></div>
+                <div class="panel-body">
+                  
+                         <div class="form-group xs-pt-10">
+                      
+                <label for="date" class="col-sm-2 control-label">Date de sortie</label>
+                  <div class="col-sm-6">
+                    <input type="date" name="Date3" disabled value="{{ eleve.getDate3()|date('Y-m-d') }}" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                   <label class="col-sm-2 control-label"> Motif de sortie </label>
+              <div class="col-sm-6">
+             <input type="text" name="motif" disabled value="{{ eleve.getMotif() }}" class="form-control">
+          </div> 
+        </div>
+            <div class="form-group ">
+                     <label class="col-sm-2 control-label" for="textinput">Etablissement d'accueil</label>
+            <div class="col-sm-4">
+              <input type="text" name="etablissement2" disabled value="{{ eleve.getEtablissement2() }}" class="form-control">
+            </div>
+           
+                      <div class="col-sm-6 form-horizontal">
+                        <div class="be-radio inline">
+                          <input type="radio" {% if eleve.getRad10() == 'public'%} checked="" {% endif %} disabled name="rad10" id="Rad7" value="public">
+                          <label for="rad6">public</label>
+                        </div>
+                        <div class="be-radio inline">
+                          <input type="radio" {% if eleve.getRad10() == 'prive'%} checked="" {% endif %} disabled name="rad10" id="Rad7" value="prive">
+                          <label for="rad7">privé</label>
+                        </div>
+                      </div>
+          </div>
+            <div class="form-group">
+                     <label class="col-sm-2 control-label" for="textinput">Code Etablissement d'accueil</label>
+            <div class="col-sm-4">
+              <input type="text" name="code2" disabled value="{{ eleve.getCode2() }}" class="form-control">
+            </div>
+             <label class="col-sm-2 control-label"> Ville </label>
+              <div class="col-sm-4">
+               <input type="text" name="ville2" disabled value="{{ eleve.getVille2() }}" class="form-control">
+              </div>
+          </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<style type="text/css">
+.ce_btn_elv{
+  border:none;
+  background: transparent;
+}
+</style>
+          <div class="row">
+            <div class="form-group xs-pt-10">
+              <div class="icon-container col-sm-3">
+                <button class="ce_btn_elv" type="submit"><div class="icon"><span class="mdi mdi-edit"></span></div><span class="icon-class"> Modifier fiche </span></button>
+              </div>
+              <div class="icon-container col-sm-3">
+                <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-check"></span></div><span class="icon-class">Enregistrer</span></button>
+              </div>
+              <div class="icon-container col-sm-3">
+                <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-print"></span></div><span class="icon-class">Imprimer fiche</span></button>
+              </div>
+              <div class="icon-container col-sm-3">
+                <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-delete"></span></div><span class="icon-class">Supprimer</span></button>
+              </div>
+            </div>
+          </div>
+        </form>
+  {% endblock %}

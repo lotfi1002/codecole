@@ -1,0 +1,92 @@
+    {% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% set c = 0 %}
+    <h1 class="well">résultat</h1>
+   
+                  <div class="col-sm-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">les classes</div>
+                <div class="tab-container">
+                  <ul class="nav nav-tabs">
+                    {% set cls = 'active' %}
+                    {% set exp = 'true' %}
+                    {% for groupe in groupes %} 
+                    <li class="{{ cls }}"><a href="#{{groupe['nom']}}" onclick="changeT({{groupe['id']}});"  data-toggle="tab" aria-expanded="{{ exp }}">{{groupe['nom']}}</a></li>
+                    {% set cls = '' %}
+                    {% set exp = 'false' %}
+                    {% endfor %}
+
+
+
+                     </ul>
+                  <div class="tab-content">
+                    {% set cls = 'active' %}
+                    
+                      {% for groupe in groupes %}
+
+
+                    <div id="{{groupe['nom']}}" class="tab-pane {{ cls }}" >
+                      <div id='container{{groupe['id']}}' class="panel-body">
+
+
+
+<table class="table">
+                    <thead>
+                      <tr>
+
+                        <th>Titre d'evaluation</th>
+                        <th class="number">Note sur</th>
+                        <th class="number">Date</th>
+                        <th>Discipline</th>
+                        <th>Élément(s) de programme évalué(s)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    	{% set gid = groupe['id'] %}
+                    	{% for evaluation in evaluations[gid] %}
+                    	<a id='a{{evaluation['id']}}-{{groupe['id']}}' href='resultat?id_e={{evaluation['id']}}&id_g={{groupe['id']}}' ></a>
+                      <tr class='trh' id='{{evaluation['id']}}-{{groupe['id']}}' onclick="customHref(this.id)">
+                      	
+                        <td>{{evaluation['titre']}}</td>
+                        <td>{{evaluation['note']}}</td>
+                        <td class="date">{{evaluation['date']}}</td>
+                        <td>{{evaluation['nom']}}</td>
+                        <td>{{evaluation['element']}}</td>
+                       
+                      </tr>
+                      
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+
+
+
+                      	</div>
+                    </div>
+                    
+                    {% set cls = 'cont' %}
+
+{% endfor %}
+<style type="text/css">
+                    	
+                    	.trh:hover{
+
+                    		background-color:#2a75f3; 
+                    		color:white;
+                    		cursor: pointer;
+                    	}
+                    </style>
+                    <script type="text/javascript">
+                    	function customHref(id){
+                    			document.getElementById('a'+id).click();
+
+
+                    	}
+
+                    </script>
+
+
+{% endblock %}

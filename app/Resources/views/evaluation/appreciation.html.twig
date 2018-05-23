@@ -1,0 +1,230 @@
+    {% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+<div  class="col-sm-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">Codage utilisé pour les compétences
+                 
+                </div>
+                <div class="panel-body">
+                  {% if saved %}
+                  <div role="alert" class="alert alert-success alert-dismissible">
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><span class="icon mdi mdi-check"></span><strong>Bien! </strong> votre appreciation bien sauvgarder
+                  </div>
+                  {% endif %} 
+                	<form method="post" action="{{path('save_appreciation')}}">
+                  <table id='myTable' class="table table-condensed table-hover table-bordered table-striped">
+                    <thead>
+                      <tr>
+                      	
+                        <th style="width:13%;" >Lettres</th>
+                        <th style="width:15%;" >Pourcentage</th>
+                        <th style="width:15%;">Appreciations</th>
+                        <th>Niveaux d'acquisition</th>
+                        <th style="width:5%;" >Effacer</th>
+                      </tr>
+                    </thead>
+                    <tbody id='tabla'>
+                    	{% set gid = 0 %}
+                    	{% for appr in apprs %}
+                      <tr id='row{{appr['id']}}' style='height:40px;'>
+                        <input style='height:30px;' type="hidden" name="rows[]" value='{{appr['id']}}'>
+                      	
+                        <td><div class="input-group xs-mb-5">
+                          <input  style='height:30px;'   value="{{appr['lettre']}}" name='lettre-{{appr['id']}}'  oninput="bar('n-{{appr['id']}}');" class="form-control"><span class="input-group-btn">
+                            <button  style='height:30px;background:{{appr['color']}};border:none;' id='n-{{appr['id']}}' type="button" onclick="mod(this.id);" 
+
+
+
+                            data-toggle="modal" data-target="#mod-primary" class="btn btn-space btn-success"
+
+
+
+
+                            >{{appr['lettre']}}</button></span>
+                            <input type="hidden" name="color-{{appr['id']}}" id='inpt-{{appr['id']}}' value="{{appr['color']}}" >
+                        </div>
+                          </td>
+                        <td>
+                        	<div>
+                        <div class="be-radio inline">
+                          <input  style='height:30px;width:60px;' id='per{{appr['id']}}' oninput="updatePer();" name='p0-{{appr['id']}}' value="{{appr['debutPourcentage']}}"  class="form-control">
+                         
+                        </div>
+                        <div  class="be-radio inline">
+                          <input  style='height:30px;width:60px;' id='per{{appr['id']}}b' oninput="updatePer();" name='p1-{{appr['id']}}' value="{{appr['finPourcentage']}}"   class="form-control">
+                          {% set gid = gid+1 %}
+                        </div>
+                        
+                      </div>
+                      </td>
+                        <td><input  style='height:30px;'  name='app-{{appr['id']}}'       value="{{appr['appreciation']}}"  class="form-control"></td>
+                        <td><input  style='height:30px;'  name='niveau-{{appr['id']}}'    value="{{appr['niveauAc']}}"  class="form-control"></td>
+                        <td class='actions'>
+                          
+
+<a id='del-{{appr['id']}}' onclick='del(this.id)' class="icon"><i class="mdi mdi-delete"></i></a>
+
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                   
+                   <button type='button' style='font-size: 20px' onclick="addRow()" class="btn btn-rounded btn-space btn-success">+</button>
+                  <input type="hidden" name="cycle" value='{{cycle}}'>
+                  <button type="submit" class="btn btn-space btn-primary">Sauvgarder</button>
+              </form>
+              <div id='perc' class="progress">
+            	{% for appr in apprs %}
+                      <div id='pro-{{appr['id']}}' class="progress-bar progress-bar-primary progress-bar-striped active" ></div>
+                {% endfor %}
+                    </div>
+                </div>
+              </div>
+
+            </div>
+            
+
+                
+
+
+
+
+
+
+                <div id="mod-primary" tabindex="-1" role="dialog" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <style>
+            .clr{
+  width:19%;
+  float:left;
+  margin-left:4.5px;
+
+}
+          </style>
+         {% for clr in colors %}
+
+      <div class="clr"><button type="button" onclick="getColor('{{ clr }}');" class="btn btn-space" style="background: {{ clr }}; width:100%; height:15px;"></button></div>
+      {% endfor %}
+         
+     
+        </div>
+      </div>
+    </div>
+            <script type="text/javascript">
+            	
+              
+              var id_btn= 'none';
+              var cycle={{cycle}};
+
+              function mod(id){
+
+                id_btn=id;
+
+              }
+              
+            		function bar(id){
+                    event.target.value=event.target.value.toUpperCase();
+            				document.getElementById(id).innerHTML=event.target.value;
+
+
+            		}
+            		function updatePer(){
+
+                 
+                  var rows = document.getElementById("myTable").rows;
+            			for(var i=(rows.length-1);i>-1;i--){
+                    var idr=rows[i].id.split('w')[1];
+            				var a=document.getElementById('per'+idr).value;
+            				var a1=document.getElementById('per'+idr+'b').value;
+            				//var id =document.getElementById('per'+i+'b').name.split('-');
+            				
+
+            				var w=a1-a;
+            				var elm = document.getElementById('pro-'+idr);
+            				elm.style.width=0+'%';
+            				//if(document.getElementById("che-"+id[1]).checked){
+								elm.style.width=w+'%';
+            					
+            					
+            					elm.style.backgroundColor=document.getElementById('n-'+idr).style.backgroundColor;
+            					elm.innerHTML=a1+'% - '+a+'%';
+
+
+
+
+            			//	}
+
+
+
+            			}
+            				
+            		}
+
+
+
+                function getColor($clr){
+  
+   $('#mod-primary').modal('hide');
+  document.getElementById(id_btn).style.background = $clr;
+  document.getElementById('inpt-'+id_btn.split('-')[1]).value = $clr;
+  updatePer();
+}
+
+function addRow(){
+
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      
+
+      var data=this.responseText.split('|');
+
+     /* var parser = new DOMParser()
+      var el = parser.parseFromString(data[0], "text/xml");
+      alert(el);
+      document.getElementById("tabla").appendChild(el);
+      //innerHTML += data[0];*/
+
+      $('#myTable').find('tbody').append(data[0]);
+      document.getElementById("perc").innerHTML += data[1];
+    }
+  };
+  xhttp.open("GET", "/evaluation/appreciation/add?cycle={{cycle}}", true);
+  xhttp.send();
+}
+
+
+function del(id){
+
+var n_id='row'+id.split('-')[1];
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      
+
+      if(this.responseText==id.split('-')[1]){
+        
+        document.getElementById(n_id).remove();
+        document.getElementById('pro-'+id.split('-')[1]).remove();
+        updatePer();
+       
+      }
+    }
+  };
+  xhttp.open("GET", "/evaluation/appreciation/delete?id="+id.split('-')[1], true);
+  xhttp.send();
+
+
+}
+
+
+updatePer();
+            </script>
+
+{% endblock %}
