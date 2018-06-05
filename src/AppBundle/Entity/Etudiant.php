@@ -119,7 +119,7 @@ class Etudiant
      /**
      * @var string
      *
-     * @ORM\Column(name="matricule", type="string", length=200, nullable=true)
+     * @ORM\Column(name="matricule", type="string", length=200, nullable=true, unique=true)
      */
     private $matricule;
      /**

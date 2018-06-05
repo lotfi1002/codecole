@@ -20,7 +20,7 @@
 {% endif %}
       <div class="row row-bottom-padded-md">
         <div class="col-md-6 to-animate">
-          <form class="form-horizontal" role="form" action="{{ path('ecolev3') }}" method="post">
+          <form class="form-horizontal" role="form" action="{{ path('ecolev3') }}" method="post" enctype="multipart/form-data">
               <div class="panel panel-default panel-border-color panel-border-color-primary">
                 <div class="panel-heading panel-heading-divider">Etat civil  <span class="panel-subtitle"></span></div>
                 <div class="panel-body"> 
@@ -145,12 +145,13 @@
                   
                      <!-- Block image -->
                     <div class="user-display-info2">
-                      <input type="file" id="a" class="form-control input-file-w65" accept="image/*" onchange="PreviewImage();">
+                      <input type="file" name= "photo" id="a" class="form-control input-file-w65" accept="image/*" onchange="PreviewImage();">
                     </div>
                     <div class="user-display-avatar2">
-                      <img id="b" src="{{ asset('img/avatar-150.png') }}" alt="Avatar">
+                      <img id="b" src="{{ asset('img/avatar-150.png') }}" alt="Avatar" >
                       
                     </div>
+
                      <!-- Text input-->
                      <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">Matricule</label>
@@ -268,7 +269,7 @@
          <div class="form-group">
               <label class="col-sm-2 control-label" for="textinput">Certificat de scolarité d'origine</label>
                <div class="col-sm-10">
-                <input type="file" class="form-control">
+                <input type="file" class="form-control" name="testfile">
                 </div>
              </div>
       
@@ -278,7 +279,7 @@
       <div class="row row-bottom-padded-md">
         <div class="col-md-6 form-horizontal">
           
-              <div class="panel panel-default panel-border-color panel-border-color-primary">
+              <div class="panel panel-default panel-border-color panel-border-color-primary" style="margin-top:-200px;">
                  <div class="panel-heading panel-heading-divider">Adresse de communication <span class="panel-subtitle"></span></div>
                 <div class="panel-body">
                   <form>
@@ -311,59 +312,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-6 form-horizontal">
-              <div class="panel panel-default panel-border-color panel-border-color-primary">
-                <div class="panel-heading panel-heading-divider">Départ<span class="panel-subtitle"></span></div>
-                <div class="panel-body">
-                  
-                         <div class="form-group xs-pt-10">
-                      
-                <label for="date" class="col-sm-2 control-label">Date de sortie</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control" id="date" name="date3">
-                  </div>
-                   <label class="col-sm-2 control-label"> Motif de sortie </label>
-              <div class="col-sm-4">
-                <select class="form-control"name="motif">
-                  <option value ="xxxxx">xxxxx</option>
-                  <option value="yyyyyy">yyyyyy</option>
-                </select>
-          </div> 
-        </div>
-            <div class="form-group ">
-                     <label class="col-sm-2 control-label" for="textinput">Etablissement d'accueil</label>
-            <div class="col-sm-4">
-              <input type="text" placeholder="Etablissement d'accueil" class="form-control" name="etablissement2">
             </div>
-           
-                      <div class="col-sm-6 form-horizontal">
-                        <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad10" id="rad6" value="public">
-                          <label for="rad6">public</label>
-                        </div>
-                        <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad10" id="rad7" value="prive">
-                          <label for="rad7">privé</label>
-                        </div>
-                      </div>
-          </div>
-            <div class="form-group">
-                     <label class="col-sm-2 control-label" for="textinput">Code Etablissement d'accueil</label>
-            <div class="col-sm-4">
-              <input type="text" placeholder="Code etablissement" class="form-control" name="code2">
-            </div>
-             <label class="col-sm-2 control-label"> Ville </label>
-              <div class="col-sm-4">
-                <select class="form-control" name="ville2">
-                  <option value="tanger">Tanger</option>
-                  <option value="tetouan">Tetouan</option>
-                </select>
-              </div>
-          </div>
-                </div>
-              </div>
-            </div>
-          </div>
 <style type="text/css">
 .ce_btn_elv{
   border:none;
