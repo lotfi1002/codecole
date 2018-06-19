@@ -14,7 +14,7 @@
                     {% set cls = 'active' %}
                     {% set exp = 'true' %}
                     {% for groupe in groupes %} 
-                    <li class="{{ cls }}"><a href="#{{groupe['nom']}}" onclick="changeT({{groupe['id']}});"  data-toggle="tab" aria-expanded="{{ exp }}">{{groupe['nom']}}</a></li>
+                    <li class="{{ cls }}"><a href="#{{groupe['classeFr']}}" onclick="changeT({{groupe['id']}});"  data-toggle="tab" aria-expanded="{{ exp }}">{{groupe['classeFr']}}</a></li>
                     {% set cls = '' %}
                     {% set exp = 'false' %}
                     {% endfor %}
@@ -27,12 +27,12 @@
                       {% for groupe in groupes %}
 
 
-                    <div id="{{groupe['nom']}}" class="tab-pane {{ cls }}" >
+                    <div id="{{groupe['classeFr']}}" class="tab-pane {{ cls }}" >
                       <div id='container{{groupe['id']}}' class="panel-body">
                   <form class='frm' method="post" action="{{path('save_resultat')}}" >
                     <input type="hidden"  name="classe"  value="{{groupe['id']}}">
                     <input type="hidden"  name="plane"  value="{{plan}}">
-                    <input type="hidden"  name="classename"  value="{{groupe['nom']}}">
+                    <input type="hidden"  name="classename"  value="{{groupe['classeFr']}}">
 
 
 

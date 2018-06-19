@@ -11,6 +11,7 @@ use AppBundle\Entity\Evaluation;
 use AppBundle\Entity\Resultat;
 use AppBundle\Entity\PlanEvaluation;
 use AppBundle\Entity\appreciation;
+
 class evaluationController extends Controller
 {
 
@@ -75,7 +76,7 @@ $em->persist($appr);
 
 $em->flush();
 
-$n=$request->get('row');
+//$n=$request->get('row');
 
 
 
@@ -243,7 +244,7 @@ return $this->render('evaluation/appreciation.html.twig', array(
 			$statement = $connection->prepare("SELECT * from type_competance");
 			$statement->execute();
 			$matieres = $statement->fetchAll();
-			$statement = $connection->prepare("SELECT nom , classe.id from prof_mat_classe , classe where id_professeur=1 and id_classe=classe.id");
+			$statement = $connection->prepare("SELECT classeFr , classe.id from prof_mat_classe , classe where id_professeur=1 and id_classe=classe.id");
 			$statement->execute();
 			$classes=$statement->fetchAll();
         return $this->render('evaluation/evaluation.html.twig', array(
@@ -324,7 +325,7 @@ $id_g=$request->get('id_g');
 $etudiants = array();
 $em = $this->getDoctrine()->getManager(); // ...or getEntityManager() prior to Symfony 2.1
 			$connection = $em->getConnection();
-			$statement = $connection->prepare("SELECT cl.id , cl.nom from classe as cl , prof_mat_classe as c where c.id_professeur=$id_p and c.id_classe=cl.id and cl.id=$id_g");
+			$statement = $connection->prepare("SELECT cl.id , cl.classeFr from classe as cl , prof_mat_classe as c where c.id_professeur=$id_p and c.id_classe=cl.id and cl.id=$id_g");
 			$statement->execute();
 			$groupes = $statement->fetchAll();
 			$id=$groupes['0']['id'];
@@ -378,7 +379,7 @@ $id_c=1;
 $evaluations = array();
 $em = $this->getDoctrine()->getManager(); // ...or getEntityManager() prior to Symfony 2.1
 			$connection = $em->getConnection();
-			$statement = $connection->prepare("SELECT distinct classe.id , classe.nom FROM `evaluation` , classe where id_classe=classe.id and id_professeur=$id_p");
+			$statement = $connection->prepare("SELECT distinct classe.id , classe.classeFr FROM `evaluation` , classe where id_classe=classe.id and id_professeur=$id_p");
 			$statement->execute();
 			$groupes = $statement->fetchAll();
 			
@@ -411,7 +412,7 @@ $em = $this->getDoctrine()->getManager(); // ...or getEntityManager() prior to S
 
 
 
-			$statement = $connection->prepare("SELECT nom , classe.id from prof_mat_classe , classe where id_professeur=1 and id_classe=classe.id");
+			$statement = $connection->prepare("SELECT classeFr , classe.id from prof_mat_classe , classe where id_professeur=1 and id_classe=classe.id");
 			$statement->execute();
 			$classes = $statement->fetchAll();
 
