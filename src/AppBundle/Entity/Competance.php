@@ -50,6 +50,10 @@ class Competance
     public function setNom($nom)
     {
         $this->nom = $nom;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
         return $this;
     }
 

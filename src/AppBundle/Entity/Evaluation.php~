@@ -33,6 +33,7 @@ class Evaluation
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @var integer
      *
      * @ORM\Column(name="id_classe", type="integer", nullable=true)
@@ -83,6 +84,8 @@ class Evaluation
     /**
 =======
 >>>>>>> 33e83534a769e9c71dd87b68c5cfaf3c0e95f088
+=======
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
      * Get id
      *
      * @return integer
@@ -100,16 +103,22 @@ class Evaluation
      * @return Evaluation
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public function setIdTypeCompetance($idTypeCompetance)
     {
         $this->idTypeCompetance = $idTypeCompetance;
 
 =======
+=======
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
     public function setIdMatiere($idMatiere)
     {
         $this->idMatiere = $idMatiere;
     
+<<<<<<< HEAD
 >>>>>>> 33e83534a769e9c71dd87b68c5cfaf3c0e95f088
+=======
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
         return $this;
     }
 
@@ -118,6 +127,7 @@ class Evaluation
      *
      * @return integer
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
     public function getIdTypeCompetance()
     {
@@ -247,5 +257,10 @@ class Evaluation
     {
         return $this->idMatiere;
 >>>>>>> 33e83534a769e9c71dd87b68c5cfaf3c0e95f088
+=======
+    public function getIdMatiere()
+    {
+        return $this->idMatiere;
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
     }
 }

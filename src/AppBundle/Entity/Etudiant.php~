@@ -61,6 +61,7 @@ class Etudiant
      * @ORM\Column(name="nomfr", type="string", length=200, nullable=true)
      */
     private $nomfr;
+<<<<<<< HEAD
 
      /**
      * @var string
@@ -273,6 +274,235 @@ class Etudiant
     }
 
     /**
+=======
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="prenomfr", type="string", length=200, nullable=true)
+     */
+    private $prenomfr;
+     /**
+     * @var date
+     *
+     * @ORM\Column(name="date", type="date", nullable=true)
+     */
+    private $date;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="sex", type="string", length=200, nullable=true)
+     */
+    private $sex;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="lieu1", type="string", length=200, nullable=true)
+     */
+    private $lieu1;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="autre1", type="string", length=200, nullable=true)
+     */
+    private $autre1;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="lieu2", type="string", length=200, nullable=true)
+     */
+    private $lieu2;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="autre2", type="string", length=200, nullable=true)
+     */
+    private $autre2;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="nat", type="string", length=200, nullable=true)
+     */
+    private $nat;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="cin", type="string", length=200, nullable=true)
+     */
+    private $cin;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="matricule", type="string", length=200, nullable=true, unique=true)
+     */
+    private $matricule;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", length=200, nullable=true)
+     */
+    private $statut;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau", type="string", length=200, nullable=true)
+     */
+    private $niveau;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau2", type="string", length=200, nullable=true)
+     */
+    private $niveau2;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="classe", type="string", length=200, nullable=true)
+     */
+    private $classe;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="red", type="string", length=200, nullable=true)
+     */
+    private $red;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="transport", type="string", length=200, nullable=true)
+     */
+    private $transport;
+     /**
+     * @var date
+     *
+     * @ORM\Column(name="date2", type="date", nullable=true)
+     */
+    private $date2;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau3", type="string", length=200, nullable=true)
+     */
+    private $niveau3;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="etablissement", type="string", length=200, nullable=true)
+     */
+    private $etablissement;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="rad3", type="string", length=200, nullable=true)
+     */
+    private $rad3;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=200, nullable=true)
+     */
+    private $code;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=200, nullable=true)
+     */
+    private $ville;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=200, nullable=true)
+     */
+    private $adresse;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="portable", type="string", length=200, nullable=true)
+     */
+    private $portable;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=200, nullable=true)
+     */
+    private $email;
+     /**
+     * @var date
+     *
+     * @ORM\Column(name="date3", type="date", nullable=true)
+     */
+    private $date3;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="motif", type="string", length=200, nullable=true)
+     */
+    private $motif;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="etablissement2", type="string", length=200, nullable=true)
+     */
+    private $etablissement2;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="rad10", type="string", length=200, nullable=true)
+     */
+    private $rad10;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="code2", type="string", length=200, nullable=true)
+     */
+    private $code2;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="ville2", type="string", length=200, nullable=true)
+     */
+    private $ville2;
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=200, nullable=true)
+     */
+    private $image;
+   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="annee", type="string", length=100, nullable=false)
+     */
+    private $annee;
+   
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idMassar
+     *
+     * @param string $idMassar
+     *
+     * @return Etudiant
+     */
+    public function setIdMassar($idMassar)
+    {
+        $this->idMassar = $idMassar;
+    
+        return $this;
+    }
+
+    /**
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
      * Get idMassar
      *
      * @return string
@@ -281,6 +511,7 @@ class Etudiant
     {
         return $this->idMassar;
     }
+<<<<<<< HEAD
 
     /**
      * Set cne
@@ -427,6 +658,154 @@ class Etudiant
     }
 
     /**
+=======
+
+    /**
+     * Set cne
+     *
+     * @param string $cne
+     *
+     * @return Etudiant
+     */
+    public function setCne($cne)
+    {
+        $this->cne = $cne;
+    
+        return $this;
+    }
+
+    /**
+     * Get cne
+     *
+     * @return string
+     */
+    public function getCne()
+    {
+        return $this->cne;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Etudiant
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return Etudiant
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set tel
+     *
+     * @param string $tel
+     *
+     * @return Etudiant
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+    
+        return $this;
+    }
+
+    /**
+     * Get tel
+     *
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * Set nomfr
+     *
+     * @param string $nomfr
+     *
+     * @return Etudiant
+     */
+    public function setNomfr($nomfr)
+    {
+        $this->nomfr = $nomfr;
+    
+        return $this;
+    }
+
+    /**
+     * Get nomfr
+     *
+     * @return string
+     */
+    public function getNomfr()
+    {
+        return $this->nomfr;
+    }
+
+    /**
+     * Set prenomfr
+     *
+     * @param string $prenomfr
+     *
+     * @return Etudiant
+     */
+    public function setPrenomfr($prenomfr)
+    {
+        $this->prenomfr = $prenomfr;
+    
+        return $this;
+    }
+
+    /**
+     * Get prenomfr
+     *
+     * @return string
+     */
+    public function getPrenomfr()
+    {
+        return $this->prenomfr;
+    }
+
+    /**
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
      * Set date
      *
      * @param \DateTime $date
@@ -1145,4 +1524,30 @@ class Etudiant
     {
         return $this->ville2;
     }
+<<<<<<< HEAD
+=======
+       /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+     /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Etudiant
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
 }

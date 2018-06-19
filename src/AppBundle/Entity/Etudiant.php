@@ -63,8 +63,11 @@ class Etudiant
     private $nomfr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
      /**
      * @var string
      *
@@ -122,7 +125,11 @@ class Etudiant
      /**
      * @var string
      *
+<<<<<<< HEAD
      * @ORM\Column(name="matricule", type="string", length=200, nullable=true)
+=======
+     * @ORM\Column(name="matricule", type="string", length=200, nullable=true, unique=true)
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
      */
     private $matricule;
      /**
@@ -257,6 +264,18 @@ class Etudiant
      * @ORM\Column(name="image", type="string", length=200, nullable=true)
      */
     private $image;
+<<<<<<< HEAD
+=======
+   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="annee", type="string", length=100, nullable=false)
+     */
+    private $annee;
+   
+
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
     /**
      * Get id
      *
@@ -1176,6 +1195,35 @@ class Etudiant
     
         return $this;
     }
+<<<<<<< HEAD
 >>>>>>> 33e83534a769e9c71dd87b68c5cfaf3c0e95f088
 }
 
+=======
+
+
+    /**
+     * Set annee
+     *
+     * @param string $annee
+     *
+     * @return Etudiant
+     */
+    public function setAnnee($annee)
+    {
+        $this->annee = $annee;
+    
+        return $this;
+    }
+
+    /**
+     * Get annee
+     *
+     * @return string
+     */
+    public function getAnnee()
+    {
+        return $this->annee;
+    }
+}
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620

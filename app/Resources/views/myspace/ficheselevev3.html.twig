@@ -128,7 +128,7 @@
                       <input type="file" id="a" class="form-control input-file-w65" accept="image/*" onchange="PreviewImage();">
                     </div>
                     <div class="user-display-avatar2">
-                      <img id="b" src="{{ asset('img/avatar-150.png') }}" alt="Avatar">
+                      <img id="b" src="{{ asset('uploads/assets/'~eleve.getImage()~'') }}" alt="Avatar">
                     </div>
                      <!-- Text input-->
                      <div class="form-group xs-pt-10">
@@ -321,13 +321,9 @@
 }
 </style>
           <div class="row">
-            <div class="form-group xs-pt-10">
-              <div class="icon-container col-sm-3">
-                <button class="ce_btn_elv" type="submit"><div class="icon"><span class="mdi mdi-edit"></span></div><span class="icon-class"> Modifier fiche </span></button>
-              </div>
-              <div class="icon-container col-sm-3">
-                <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-check"></span></div><span class="icon-class">Enregistrer</span></button>
-              </div>
+
+            <div class="form-group xs-pt-10"style ="margin-left:300px;">
+
               <div class="icon-container col-sm-3">
                 <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-print"></span></div><span class="icon-class">Imprimer fiche</span></button>
               </div>

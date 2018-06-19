@@ -71,6 +71,7 @@ class Matiere
         return $this->idClasse;
     }
 
+<<<<<<< HEAD
     /**
      * Set idEnseignant
      *
@@ -86,6 +87,58 @@ class Matiere
     }
 
     /**
+=======
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idClasse
+     *
+     * @param integer $idClasse
+     *
+     * @return Matiere
+     */
+    public function setIdClasse($idClasse)
+    {
+        $this->idClasse = $idClasse;
+    
+        return $this;
+    }
+
+    /**
+     * Get idClasse
+     *
+     * @return integer
+     */
+    public function getIdClasse()
+    {
+        return $this->idClasse;
+    }
+
+    /**
+     * Set idEnseignant
+     *
+     * @param integer $idEnseignant
+     *
+     * @return Matiere
+     */
+    public function setIdEnseignant($idEnseignant)
+    {
+        $this->idEnseignant = $idEnseignant;
+    
+        return $this;
+    }
+
+    /**
+>>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
      * Get idEnseignant
      *
      * @return integer
