@@ -195,7 +195,7 @@ var xhttp = new XMLHttpRequest();
       document.getElementById("perc").innerHTML += data[1];
     }
   };
-  xhttp.open("GET", "add?cycle={{cycle}}", true);
+  xhttp.open("GET", "/evaluation/appreciation/add?cycle={{cycle}}", true);
   xhttp.send();
 }
 
