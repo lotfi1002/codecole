@@ -49,8 +49,8 @@
                         <td>{{ etd.getSex }}</td>
                         <td>{{ etd.getNiveau2() }}</td>
                         <td>{{ etd.getClasse() }}</td>
-                        <td>{{ etd.getStatut() }}</td>
-                        <td><a href="Ficheselevev3D/{{ etd.getId() }}">Fiche eleve</a></td>
+                        <td ondblclick="ChangeStatut('CS-{{ etd.getId() }}')" id="CS-{{ etd.getId() }}">{{ etd.getStatut() }}</td>
+                        <td><a href="{{ path('Ficheselevev3D', {'id' : etd.getId() }) }}">Fiche eleve</a></td>
                       </tr>
                       {% endfor %}
                       </tbody>
@@ -209,4 +209,38 @@
               </div>
             </div>
  {% endblock %}
- 
+{% block js %}
+ <script type="text/javascript">
+ function ChangeStatut(id){
+  if(document.getElementById(id).innerHTML !== ''){
+    var x = "";
+    switch(document.getElementById(id).innerHTML){
+      case 'Inscrits' :
+         x = document.getElementById(id).innerHTML = 'En attente';
+        break;
+      case 'En attente':
+          x = document.getElementById(id).innerHTML = 'Partis';
+        break;
+      case 'Partis' :
+         x = document.getElementById(id).innerHTML = 'Radiés';
+        break;
+      default :
+         x = document.getElementById(id).innerHTML = 'Inscrits';
+        break;
+    }
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          
+        }
+    };
+    var filename = id.substr(3, id.length );
+    filename = filename.concat("/");
+    filename = filename.concat(x);
+    xhttp.open("GET", filename , true);
+    xhttp.send();
+    location.reload();
+  }
+}
+</script>
+{% endblock %} 

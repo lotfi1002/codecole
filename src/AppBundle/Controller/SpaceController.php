@@ -11,8 +11,30 @@ use AppBundle\Entity\Etudiant;
 class SpaceController extends Controller
 {
 
+
+	public function getYears(){
+    	$repository = $this->getDoctrine()->getRepository('AppBundle:AnneeScolaires');
+    	return $repository->findBy(array(), array('id' => 'ASC'));
+    }
+	
+	public function getThisYears(){
+    	$repository = $this->getDoctrine()->getRepository('AppBundle:AnneeScolaires');
+    	return $repository->findOneBy(['isActive' => true])->getAnnee();
+    }
+
+    public function setYears($yr){
+    	$repository = $this->getDoctrine()->getRepository('AppBundle:AnneeScolaires');
+    	$em = $this->getDoctrine()->getManager();
+    	$years = $repository->findAll();
+    	foreach ($years as $key) {
+    		$key->setIsActive(false);
+    		if($key->getAnnee() == $yr) $key->setIsActive(true);
+    	}
+    	$em->flush();
+    }
+
 	/**
-     * @Route("/myspace")
+     * @Route("/myspace", name="app_homePage")
      */
     public function accueilAction(Request $request)
     {
@@ -25,9 +47,12 @@ class SpaceController extends Controller
 		
 		
 		}
-			
-			 return $this->render('myspace/accueil.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
+		if ($request->isMethod('post')){
+    		$this->setYears($request->get('YearSelected'));
+    	}
+    	$years = $this->getYears();			
+		 return $this->render('myspace/accueil.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user, 'years', $years
         ));
        
     }
@@ -133,10 +158,12 @@ class SpaceController extends Controller
 		}
 
 		if ($request->isMethod('post')){
-			if ($request->get('nom') =='' || $request->get('prenom') == '' || $request->get('nomfr') == '' 
-				|| $request->get('prenomfr') == ''|| $request->get('matricule') == '')
+			$em = $this->getDoctrine()->getManager();
+			$rep = $this->getDoctrine()->getRepository('AppBundle:Etudiant');
+			$years = $this->getYears();
+			if ($request->get('matricule') == '')
 			{
-					 return $this->render('myspace/ecolev3.html.twig', array(
+					return $this->render('myspace/ecolev3.html.twig', array(
 			            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
 			            'user'=> $user,
 			            'ErrTitle' => 'Erreur !!',
@@ -144,8 +171,6 @@ class SpaceController extends Controller
 			        ));
 			}
 			else {
-				$em = $this->getDoctrine()->getManager();
-				$rep = $this->getDoctrine()->getRepository(Etudiant::class);
 				$etd = new Etudiant();
 				$etd->setCne($request->get('cne'));
 				$etd->setIdMassar($request->get('cmasar'));
@@ -157,7 +182,7 @@ class SpaceController extends Controller
 				$etd->setSex($request->get('sex'));
 				$request->get('lieu1') == 'Autre' ? $etd->setAutre1($request->get('autre1')) : $etd->setLieu1($request->get('lieu1'));
 				$request->get('lieu2') == 'Autre' ? $etd->setAutre2($request->get('autre2')) : $etd->setLieu2($request->get('lieu2'));
-				$request->get('nat') == 'Autre' ? $etd->setNat($request->get('nat2')) : $etd->setNat($request->get('nat'));
+				$request->get('nat') == 'autre' ? $etd->setNat($request->get('nat2')) : $etd->setNat($request->get('nat'));
 				$etd->setCin($request->get('cin'));
 				$etd->setMatricule($request->get('matricule'));
 				$etd->setStatut($request->get('statut'));
@@ -182,18 +207,27 @@ class SpaceController extends Controller
 				$etd->setRad10($request->get('rad10'));
 				$etd->setCode2($request->get('code2'));
 				$etd->setVille2($request->get('ville2'));
-
+				$etd->setAnnee($this->getThisYears());
 				$file = $request->files->get('photo');
-        		$fileName = md5 ( uniqid () ) . '.' . $file->guessExtension ();
-           
-            	$etd->setImage($fileName) ;
-            	$file->move ( $this->container->getParameter ( 'file_directory' ), $fileName );
+				if($file !== null){
+	        		$fileName = md5 ( uniqid () ) . '.' . $file->guessExtension ();
+	            	$etd->setImage($fileName) ;
+	            	$file->move ( $this->container->getParameter ( 'file_directory' ), $fileName );
+	            } 	
+				$etdMat = $rep->findAll();
+				foreach ($etdMat as $key) {
+					if ($key->getMatricule() == $request->get('matricule')) return $this->render('myspace/ecolev3.html.twig', array(
+				            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+				            'user'=> $user,
+				            'errMat' => true,
+				            'etd' => $etd,
+				        ));
+				}
 				$em->persist($etd);
 				$em->flush();
 			}
 		}
-			
-			 return $this->render('myspace/ecolev3.html.twig', array(
+		 return $this->render('myspace/ecolev3.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user,
         ));
        
@@ -229,13 +263,14 @@ class SpaceController extends Controller
 			$em = $this->getDoctrine()->getManager();
 		}
 		$rep = $this->getDoctrine()->getRepository(Etudiant::class);
-		$etds = $rep->findAll();
-			
-			 return $this->render('myspace/Listeeleve.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user, 'etds' => $etds, 
+		$etds = $rep->findBy(['annee' => $this->getThisYears() ]);
+		$years = $this->getYears();
+		return $this->render('myspace/Listeeleve.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'user'=> $user, 'etds' => $etds, 'years' => $years
         ));
        
     }
+
      /**
      * @Route("/myspace/servsco " , name="servsco")
      */
@@ -493,7 +528,7 @@ class SpaceController extends Controller
     }
 
      /**
-     * @Route("/myspace/Ficheselevev3D/{id} " , name="Ficheselevev3D")
+     * @Route("/myspace/Ficheselevev3D/{id}" , name="Ficheselevev3D")
      */
 
     public function Ficheselevev3DAction(Request $request, $id)
@@ -504,11 +539,10 @@ class SpaceController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			
 		}
-		$rep = $this->getDoctrine()->getManager()->getRepository(Etudiant::class);
+		$rep = $this->getDoctrine()->getManager()->getRepository('AppBundle:Etudiant');
 		$etd = $rep->find($id);
         if( $request->isMethod('post') ){
     		$em = $this->getDoctrine()->getManager();
-			$rep = $this->getDoctrine()->getRepository(Etudiant::class);
 			$etd->setCne($request->get('cne'));
 			$etd->setIdMassar($request->get('cmasar'));
 			$etd->setNom($request->get('nom'));
@@ -551,6 +585,24 @@ class SpaceController extends Controller
             'eleve' => $etd,
         ));
 	}
+
+
+    /**
+     * @Route("/myspace/{id}/{statut} " , name="SetStatuts")
+     */
+    public function SetStatutAction(Request $request, $id, $statut)
+    {
+		$em = $this->getDoctrine()->getManager();
+		$rep = $this->getDoctrine()->getRepository(Etudiant::class);
+		$etd = $rep->find($id);
+		if ($etd){
+			$etd->setStatut($statut);
+			$em->flush();
+		}
+		return new Response ('a');
+	}
+
+
 }
 
 

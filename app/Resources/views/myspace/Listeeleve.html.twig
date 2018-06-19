@@ -1,4 +1,15 @@
 {% extends 'base2.html.twig' %}
+{% block selectAnneeScolaire %}
+<form method="post" action="{{ path('app_homePage') }}" id="SelYearFrom" style="display: inline-block; width:40%; margin-left:15px;">
+  <select class="form-control input-sm SelYear" name="YearSelected">
+  {% for year in years %}
+    <option value="{{ year.getAnnee() }}" {% if year.getIsActive == 1 %} selected {% endif %}>
+      {{ year.getAnnee() }} / {{ year.getAnnee() + 1 }}
+    </option>
+  {% endfor %}
+  </select>
+</form>
+{% endblock %}
 
 {% block body %}
           <h3 class="text-center"></h3>
@@ -77,8 +88,8 @@
                         <td>{{ etd.getSex }}</td>
                         <td>{{ etd.getNiveau2() }}</td>
                         <td>{{ etd.getClasse() }}</td>
-                        <td>{{ etd.getStatut() }}</td>
-                        <td><a href="Ficheselevev3/{{ etd.getId() }}">Fiche eleve</a></td>
+                        <td ondblclick="ChangeStatut('CS-{{ etd.getId() }}')" id="CS-{{ etd.getId() }}">{{ etd.getStatut() }}</td>
+                        <td><a href="Ficheselevev3/{{ etd.getId() }}">Liste eleve</a></td>
                       </tr>
                       {% endfor %}
                       </tbody>
@@ -224,16 +235,51 @@
                   </div>
            <div class="row">
                 <label class="col-sm-2 control-label" style="margin-left:30px; font-size:14px;">Imprimer fiches sélectionées</label>
-                <div class="col-sm-1 control-label">
-                  <button> PDF </button>
-                </div>
-                <div class="col-sm-1 control-label">
-                <button> XLS </button>
-              </div>
+                  <button class="btn btn-rounded btn-space btn-success"> PDF </button>
+                <button class="btn btn-rounded btn-space btn-success" > XLS </button>
+            
 
                   <div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="table1_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="table1_previous"><a href="#" aria-controls="table1" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="table1" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="table1" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="table1_next"><a href="#" aria-controls="table1" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div>
                 </div>
                 </div>
               </div>
             </div>
+{% endblock %}
+ {% block js %}
+ <script type="text/javascript">
+ function ChangeStatut(id){
+  if(document.getElementById(id).innerHTML !== ''){
+    var x = "";
+    switch(document.getElementById(id).innerHTML){
+      case 'Inscrits' :
+         x = document.getElementById(id).innerHTML = 'En attente';
+        break;
+      case 'En attente':
+          x = document.getElementById(id).innerHTML = 'Partis';
+        break;
+      case 'Partis' :
+         x = document.getElementById(id).innerHTML = 'Radiés';
+        break;
+      default :
+         x = document.getElementById(id).innerHTML = 'Inscrits';
+        break;
+    }
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          
+        }
+    };
+    var filename = id.substr(3, id.length );
+    filename = filename.concat("/");
+    filename = filename.concat(x);
+    xhttp.open("GET", filename , true);
+    xhttp.send();
+    location.reload();
+  }
+}
+$( ".SelYear" ).change(function() {
+  $( "#SelYearFrom" ).submit();
+});
+</script>
 {% endblock %}

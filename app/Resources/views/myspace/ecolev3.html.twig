@@ -28,53 +28,53 @@
                     <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label"  for="textinput">C.N.E</label>
                       <div class="col-sm-4">
-                        <input type="text" name="cne" placeholder="C.N.E" class="form-control">
+                        <input type="text" name="cne" placeholder="C.N.E" class="form-control"{% if etd is defined %}value="{{ etd.getCne() }}"{%endif%}>
                       </div>
                       <div class="col-sm-2">
                         <label class="control-label" for="textinput">Code Massar</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" name="cmasar" placeholder="Code Massar" class="form-control">
+                        <input type="text" name="cmasar" placeholder="Code Massar" class="form-control"{% if etd is defined %}value="{{ etd.getIdMassar() }}"{%endif%}>
                       </div>
                     </div>
             <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Nom</label>
             <div class="col-sm-10">
-              <input type="text" name="nom" placeholder="Nom" class="form-control">
+              <input type="text" name="nom" placeholder="Nom" class="form-control" {% if etd is defined %}value="{{ etd.getNom() }}"{%endif%}>
             </div>
           </div>
            <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Prenom</label>
             <div class="col-sm-10">
-              <input type="text" name="prenom" placeholder="Prenom" class="form-control">
+              <input type="text" name="prenom" placeholder="Prenom" class="form-control" {% if etd is defined %}value="{{ etd.getPrenom() }}"{%endif%}>
             </div>
           </div>
                <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Nom (fr)</label>
             <div class="col-sm-10">
-              <input type="text" name="nomfr" placeholder="Nom (fr)" class="form-control">
+              <input type="text" name="nomfr" placeholder="Nom (fr)" class="form-control"{% if etd is defined %}value="{{ etd.getNomfr() }}"{%endif%}>
             </div>
           </div>
                  <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Prenom (fr)</label>
             <div class="col-sm-10">
-              <input type="text" name="prenomfr" placeholder="Prenom(fr)" class="form-control">
+              <input type="text" name="prenomfr" placeholder="Prenom(fr)" class="form-control"{% if etd is defined %}value="{{ etd.getPrenomfr() }}"{%endif%}>
             </div>
           </div>
                  <div class="form-group">
                 <label for="date" class="col-sm-2 control-label">Date de naissance</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" id="date" name="date">
+                    <input type="date" class="form-control" id="date" name="date"{% if etd is defined %} value="{{ etd.getDate()|date('Y-m-d') }}"{%endif%}>
                   </div>
                
                    
                       <div class="col-sm-4">
                         <div class="be-radio-icon inline">
-                          <input type="radio" checked="" name="sex" id="rad1" value="female">
+                          <input type="radio" checked="" name="sex" id="rad1" value="female"{% if etd is defined and etd.getSex()=='female'%}checked{%endif%}>
                           <label for="rad1"><span class="mdi mdi-female"></span></label>
                         </div>
                         <div class="be-radio-icon inline">
-                          <input type="radio" name="sex" id="rad2" value="male">
+                          <input type="radio" name="sex" id="rad2" value="male"{% if etd is defined and etd.getSex()=='male'%}checked{%endif%}>
                           <label for="rad2"><span class="mdi mdi-male-alt"></span></label>
                         </div>
                       </div>
@@ -83,33 +83,33 @@
             <label class="col-sm-2 control-label" for="textinput">Lieu de naissance</label>
             
             <div class="col-sm-4">
-              <select name="lieu1" class="form-control">
-                <option value="Autre" selected>Autre</option>
-                <option value="Tetouan">Tetouan</option>
-                <option value="Tanger">Tanger</option>
+              <select name="lieu1" class="form-control"{% if etd is defined %}value="{{ etd.getLieu1() }}"{%endif%}>
+                <option value="Autre"  {% if etd is defined and etd.getLieu1() == "Autre" %}selected{%endif%}>Autre</option>
+                <option value="Tetouan" {% if etd is defined and etd.getLieu1() == "Tetouan"%}selected{%endif%}>Tetouan</option>
+                <option value="Tanger" {% if etd is defined and etd.getLieu1() == "Tanger" %}selected{%endif%}>Tanger</option>
               </select>
             </div>
              <div class="col-sm-2">
                         <label class="control-label" for="textinput">Autre, précisez</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" name="autre1" placeholder="Autre..." class="form-control">
+                        <input type="text" name="autre1" placeholder="Autre..." class="form-control"{% if etd is defined %}value="{{ etd.getAutre1() }}"{%endif%}>
                       </div>
           </div>
                <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Lieu de naissance (fr)</label>
             <div class="col-sm-4">
-              <select name="lieu2" class="form-control">
-                <option value="Autre" selected>Autre</option>
-                <option value="Tetouan">Tetouan</option>
-                <option value="Tanger">Tanger</option>
+              <select name="lieu2" class="form-control"{% if etd is defined %}value="{{ etd.getLieu2() }}"{%endif%}>
+                <option value="Autre"  {% if etd is defined and etd.getLieu2() == "Autre" %}selected{%endif%}>Autre</option>
+                <option value="Tetouan" {% if etd is defined and etd.getLieu2() == "Tetouan" %}selected{%endif%}>Tetouan</option>
+                <option value="Tanger" {% if etd is defined and etd.getLieu2() == "Tanger" %}selected{%endif%}>Tanger</option>
               </select>
             </div>
                  <div class="col-sm-2">
                         <label class="control-label" for="textinput">Autre, précisez</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" name="autre2" placeholder="Autre..." class="form-control">
+                        <input type="text" name="autre2" placeholder="Autre..." class="form-control"{% if etd is defined %}value="{{ etd.getAutre2() }}"{%endif%}>
                       </div>
           </div>
                <div class="form-group">
@@ -117,22 +117,22 @@
             <label class="col-sm-2 control-label" for="textinput">Nationalité</label>
                   <div class="col-sm-6">
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="nat" value="marocaine" id="raD6" onclick= "DisabledAP()">
+                          <input type="radio" {% if etd is defined and etd.getNat()=='marocaine' %}checked{%endif%} name="nat" value="marocaine" id="raD6" onclick= "DisabledAP()">
                           <label for="raD6">Marocaine</label>
                         </div>
                         <div class="be-radio inline">
-                          <input type="radio" name="nat" id="raD7" value ="autre" onclick= "DisabledAP()">
+                          <input type="radio" {% if etd is defined and etd.getNat()!='marocaine'%}checked{%endif%} name="nat" id="raD7" value ="autre" onclick= "DisabledAP()">
                           <label for="raD7">Autre</label>
                         </div>
                       </div>
             <div class="col-sm-4">
-              <input type="text" placeholder="Autre précisez" name="nat2" class="form-control" disabled id="AutreP">
+              <input type="text" placeholder="Autre précisez" name="nat2" class="form-control" disabled id="AutreP"{% if etd is defined %}value="{{ etd.getNat() }}"{%endif%} >
             </div>
           </div>
                <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">C.I.N</label>
             <div class="col-sm-4">
-              <input type="text" name="cin" placeholder="C.I.N" class="form-control">
+              <input type="text" name="cin" placeholder="C.I.N" class="form-control"{% if etd is defined %}value="{{ etd.getCin() }}"{%endif%}>
             </div>
           </div>
                 </div>
@@ -154,19 +154,28 @@
 
                      <!-- Text input-->
                      <div class="form-group xs-pt-10">
+                      {% if errMat is defined %}
+                     <label class="col-sm-2 control-label" for="textinput" style="color: red">Matricule</label>
+                     {% else %}
                      <label class="col-sm-2 control-label" for="textinput">Matricule</label>
+                     {% endif %}
+
             <div class="col-sm-4">
-              <input type="text" name="matricule" placeholder="Matricule" class="form-control">
+                     {% if errMat is defined %}
+                        <input type="text" name="matricule" placeholder="Matricule" class="form-control" style="border:1px solid red;">
+                     {% else %}
+                         <input type="text" name="matricule" placeholder="Matricule" class="form-control">
+                     {% endif %}
             </div>
              <div class="col-sm-2">
                         <label class="control-label" for="textinput">Statut</label>
                       </div>
                       <div class="col-sm-4">
-                        <select name="statut" class="form-control">
-                <option value="Inscrits" selected>Inscrits</option>
-                <option value="En attente">En attente</option>
-                <option value="Partis">Partis</option>
-                <option value="Radiés">Radiés</option>
+                        <select name="statut" class="form-control" {% if etd is defined %}value="{{ etd.getStatut() }}"{%endif%}>
+                <option value="Inscrits"  {% if etd is defined and etd.getStatut() == "Inscrits" %}selected{%endif%}>Inscrits</option>
+                <option value="En attente" {% if etd is defined and etd.getStatut() == "En attente" %}selected{%endif%}>En attente</option>
+                <option value="Partis"  {% if etd is defined and etd.getStatut() == "Partis" %}selected{%endif%}>Partis</option>
+                <option value="Radiés"  {% if etd is defined and etd.getStatut() == "Radiés" %}selected{%endif%}>Radiés</option>
               </select>
                       </div>
           </div>
@@ -207,18 +216,18 @@
                         <label class="control-label" for="textinput">Redoublant</label>
                       </div>
                       <div class="col-sm-2">
-                        <input type="text" name="red" placeholder="" class="form-control">
+                        <input type="text" name="red" placeholder="" class="form-control"{% if etd is defined %}value="{{ etd.getRed() }}"{%endif%}>
                       </div>
           </div>   <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">Transport scolaire</label>
             <div class="col-sm-2">
-              <input type="text" name="transport" placeholder="" class="form-control">
+              <input type="text" name="transport" placeholder="" class="form-control"{% if etd is defined %}value="{{ etd.getTransport() }}"{%endif%}>
             </div>
           </div>
               <div class="form-group">
                 <label for="date" class="col-sm-2 control-label">Date d'entrée'</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" id="date" name="date2">
+                    <input type="date" class="form-control" id="date" name="date2" {% if etd is defined %} value="{{ etd.getDate2()|date('Y-m-d') }}"{%endif%}>
                     </div>
                      <label class="col-sm-2 control-label">Niveau scolaire d'entrée </label>
               <div class="col-sm-4">
@@ -244,11 +253,11 @@
             </div>
                   <div class="col-sm-6">
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad3" id="Rad6" value="public">
+                          <input type="radio" checked="" name="rad3" id="Rad6" value="public" {% if etd is defined and etd.getRad3()=='public'%}checked{%endif%}>
                           <label for="Rad6">public</label>
                         </div>
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad3" id="Rad7" value="prive">
+                          <input type="radio" checked="" name="rad3" id="Rad7" value="prive"{% if etd is defined and etd.getRad3()=='privé'%}checked{%endif%}>
                           <label for="Rad7">privé</label>
                         </div>
                       </div>
@@ -256,7 +265,7 @@
              <div class="form-group">
                      <label class="col-sm-2 control-label" for="textinput">Code d'Etablissement d'origine</label>
             <div class="col-sm-4">
-              <input type="text" name="code" placeholder="Code" class="form-control">
+              <input type="text" name="code" placeholder="Code" class="form-control"{% if etd is defined %}value="{{ etd.getCode() }}"{%endif%}>
             </div>
              <label class="col-sm-2 control-label"> Ville</label>
               <div class="col-sm-4">
@@ -286,26 +295,26 @@
                       <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">Adresse domicile</label>
             <div class="col-sm-10">
-              <input type="text" name="adresse" placeholder="Adresse domicile" class="form-control">
+              <input type="text" name="adresse" placeholder="Adresse domicile" class="form-control"{% if etd is defined %}value="{{ etd.getAdresse() }}"{%endif%}>
             </div>
           </div>
              <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">Téléphone domicile</label>
                       <div class="col-sm-4">
-                        <input type="text" name="telephone" placeholder="téléphone" class="form-control">
+                        <input type="text" name="telephone" placeholder="téléphone" class="form-control"{% if etd is defined %}value="{{ etd.getTel() }}"{%endif%}>
                       </div>
                       <div class="col-sm-2">
                         <label class="control-label" for="textinput">Portable élève</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" name="portable" placeholder="Portable" class="form-control">
+                        <input type="text" name="portable" placeholder="Portable" class="form-control"{% if etd is defined %}value="{{ etd.getPortable() }}"{%endif%}>
                       </div>
                     </div>
              
               <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">E-mail élève</label>
             <div class="col-sm-10">
-              <input type="text" name="email" placeholder="E-mail élève" class="form-control">
+              <input type="text" name="email" placeholder="E-mail élève" class="form-control"{% if etd is defined %}value="{{ etd.getEmail() }}"{%endif%}>
             </div>
           </div>
 
@@ -320,15 +329,13 @@
 }
 </style>
           <div class="row">
-            <div class="form-group xs-pt-10">
+            <div class="form-group xs-pt-10"style="margin-left:200px;">
               <div class="icon-container col-sm-3">
                 <button class="ce_btn_elv" type="submit"><div class="icon"><span class="mdi mdi-check"></span></div><span class="icon-class"> Enregistrer </span></button>
               </div>
+            
               <div class="icon-container col-sm-3">
-                <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-plus"></span></div><span class="icon-class">Ajouter nouvelle fiche</span></button>
-              </div>
-              <div class="icon-container col-sm-3">
-                <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-print"></span></div><span class="icon-class">Imprimer fiche</span></button>
+                <button class="ce_btn_elv" type="button" onClick="window.print()"><div class="icon"><span class="mdi mdi-print"></span></div><span class="icon-class">Imprimer fiche</span></button>
               </div>
               <div class="icon-container col-sm-3">
                 <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-delete"></span></div><span class="icon-class">Supprimer</span></button>

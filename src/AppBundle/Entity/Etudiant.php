@@ -254,6 +254,15 @@ class Etudiant
      * @ORM\Column(name="image", type="string", length=200, nullable=true)
      */
     private $image;
+   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="annee", type="string", length=100, nullable=false)
+     */
+    private $annee;
+   
+
     /**
      * Get id
      *
@@ -1172,5 +1181,30 @@ class Etudiant
         $this->image = $image;
     
         return $this;
+    }
+
+
+    /**
+     * Set annee
+     *
+     * @param string $annee
+     *
+     * @return Etudiant
+     */
+    public function setAnnee($annee)
+    {
+        $this->annee = $annee;
+    
+        return $this;
+    }
+
+    /**
+     * Get annee
+     *
+     * @return string
+     */
+    public function getAnnee()
+    {
+        return $this->annee;
     }
 }

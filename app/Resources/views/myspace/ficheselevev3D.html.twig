@@ -1,6 +1,7 @@
 {% extends 'base2.html.twig' %}
 
 {% block body %}
+<form class="form-horizontal" role="form" action="{{ path('Ficheselevev3D', {'id': eleve.getId() }) }}" method="post">
           <section id="fh5co-contact" data-section="contact">
     <div class="container">
     
@@ -20,7 +21,6 @@
 {% endif %}
       <div class="row row-bottom-padded-md">
         <div class="col-md-6 to-animate">
-          <form class="form-horizontal" role="form" action="{{ path('Ficheselevev3D', {'id': eleve.getId }) }}" method="post">
               <div class="panel panel-default panel-border-color panel-border-color-primary">
                 <div class="panel-heading panel-heading-divider">Etat civil  <span class="panel-subtitle"></span></div>
                 <div class="panel-body"> 
@@ -274,29 +274,29 @@
                       
                 <label for="date" class="col-sm-2 control-label">Date de sortie</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" id="date" name="date3">
+                    <input type="date" class="form-control disEleve" id="date" disabled name="date3" value="{{ eleve.getDate3()|date('Y-m-d') }}">
                   </div>
                    <label class="col-sm-2 control-label"> Motif de sortie </label>
               <div class="col-sm-4">
-                <select class="form-control "name="motif">
-                  <option value ="xxxxx">xxxxx</option>
-                  <option value="yyyyyy">yyyyyy</option>
+                <select class="form-control disEleve" name="motif" disabled >
+                  <option value ="xxxxx" {% if eleve.getMotif() == "xxxxx" %}selected{% endif %}>xxxxx</option>
+                  <option value="yyyyyy" {% if eleve.getMotif() == "yyyyyy" %}selected{% endif %}>yyyyyy</option>
                 </select>
           </div> 
         </div>
             <div class="form-group ">
                      <label class="col-sm-2 control-label" for="textinput">Etablissement d'accueil</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="Etablissement d'accueil" class="form-control" name="etablissement2 ">
+              <input type="text" placeholder="Etablissement d'accueil" disabled class="form-control disEleve" name="etablissement2" value="{{ eleve.getEtablissement2() }}">
             </div>
            
                       <div class="col-sm-6 form-horizontal">
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad10" id="rad6" value="public">
+                          <input type="radio" {% if eleve.getRad10() == 'public'%} checked="" {% endif %} disabled name="rad10" id="rad6" value="public">
                           <label for="rad6">public</label>
                         </div>
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad10" id="rad7" value="prive">
+                          <input type="radio" {% if eleve.getRad10() == 'public'%} checked="" {% endif %} disabled name="rad10" id="rad7" value="prive">
                           <label for="rad7">privé</label>
                         </div>
                       </div>
@@ -304,13 +304,13 @@
             <div class="form-group">
                      <label class="col-sm-2 control-label" for="textinput">Code Etablissement d'accueil</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="Code etablissement" class="form-control" name="code2">
+              <input type="text" placeholder="Code etablissement" disabled class="form-control disEleve" name="code2"  value="{{ eleve.getCode2() }}">
             </div>
              <label class="col-sm-2 control-label"> Ville </label>
               <div class="col-sm-4">
-                <select class="form-control" name="ville2">
-                  <option value="tanger">Tanger</option>
-                  <option value="tetouan">Tetouan</option>
+                <select class="form-control disEleve" disabled name="ville2">
+                  <option value="tanger" {% if eleve.getVille2() == "tanger"%} selected {%endif%}>Tanger</option>
+                  <option value="tetouan" {% if eleve.getVille2() == "tetouan"%} selected {%endif%}>Tetouan</option>
                 </select>
               </div>
           </div>
@@ -330,7 +330,7 @@
                 <button class="ce_btn_elv" type="button" onclick="DisEleve()"><div class="icon"><span class="mdi mdi-edit"></span></div><span class="icon-class"> Modifier fiche </span></button>
               </div>
               <div class="icon-container col-sm-3">
-               <button class="ce_btn_elv" type="submit"><div class="icon"><span class="mdi mdi-check"></span></div><span class="icon-class"> Enregistrer </span></button>
+               <button class="ce_btn_elv disEleve" disabled type="submit"><div class="icon"><span class="mdi mdi-check"></span></div><span class="icon-class"> Enregistrer </span></button>
               </div>
               <div class="icon-container col-sm-3">
                 <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-print"></span></div><span class="icon-class">Imprimer fiche</span></button>
@@ -340,7 +340,7 @@
               </div>
             </div>
           </div>
-        </form>
+  </form>
   {% endblock %}
   {% block javascripts %}
   <script type="text/javascript">
@@ -352,3 +352,4 @@
   }
   </script>
   {% endblock %}
+
