@@ -23,49 +23,49 @@ class appreciation
     /**
      * @var boolean
      *
-     * @ORM\Column(name="used", type="boolean", nullable=false)
+     * @ORM\Column(name="used", type="boolean", nullable=true)
      */
     private $used;
 
     /**
      * @var text
      *
-     * @ORM\Column(name="color", type="text", nullable=false)
+     * @ORM\Column(name="color", type="text", nullable=true)
      */
     private $color;
 
     /**
      * @var text
      *
-     * @ORM\Column(name="lettre", type="text", nullable=false)
+     * @ORM\Column(name="lettre", type="text", nullable=true)
      */
     private $lettre;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="debutPourcentage", type="float", nullable=false)
+     * @ORM\Column(name="debutPourcentage", type="float", nullable=true)
      */
     private $debutPourcentage;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="finPourcentage", type="float", nullable=false)
+     * @ORM\Column(name="finPourcentage", type="float", nullable=true)
      */
     private $finPourcentage;
 
     /**
      * @var text
      *
-     * @ORM\Column(name="appreciation", type="text", nullable=false)
+     * @ORM\Column(name="appreciation", type="text", nullable=true)
      */
     private $appreciation;
 
     /**
      * @var text
      *
-     * @ORM\Column(name="niveauAc", type="text", nullable=false)
+     * @ORM\Column(name="niveauAc", type="text", nullable=true)
      */
     private $niveauAc;
 
