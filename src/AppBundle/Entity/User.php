@@ -73,6 +73,13 @@ class User
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=255, nullable=true)
+     */
+    private $salt;
+
+    /**
      * Get id
      *
      * @return integer
@@ -248,6 +255,31 @@ class User
     public function getRole()
     {
         return $this->role;
+    }
+
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     *
+     * @return User
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
     }
 
     public function __toString() {
