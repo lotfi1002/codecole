@@ -1,0 +1,476 @@
+{% extends '@Parametrage/Parametrage/base.html.twig' %}
+{% block titre %}Paramétrage | Al Amana{% endblock %}
+{% block selectAnneeScolaire %}
+<form method="post" action="{{ path('parametrage_homepage') }}" id="SelYearFrom" style="display: inline-block; width:40%; margin-left:15px;">
+	<select class="form-control input-sm SelYear" name="YearSelected">
+	{% for year in years %}
+		<option value="{{ year.getAnnee() }}" {% if year.getIsActive == 1 %} selected {% endif %}>
+			{{ year.getAnnee() }} / {{ year.getAnnee() + 1 }}
+		</option>
+	{% endfor %}
+	</select>
+</form>
+{% endblock %}
+{% block body %}
+{% set x = 0%}
+{% for year in years %}
+	{% if year.getIsActive() %}{% set x = year.getAnnee() %}{% endif %}
+{% endfor %}
+<style type="text/css">
+.border-type-1, .border-type-2{
+	color : black;
+	width: 20%;
+	height: 35px;
+	text-align: center;
+	line-height: 35px;
+	font-size: 13px;
+	font-weight: bold;
+	background: rgb(245,245,245);
+}
+.border-type-1{
+	margin-right: 10px;
+}
+.border-type-2{
+	border: 1px solid lightblue;
+}
+.border-type-2:hover{
+	border: 1px solid blue;
+}
+#err{
+	font-size: 14px;
+	text-align: left;
+}
+#err p{
+	margin-left: 25px;
+}
+.Label-NS-Type1{
+	border : 1px solid grey;
+	background: rgba(200,200,200, .5);
+	height: 25px;
+	width: 20%;
+	text-align: center;
+	line-height: 25px;
+	color:black;
+	font-weight: 16px;
+	margin-top: 35px;
+	margin-bottom: 5px;
+}
+.Label-CL-Type-1, .Label-CL-Type-2, .Label-CL-Type-3{
+	width: 100%;
+	color: blue;
+	text-align: center; 
+}
+
+
+</style>
+<div class="row">	
+	<div class="col-sm-12">
+	  	<div class="panel panel-default panel-table">
+	    	<div class="panel-heading" style="text-align: center;">
+	    		<a href="{{ path('parametrage_homepage')}}"><i class="mdi mdi-rotate-left" style="font-size: 50px; float: left;"></i></a>
+	    		<h2>Identifier les services proposés par l’établissement</h2>
+	    	</div>
+	    	<div class="panel-body">
+	    		<div class="row">
+					<div class="col-sm-12">
+					  <div class="panel panel-default">
+					    <div class="tab-container">
+					      <ul class="nav nav-tabs nav-tabs-success">
+					        <li class="active"><a href="#CSP" id="CSP-tab" data-toggle="tab">Cycles scolaires<br>et pédagogiques</a></li>
+					        {% if CSs|length != 0 and CPs|length != 0%}
+					        <li><a href="#NS" id="NS-tab" data-toggle="tab">Niveaux<br>Scolaire</a></li>
+					        {% endif %}
+					        {% if NSs is defined and NSs|length != 0 %}
+					        <li><a href="#CLS" id="CLS-tab" data-toggle="tab" style="margin-top: 10px;">Classes</a></li>
+					        {% endif %}
+					      </ul>
+					      <div class="tab-content">
+					        <div id="CSP" class="tab-pane active cont">
+					    		<div class="row">
+					    			<div class="col-sm-12">
+								    	<div class="col-sm-1"></div>
+								    	<div class="col-sm-10" id="err">
+									    	{% if err is defined %}
+									    	<div role="alert" class="alert alert-warning alert-icon alert-dismissible">
+									            <div class="icon"><span class="mdi mdi-alert-triangle"></span></div>
+									            <div class="message">
+									              	<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><strong>Erreur! </strong><br><p>{{ err }}</p>
+								            	</div>
+											</div>
+											{% endif %}
+										</div>
+					    			</div>
+						  			<div class="col-sm-1"></div>
+						  			<div class="col-sm-11">
+							  			<div class="col-sm-12">
+							  				<label for="Year" class="col-sm-2 control-label border-type-1">Année Scolaire</label>
+							  				<label for="Year" class="col-sm-2 control-label border-type-2">{{ x }} / {{ x + 1 }}</label>
+							  			</div>
+							  			<div class="col-sm-12">
+							  				<div class="col-sm-1"></div>
+							  				<label for="Year" class="control-label text-primary" style="text-decoration: underline; font-size: 15px">Les cycles scolaires</label>
+							  			</div>
+							  			<form method="post" action="{{ path('StructureScolaire', {'form': 'table1','id': 'new'}) }}">
+							  			  <div class="col-sm-10">
+							  				<table class="table" id="table1" style="border:1px solid gray">
+							                    <thead>
+							                    	<tr>
+							                    		<th style="width:47%;">Cycle scolaire</th>
+								                        <th style="width:47%; text-align: right;">السلك المدرسي</th>
+								                        <th style="width:6%;"><i class="mdi mdi-delete" style="font-size:25px; color: gray"></i></th>
+							                      	</tr>
+							                    </thead>
+							                    <tbody>
+							                    	{% for cs in CSs %}
+								                    	<tr id="cs-{{ cs.getId() }}">
+								                    		<td>
+								                    			<input class='form-control input-xs' style='border: 1px solid grey;' name='CCSFR-{{ cs.getId() }}' value="{{ cs.getCycleScolaireFr() }}">
+								                    		</td>
+								                    		<td>
+								                    			<input class='form-control input-xs' style='border: 1px solid gray;text-align:right' name='CCSAR-{{ cs.getId() }}' value="{{ cs.getCycleScolaireAr() }}">
+								                    		</td>
+								                    		<td>
+								                    			<button type='button' from="Ctrl" class='delete-row1' style='color:red; font-size: 35px; cursor: pointer; background: transparent; margin-top:-3px; border: 0px;'>-</button>
+								                    		</td>
+								                    	</tr>
+							                    	{% endfor %}
+							                    </tbody>
+							                </table>
+							                <input type="text" id='nb_CS' name="nb_CS" value="0" style='display: none' class="table1">
+							                <div style="width:100%;height:25px;text-align:right;background:gray;">
+							                	<button type="button" for="table1" class="add-row1" style="color:lightgreen; font-size: 25px; cursor: pointer; background: transparent; margin-top:-6px; border: 0px;">+</button>
+							                </div>	  				
+							  			  </div>
+							  			  <div class="col-sm-2">
+							  				<div class="col-sm-12"><button type="submit" class="btn btn-space btn-success" style="width:80px; color:black">Valider</button></div>
+							  			  </div>
+							  			</form>
+
+							  			<div class="col-sm-12">
+							  				<br><br>
+							  				<div class="col-sm-1"></div>
+							  				<label for="Year" class="control-label text-primary" style="text-decoration: underline; font-size: 15px">Les cycles pédagogiques</label>
+							  			</div>
+							  			<form method="post" action="{{ path('StructureScolaire', {'form': 'table2','id': 'new'}) }}">
+							  			  <div class="col-sm-10">
+							  				<table class="table" id="table2" style="border:1px solid gray">
+							                    <thead>
+							                    	<tr>
+							                    		<th style="width:23%;">Cycle</th>
+							                    		<th style="width:23%;">Intitulé</th>
+								                        <th style="width:23%; text-align: right;">التسمية</th>
+								                        <th style="width:23%; text-align: right;">السلك التربوي</th>
+								                        <th style="width:8%;"><i class="mdi mdi-delete" style="font-size:25px; color: gray"></i></th>
+							                      	</tr>
+							                    </thead>
+							                    <tbody>
+							                    	{% for cp in CPs %}
+								                    	<tr id="cp-{{ cp.getId() }}">
+								                    		<td>
+								                    			<input class='form-control input-xs' style='border: 1px solid grey;' name='CCPFR-{{ cp.getId() }}' value="{{ cp.getCycleFr() }}">
+								                    		</td>
+								                    		<td>
+								                    			<input class='form-control input-xs' style='border: 1px solid grey;' name='CINFR-{{ cp.getId() }}' value="{{ cp.getIntituleFr() }}">
+								                    		</td>
+								                    		<td>
+								                    			<input class='form-control input-xs' style='border: 1px solid grey;text-align:right' name='CINAR-{{ cp.getId() }}' value="{{ cp.getIntituleAr() }}">
+								                    		</td>
+								                    		<td>
+								                    			<input class='form-control input-xs' style='border: 1px solid gray;text-align:right' name='CCPAR-{{ cp.getId() }}' value="{{ cp.getCycleAr() }}">
+								                    		</td>
+								                    		<td>
+								                    			<button type='button' from="Ctrl" class='delete-row2' style='color:red; font-size: 35px; cursor: pointer; background: transparent; margin-top:-3px; border: 0px;'>-</button>
+								                    		</td>
+								                    	</tr>
+							                    	{% endfor %}
+							                    </tbody>
+							                </table>
+							                <input type="text" id='nb_CP' name="nb_CP" value="0" style='display: none' class="table2">
+							                <div style="width:100%;height:25px;text-align:right;background:gray;">
+							                	<button type="button" for="table2" class="add-row2" style="color:lightgreen; font-size: 25px; cursor: pointer; background: transparent; margin-top:-6px; border: 0px;">+</button>
+							                </div>	  				
+							  			  </div>
+							  			  <div class="col-sm-2">
+							  				<div class="col-sm-12"><button type="submit" class="btn btn-space btn-success" style="width:80px; color:black">Valider</button></div>
+							  			  </div>
+							  			</form>
+							  		</div>
+						  		</div>
+						  		<div class="row"><div class="col-sm-12"><br></div></div>
+						  	</div>
+					        <div id="NS" class="tab-pane cont">
+					          	<div class="row">
+					          		<div class="col-sm-12">
+					          			<div class="col-sm-12">
+							  				<div class="col-sm-1"></div>
+							  				<label for="Year" class="control-label text-primary" style="text-decoration: underline; font-size: 15px">Niveaux Scolaires</label>
+							  			</div>
+							  			{% for cs in CSs %}
+							  			{% set id = cs.getId() %}
+							  			<div class="col-sm-12">
+								  			<div class="col-sm-12">
+								  				<label for="Cycle" class="control-label Label-NS-Type1">
+								  					{{ cs.getCycleScolaireFr() }}
+								  				</label>
+								  			</div>
+								  			<form method="post" action="{{ path('StructureScolaire', {'form': 'tab'~cs.getCycleScolaireFr(),'id': 'new'}) }}">
+								  			  <div class="col-sm-10">
+								  				<table class="table" id="tab{{ cs.getCycleScolaireFr() }}" style="border:1px solid gray">
+								                    <thead>
+								                    	<tr>
+								                    		<th style="width:15%;">Sigle</th>
+								                    		<th style="width:25%;">Niveau Scolaire</th>
+								                    		<th style="width:15%;">Cycle pédagogique</th>
+									                        <th style="width:25%; text-align: right;">المستوى الدراسي</th>
+									                        <th style="width:15%; text-align: right;">الرمز</th>
+									                        <th style="width:5%;"><i class="mdi mdi-delete" style="font-size:25px; color: gray"></i></th>
+								                      	</tr>
+								                    </thead>
+								                    <tbody>
+  							                    	  {% if NSs is defined %}
+								                    	{% for ns in NSs %}
+								                    		{% if ns.getIdCycleScolaire() == id%}
+									                    	<tr id="ns-{{ ns.getId() }}">
+									                    		<td>
+									                    			<input class='form-control input-xs' style='border: 1px solid grey;' name='CSGFR-{{ ns.getId() }}' value="{{ ns.getSigleFr() }}">
+									                    		</td>
+									                    		<td>
+									                    			<input class='form-control input-xs' style='border: 1px solid grey;' name='CNSFR-{{ ns.getId() }}' value="{{ ns.getNiveauScolaire() }}">
+									                    		</td>
+									                    		<td>
+									                    			<select class='form-control input-xs' style='border: 1px solid grey;' name='CCYFR-{{ ns.getId() }}'>
+									                    				{% for cp in CPs %}
+									                    					<option value="{{ cp.getId() }}" {% if ns.getIdCyclePedagogique() == cp.getId() %} selected {% endif %}>{{ cp.getCycleFr() }}</option>
+									                    				{% endfor %}
+									                    			</select>
+									                    		</td>
+									                    		<td>
+									                    			<input class='form-control input-xs' style='border: 1px solid grey;text-align:right' name='CNSAR-{{ ns.getId() }}' value="{{ ns.getNiveauScolaireAr() }}">
+									                    		</td>
+									                    		<td>
+									                    			<input class='form-control input-xs' style='border: 1px solid gray;text-align:right' name='CSGAR-{{ ns.getId() }}' value="{{ ns.getSigleAr() }}">
+									                    		</td>
+									                    		<td>
+									                    			<button type='button' from="Ctrl" class='delete-row-{{ cs.getId() }}' style='color:red; font-size: 35px; cursor: pointer; background: transparent; margin-top:-3px; border: 0px;'>-</button>
+									                    		</td>
+									                    	</tr>
+									                    	{% endif %}
+								                    	{% endfor %}
+								  	  				  {% endif %}
+								                    </tbody>
+								                </table>
+								                <input type="text" id='nb_NS-{{ cs.getId() }}' name="nb_NS-{{ cs.getId() }}" value="0" style='display: none' class="tab{{ cs.getCycleScolaireFr }}">
+								                <div style="width:100%;height:25px;text-align:right;background:gray;">
+								                	<button type="button" for="tab{{ cs.getCycleScolaireFr }}" class="add-row-{{cs.getId()}}" style="color:lightgreen; font-size: 25px; cursor: pointer; background: transparent; margin-top:-6px; border: 0px;">+</button>
+								                </div>	  				
+								  			  </div>
+								  			  <div class="col-sm-2">
+								  				<div class="col-sm-12"><button type="submit" class="btn btn-space btn-success" style="width:80px; color:black">Valider</button></div>
+								  			  </div>
+								  			</form>
+								  		</div>
+								  		{% endfor %}
+					          		</div>
+								</div>
+					        </div>
+					        <div id="CLS" class="tab-pane">
+					          	<div class="row">
+					          		<div class="col-sm-12">
+					          			<div class="col-sm-12">
+							  				<div class="col-sm-1"></div>
+							  				<label for="Year" class="control-label text-primary" style="text-decoration: underline; font-size: 15px">Les classes</label>
+							  			</div>
+							  			{% for cs in CSs %}
+							  			{% set id = cs.getId() %}
+							  			<div class="col-sm-12">
+								  			<div class="col-sm-12">
+								  				<label for="Cycle" class="control-label Label-NS-Type1">
+								  					{{ cs.getCycleScolaireFr() }}
+								  				</label>
+								  			</div>
+								  			<div class="col-sm-3">
+								  				<table class="table" id="#" style="border:1px solid gray">
+								                    <thead>
+								                    	<tr>
+								                    		<th style="width:15%; text-align: center;">Sigle</th>
+								                    		<th style="width:45%; text-align: center;">Niveau Scolaire</th>
+								                    		<th style="width:40%; text-align: center;">Nombre de classes</th>
+								                      	</tr>
+								                    </thead>
+								                    <tbody>
+  							                    	  {% if NSs is defined %}
+								                    	{% for ns in NSs %}
+								                    		{% if ns.getIdCycleScolaire() == id%}
+									                    	<tr>
+									                    		<td>
+									                    			<label for="Sigle" class="control-label Label-CL-Type-1">{{ ns.getSigleFr() }}</label>
+									                    		</td>
+									                    		<td>
+																	<label for="Niveau" class="control-label Label-CL-Type-2" >{{ ns.getNiveauScolaire() }}</label>
+									                    		</td>
+									                    		<td>
+																	<label for="NB_classes" class="control-label Label-CL-Type-3" id="{{ ns.getSigleFr() }}">{{ ns.getNbClasses() }}</label>
+									                    		</td>
+									                    	</tr>
+									                    	{% endif %}
+								                    	{% endfor %}
+								  	  				  {% endif %}
+								                    </tbody>
+								                </table>
+								  			</div>
+
+								  			<form method="post" action="{{ path('StructureScolaire', {'form': 'tab-'~cs.getCycleScolaireFr(),'id': 'new'}) }}">
+								  			  <div class="col-sm-7">
+								  				<table class="table" id="tab-{{cs.getCycleScolaireFr}}" style="border:1px solid gray">
+								                    <thead>
+								                    	<tr>
+								                    		<th style="width:15%; text-align: left;">Code</th>
+								                    		<th style="width:23%; text-align: left;">Classe</th>
+								                    		<th style="width:23%; text-align: right;">القسم</th>
+								                    		<th style="width:15%; text-align: right;">الرمز</th>
+								                    		<th style="width:18%; text-align: center;">Sigle</th>
+								                    		<th style="width:6%; text-align: center;"><i class="mdi mdi-delete" style="font-size:25px; color: gray"></i></th>
+								                      	</tr>
+								                    </thead>
+								                    <tbody>
+  							                    	  {% if NSs is defined %}
+								                    	{% for ns in NSs %}
+  							                    	     {% if CLs is defined %}
+								                    	   {% for cl in CLs %}
+								                    		{% if ns.getIdCycleScolaire() == id and cl.getIdNiveauScolaire() == ns.getId() %}
+									                    	<tr id="cl{{ cl.getId() }}">
+									                    		<td>
+									                    			<input class='form-control input-xs' style='border: 1px solid grey;' name='CCOFR-{{ cl.getId() }}' value="{{ cl.getCodeFr() }}">
+									                    		</td>
+									                    		<td>
+									                    			<input class='form-control input-xs' style='border: 1px solid grey;' name='CCLFR-{{ cl.getId() }}' value="{{ cl.getClasseFr() }}">
+									                    		</td>
+									                    		<td>
+									                    			<input class='form-control input-xs' style='border: 1px solid grey;text-align:right' name='CCLAR-{{ cl.getId() }}' value="{{ cl.getClasseAr() }}">
+									                    		</td>
+									                    		<td>
+									                    			<input class='form-control input-xs' style='border: 1px solid gray;text-align:right' name='CCOAR-{{ cl.getId() }}' value="{{ cl.getCodeAr() }}">
+									                    		</td>
+									                    		<td>
+									                    			<select class='form-control input-xs cls' style='border: 1px solid grey;' name='CNCFR-{{ cl.getId() }}'>
+									                    				{% for ns2 in NSs %}
+									                    				  {% if ns2.getIdCycleScolaire() == cs.getId()%}
+									                    				    <option value='{{ ns2.getId() }}' {% if ns2.getId() == cl.getIdNiveauScolaire()%} selected {% endif %} >
+									                    					{{ ns2.getSigleFr() }}
+										                    				</option>
+									                    				  {% endif %}
+									                    				{% endfor %}
+									                    			</select>
+									                    		</td>
+									                    		<td>
+									                    			<button type='button' from="Ctrl" class='delete-row_{{ cs.getId() }}' for="{{ ns.getSigleFr() }}" style='color:red; font-size: 35px; cursor: pointer; background: transparent; margin-top:-3px; border: 0px;'>-</button>
+									                    		</td>
+									                    	</tr>
+									                      {% endif %}
+								                    	 {% endfor %}
+								  	  				    {% endif %}
+								  	  				   {% endfor %}
+								  	  				  {% endif %}
+								                    </tbody>
+								                </table>
+								                <input type="text" id='nb_CL-{{ cs.getId() }}' name="nb_CL-{{ cs.getId() }}" value="0" style='display: none' class="tab{{ cs.getCycleScolaireFr }}">
+								                <div style="width:100%;height:25px;text-align:right;background:gray;">
+								                	<button type="button" for="tab-{{cs.getCycleScolaireFr}}" class="add-row_{{cs.getId()}}" style="color:lightgreen; font-size: 25px; cursor: pointer; background: transparent; margin-top:-6px; border: 0px;">+</button>
+								                </div>	  				
+								  			  </div>
+								  			  <div class="col-sm-2">
+								  				<div class="col-sm-12"><button type="submit" class="btn btn-space btn-success" style="width:80px; color:black">Valider</button></div>
+								  			  </div>
+								  			</form>
+								  		</div>
+								  		{% endfor %}
+					          		</div>
+								</div>
+					        </div>
+
+
+
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="{{ asset('js/codeEcole.js')}}"></script>
+<script type="text/javascript">
+{% for cs in CSs %}
+$(function () {
+	$('.add-row-{{cs.getId()}}').click(function () {
+        $('#nb_NS-{{cs.getId()}}').attr("value", ""+(parseInt($('#nb_NS-{{cs.getId()}}').attr('value'))+1)+"");
+    	var nb = parseInt($('#nb_NS-{{cs.getId()}}').attr('value'));
+        var template = "<tr><td><input class='form-control input-xs NS-{{cs.getId()}}' style='border: 1px solid grey;' name='ASGFR-"+nb+"'></td><td><input class='form-control input-xs NS-{{cs.getId()}}' style='border: 1px solid grey;' name='ANSFR-"+nb+"'></td><td><select class='form-control input-xs NS-{{cs.getId()}}' style='border: 1px solid grey;' name='ACYFR-"+nb+"'>{% for cp in CPs %}<option value='{{cp.getId()}}'>{{ cp.getCycleFr() }}</option>{% endfor %}</select></td><td><input class='form-control input-xs NS-{{cs.getId()}}' style='border: 1px solid grey;text-align:right' name='ANSAR-"+nb+"'></td><td><input class='form-control input-xs NS-{{cs.getId()}}' style='border: 1px solid gray;text-align:right' name='ASGAR-"+nb+"'></td><td><button type='button' from='Add' class='delete-row-{{ cs.getId() }}' style='color:red; font-size: 35px; cursor: pointer; background: transparent; margin-top:-3px; border: 0px;'>-</button></td></tr>";
+        $('#tab{{cs.getCycleScolaireFr}} tbody').append(template);
+    });
+    $('#tab{{cs.getCycleScolaireFr}}').on('click', '.delete-row-{{cs.getId()}}', function () {
+    	if ($(this).attr('from') == 'Ctrl') {
+			var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce |>>| niveau |<<| ?");
+    		if(confirmation){
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+				    if (this.readyState == 4 && this.status == 200) {
+				       document.getElementById(xhttp.responseText).remove();
+				       var x = []; var bl = false;
+				       {% for csTab in CSs %}
+			       	   x.push($("#tab{{csTab.getCycleScolaireFr}} tbody tr").html() == null);
+				       {% endfor %}
+				       for (var i = 0; i < x.length; i++) if (x[i] == false) bl = true;
+			       	   if (bl == false ) document.getElementById('CLS-tab').style.display = 'none';	
+					}
+				};
+				xhttp.open("GET", '../tab{{cs.getCycleScolaireFr}}/'+$(this).parent().parent().attr('id'), true);
+				xhttp.send();
+			}
+		}
+		else {
+			$(this).parent().parent().remove();
+	        $('#nb_NS-{{cs.getId()}}').attr("value", ""+(parseInt($('#nb_NS-{{cs.getId()}}').attr('value'))-1)+"");
+	        changeNameInputes('NS-{{cs.getId()}}', 6, 5);
+		}
+    });
+    $('.add-row_{{cs.getId()}}').click(function () {
+        $('#nb_CL-{{cs.getId()}}').attr("value", ""+(parseInt($('#nb_CL-{{cs.getId()}}').attr('value'))+1)+"");
+    	var nb = parseInt($('#nb_CL-{{cs.getId()}}').attr('value'));
+        var template = "<tr><td><input class='form-control input-xs CL-{{cs.getId()}}' style='border: 1px solid grey;' name='ACOFR-"+nb+"'></td><td><input class='form-control input-xs CL-{{cs.getId()}}' style='border: 1px solid grey;' name='ACLFR-"+nb+"'></td><td><input class='form-control input-xs CL-{{cs.getId()}}' style='border: 1px solid grey;text-align:right' name='ACLAR-"+nb+"'></td><td><input class='form-control input-xs CL-{{cs.getId()}}' style='border: 1px solid gray;text-align:right' name='ACOAR-"+nb+"'></td><td><select class='form-control input-xs CL-{{cs.getId()}}' style='border: 1px solid grey;' name='ANCFR-"+nb+"'>{% for ns2 in NSs %}{% if ns2.getIdCycleScolaire() == cs.getId()%}<option value='{{ ns2.getId() }}'>{{ ns2.getSigleFr() }}</option>{% endif %}{% endfor %}</select></td><td><button type='button' from='Add' class='delete-row_{{ cs.getId() }}' style='color:red; font-size: 35px; cursor: pointer; background: transparent; margin-top:-3px; border: 0px;'>-</button></td></tr>";
+        $('#tab-{{cs.getCycleScolaireFr}} tbody').append(template);
+    });
+    $('#tab-{{cs.getCycleScolaireFr}}').on('click', '.delete-row_{{cs.getId()}}', function () {
+    	if ($(this).attr('from') == 'Ctrl') {
+    		var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette |>>| classe |<<| ?");
+    		var idInc = $(this).attr('for');
+    		if(confirmation){
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+				    if (this.readyState == 4 && this.status == 200) {
+				       document.getElementById(xhttp.responseText).remove();
+	        		   document.getElementById(idInc).innerHTML = parseInt(document.getElementById(idInc).innerHTML) - 1;
+					}
+				};
+				xhttp.open("GET", '../tab-{{cs.getCycleScolaireFr}}/'+$(this).parent().parent().attr('id')+'-'+document.getElementsByClassName('cls')[0].value, true);
+				xhttp.send();
+			}
+		}
+		else {
+			$(this).parent().parent().remove();
+	        $('#nb_CL-{{cs.getId()}}').attr("value", ""+(parseInt($('#nb_CL-{{cs.getId()}}').attr('value'))-1)+"");
+	        changeNameInputes('CL-{{cs.getId()}}', 6, 5);
+
+
+		}
+    });	
+});
+{% endfor %}
+$( ".SelYear" ).change(function() {
+  $( "#SelYearFrom" ).submit();
+});
+</script>
+{% endblock %}

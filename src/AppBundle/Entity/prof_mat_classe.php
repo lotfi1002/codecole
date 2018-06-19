@@ -2,28 +2,39 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * prof_mat_classe
+ *
+ * @ORM\Table(name="prof_mat_classe")
+ * @ORM\Entity
  */
 class prof_mat_classe
 {
     /**
      * @var int
+     *@ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var int
+     * @ORM\Column(name="id_professeur", type="integer",nullable=true)
      */
     private $idProfesseur;
 
     /**
      * @var int
+     * @ORM\Column(name="id_matiere", type="integer",nullable=true)
      */
     private $idMatiere;
 
     /**
      * @var int
+     * @ORM\Column(name="id_classe", type="integer",nullable=true)
      */
     private $idClasse;
 

@@ -1,0 +1,209 @@
+{% extends '@Parametrage/Parametrage/base.html.twig' %}
+{% block titre %}Paramétrage | Al Amana{% endblock %}
+{% block body %}
+<style type="text/css">
+.Mounths{
+	display: inline-block;
+	width: 100%;
+	margin: auto;
+}
+.Mounth{
+	width: 60px;
+	background-color: darkgray;
+	text-align: center;
+	color:black;
+	border:1px solid gray;
+	border-radius: 2px 2px 2px 2px;
+}
+.Day{
+	width: 100px;
+	text-align: center;
+	color:black;
+	border:1px solid gray;
+	border-radius: 1px 1px 1px 1px;
+}
+.Day:hover{
+	opacity: 0.9
+}
+.periode{
+	width: 100px;
+	text-align: center;
+	color:black;
+	border:1px solid gray;
+	border-radius: 1px 1px 1px 1px;
+}
+.periode:hover{
+	opacity: 0.9
+}
+.table th, .table td{
+	text-align: center;
+}
+</style>
+<div class="row">	
+	<div class="col-sm-12">
+	  	<div class="panel panel-default panel-table">
+	    	<div class="panel-heading" style="text-align: center;">
+	    		<a href="{{ path('parametrage_homepage')}}"><i class="mdi mdi-rotate-left" style="font-size: 50px; float: left;"></i></a>
+	    		<h2>Paramètrer le calendrier scolaire</h2>
+	    	</div>
+          	<div class="panel-body">
+		 	    <div class="row">
+					<div class="col-sm-12">
+						<div class="col-sm-4">
+					      	<div class="form-group xs-pt-10">
+				        		<div class="col-sm-4">
+				        			<label class="control-label" for="textinput"><strong>Année scolaire</strong></label>
+					          	</div>
+					          	<div class="col-sm-8">
+					            	<input type="text" name="nom" title="2017/2018" id="nom" placeholder="2017/2018" class="form-control input-sm" style="margin: 0px; margin-bottom:3px; ">
+					          	</div>
+				            </div>
+				      	</div>
+				      	<div class="col-sm-4">
+					      	<div class="form-group xs-pt-10">
+				        		<div class="col-sm-4">
+				        			<label class="control-label" for="textinput"><strong>Du</strong></label>
+					          	</div>
+					          	<div class="col-sm-8">
+					            	<input type="date" name="nom" title="début" id="nom" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;" min="2017-09-01" max="2018-07-31" value='2017-09-01'>
+					          	</div>
+					        </div>
+					    </div>
+				      	<div class="col-sm-4">
+					      	<div class="form-group xs-pt-10">
+				        		<div class="col-sm-4">
+				        			<label class="control-label" for="textinput"><strong>Au</strong></label>
+					          	</div>
+					          	<div class="col-sm-8">
+					            	<input type="date" name="nom" title="Fin" id="nom" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;"  min="2017-09-01" max="2018-07-31" value="2018-07-31">
+					          	</div>
+					        </div>
+					    </div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-2"></div>
+						<div class="col-sm-10">
+							<div class="Mounths">
+								<label for="mounth" class="Mounth">Sept</label>
+								<label for="mounth" class="Mounth">Oct.</label>
+								<label for="mounth" class="Mounth">Nov.</label>
+								<label for="mounth" class="Mounth">Déc.</label>
+								<label for="mounth" class="Mounth">Janv.</label>
+								<label for="mounth" class="Mounth">Fév.</label>
+								<label for="mounth" class="Mounth">Mars</label>
+								<label for="mounth" class="Mounth">Avr.</label>
+								<label for="mounth" class="Mounth">Mai</label>
+								<label for="mounth" class="Mounth">Juin</label>
+								<label for="mounth" class="Mounth">Juil.</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-12">
+		        			<label class="control-label text-primary" for="textinput">Choisissez vos jours en blanc</label>
+		        		</div>
+						<div class="col-sm-12">
+							<div class="col-sm-2">
+						      	<div class="form-group xs-pt-10">
+				        			<label class="control-label" for="textinput"><strong>Jours ouvrés</strong></label>
+						         </div>
+						    </div>
+				          	<div class="col-sm-10">
+				            	<div class="Mounths">
+									<a onclick="changeDays('lundi')"><label id="lundi" for="Day" class="Day" disabled='false'>Lundi</label></a>
+									<a onclick="changeDays('mardi')"><label id="mardi" for="Day" class="Day" disabled='false'>Mardi</label></a>
+									<a onclick="changeDays('mercredi')"><label id="mercredi" for="Day" class="Day" disabled='false'>Mercredi</label></a>
+									<a onclick="changeDays('jeudi')"><label id="jeudi" for="Day" class="Day" disabled='false'>Jeudi</label></a>
+									<a onclick="changeDays('vendredi')"><label id="vendredi" for="Day" class="Day" disabled='false'>Vendredi</label></a>
+									<a onclick="changeDays('samedi')"><label id="samedi" for="Day" class="Day" disabled='true' style="background: rgba(0,0,0,0.2)">Samedi</label></a>
+									<a onclick="changeDays('dimanche')"><label id="dimanche" for="Day" class="Day" disabled='true' style="background: rgba(0,0,0,0.2)">Dimanche</label></a>
+								</div>
+				          	</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-12">
+		        			<label class="control-label text-primary" for="textinput">Choisissez vos périodes scolaires en blanc</label>
+		        		</div>
+						<div class="col-sm-12">
+							<div class="col-sm-2">
+						      	<div class="form-group xs-pt-10">
+				        			<label class="control-label" for="textinput"><strong>Périodes scolaires</strong></label>
+						         </div>
+						    </div>
+				          	<div class="col-sm-10">
+				            	<div class="Mounths">
+									<a onclick="changePeriode('2s')"><label for="periode" class="periode" id="2s" disabled='false'>2 Semestres</label></a>
+									<a onclick="changePeriode('3s')"><label for="periode" class="periode" id="3s" disabled='true' style="background: rgba(0,0,0,0.2)">3 Semestres</label></a>
+									<a onclick="changePeriode('4p')"><label for="periode" class="periode" id="4p" disabled='true' style="background: rgba(0,0,0,0.2)">4 Périodes</label></a>
+									<a onclick="changePeriode('5p')"><label for="periode" class="periode" id="5p" disabled='true' style="background: rgba(0,0,0,0.2)">5 Périodes</label></a>
+								</div>
+				          	</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-12">
+							<div class="col-sm-2"></div>
+				          	<div class="col-sm-10">
+                               <table class="table">
+			                    <thead>
+			                      <tr>
+			                        <th style="width:10%;">Coul.</th>
+			                        <th style="width:20%;"></th>
+			                        <th style="width:35%;">Date de début</th>
+			                        <th style="width:35%;">Date de fin</th>
+			                        <th style="width:10%;">Semaines</th>
+			                      </tr>
+			                    </thead>
+			                    <tbody>
+			                      <tr>
+			                        <td style="background: pink"></td>
+			                        <td>Semestre 1</td>
+			                        <td id="debut-S1">12/09/2017</td>
+			                        <td id="Fin-S1">
+						            	<input type="date" name="nom" title="début" id="Fin-S1-Date" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;" min="2017-09-01" max="2018-07-31" value='2017-09-01' onchange='FinSemestre("Fin-S1-Date")'>
+			                        </td>
+			                        <td>22</td>
+			                      </tr>
+			                      <tr>
+			                        <td style="background: cyan"></td>
+                		            <td>Semestre 2</td>
+			                        <td id="debut-S2">01/02/2018</td>
+			                        <td id="Fin-S2">31/07/2018</td>
+			                        <td>22</td>
+			                      </tr>
+			                    </tbody>
+			                  </table>
+				          	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+function changePeriode($id){
+	var elements = document.getElementsByClassName('periode');
+	for (var i = 0; i < elements.length; i++) {
+		elements[i].style.background = 'rgba(0,0,0,0.2)';
+		elements[i].setAttribute('disabled', 'true');
+	}
+	document.getElementById($id).style.background = '';
+	document.getElementById($id).setAttribute('disabled', 'false');
+}
+function changeDays($id){
+	if(document.getElementById($id).getAttribute('disabled') == 'true'){
+		document.getElementById($id).style.background = '';
+		document.getElementById($id).setAttribute('disabled', 'false');
+	}
+	else{
+		document.getElementById($id).style.background = 'rgba(0,0,0,0.2)';
+		document.getElementById($id).setAttribute('disabled', 'true');	
+	}
+}
+function FinSemestre($id){
+	var date = document.getElementById($id).value;
+}
+</script>
+{% endblock %}

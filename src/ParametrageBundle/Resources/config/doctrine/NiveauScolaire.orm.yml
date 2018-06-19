@@ -1,0 +1,39 @@
+ParametrageBundle\Entity\NiveauScolaire:
+    type: entity
+    table: null
+    repositoryClass: ParametrageBundle\Repository\NiveauScolaireRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        idCyclePedagogique:
+            type: string
+            length: 255
+            column: id_CyclePedagogique
+        idCycleScolaire:
+            type: string
+            length: 255
+            column: id_CycleScolaire
+        sigleFr:
+            type: string
+            length: 255
+            column: SigleFr
+        sigleAr:
+            type: string
+            length: 255
+            column: SigleAr
+        niveauScolaire:
+            type: string
+            length: 255
+            column: NiveauScolaire
+        niveauScolaireAr:
+            type: string
+            length: 255
+            column: NiveauScolaireAr
+        NbClasses:
+            type: integer
+            column: Nb_Classes
+    lifecycleCallbacks: {  }

@@ -1,0 +1,29 @@
+ParametrageBundle\Entity\CyclePedagogique:
+    type: entity
+    table: null
+    repositoryClass: ParametrageBundle\Repository\CyclePedagogiqueRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        cycleFr:
+            type: string
+            length: 255
+        cycleAr:
+            type: string
+            length: 255
+        intituleFr:
+            type: string
+            length: 255
+            column: IntituleFr
+        intituleAr:
+            type: string
+            length: 255
+            column: IntituleAr
+        annee:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

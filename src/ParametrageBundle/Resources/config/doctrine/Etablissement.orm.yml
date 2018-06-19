@@ -1,0 +1,98 @@
+ParametrageBundle\Entity\Etablissement:
+    type: entity
+    table: null
+    repositoryClass: ParametrageBundle\Repository\EtablissementRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+            nullable: true
+        nomAr:
+            type: string
+            length: 255
+            nullable: true
+        adresse:
+            type: string
+            length: 255
+            nullable: true
+        adresseAr:
+            type: string
+            length: 255
+            nullable: true
+        ville:
+            type: string
+            length: 255
+            nullable: true
+        villeAr:
+            type: string
+            length: 255
+            nullable: true
+        tel:
+            type: string
+            length: 255
+            nullable: true
+        fax:
+            type: string
+            length: 255
+            nullable: true
+        site:
+            type: string
+            length: 255
+            nullable: true
+        email:
+            type: string
+            length: 255
+            nullable: true
+        academie:
+            type: string
+            length: 255
+            nullable: true
+        academieAr:
+            type: string
+            length: 255
+            nullable: true
+        numAutorisation:
+            type: string
+            length: 255
+            nullable: true
+            column: NumAutorisation
+        identifiant:
+            type: string
+            length: 255
+            nullable: true
+        logoEcole:
+            type: string
+            length: 255
+            nullable: true
+        logoAcademie:
+            type: string
+            length: 255
+            nullable: true
+        nomDir:
+            type: string
+            length: 255
+            nullable: true
+        nomDirAr:
+            type: string
+            length: 255
+            nullable: true
+        prenomDir:
+            type: string
+            length: 255
+            nullable: true
+        prenomDirAr:
+            type: string
+            length: 255
+            nullable: true
+        fichierSignature:
+            type: string
+            length: 255
+            nullable: true
+            column: FichierSignature
+    lifecycleCallbacks: {  }

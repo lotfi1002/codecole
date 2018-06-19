@@ -1,0 +1,35 @@
+parametrage_homepage:
+    path:     /
+    defaults: { _controller: ParametrageBundle:Parametrage:index }
+#pdf
+index2:
+    path:     /Jours_Feries_et_Vacances
+    defaults: { _controller: ParametrageBundle:PDFs:JFV }
+#xsl
+index3:
+    path:     /xslJFV
+    defaults: { _controller: ParametrageBundle:XSLs:index }
+
+Etablissement:
+    path:     /Etablissement
+    defaults: { _controller: ParametrageBundle:Parametrage:Etablissement }
+
+AnneeScolaire:
+    path:     /AnneeScolaire/
+    defaults: { _controller: ParametrageBundle:Parametrage:AnneeScolaire }
+
+CalendrierScolaire:
+    path:     /CalendrierScolaire/{step}
+    defaults: { _controller: ParametrageBundle:Parametrage:CalendrierScolaire }
+
+ServicesProposes:
+    path:     /ServicesProposes/{id}
+    defaults: { _controller: ParametrageBundle:Parametrage:ServicesProposes }
+
+StructureScolaire:
+    path:     /StructureScolaire/{form}/{id}
+    defaults: { _controller: ParametrageBundle:Parametrage:StructureScolaire }
+
+SalleEspaceMoyen:
+    path:     /Salle_Espace_Moyen/{tab}/{id}
+    defaults: { _controller: ParametrageBundle:Parametrage:SalleEspaceMoyen }

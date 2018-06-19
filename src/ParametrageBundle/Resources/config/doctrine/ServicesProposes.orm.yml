@@ -1,0 +1,24 @@
+ParametrageBundle\Entity\ServicesProposes:
+    type: entity
+    table: null
+    repositoryClass: ParametrageBundle\Repository\ServicesProposesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        scolariteFR:
+            type: string
+            length: 255
+            column: ScolariteFR
+        scolariteAR:
+            type: string
+            length: 255
+            column: ScolariteAR
+        annee:
+            type: string
+            length: 255
+            column: Annee
+    lifecycleCallbacks: {  }

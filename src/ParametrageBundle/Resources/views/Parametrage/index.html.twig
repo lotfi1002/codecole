@@ -1,0 +1,125 @@
+{% extends '@Parametrage/Parametrage/base.html.twig' %}
+{% block titre %}Paramétrage | Al Amana{% endblock %}
+{% block selectAnneeScolaire %}
+<form method="post" action="{{ path('parametrage_homepage') }}" id="SelYearFrom" style="display: inline-block; width:40%; margin-left:15px;">
+	<select class="form-control input-sm SelYear" name="YearSelected">
+	{% for year in years %}
+		<option value="{{ year.getAnnee() }}" {% if year.getIsActive == 1 %} selected {% endif %}>
+			{{ year.getAnnee() }} / {{ year.getAnnee() + 1 }}
+		</option>
+	{% endfor %}
+	</select>
+</form>
+{% endblock %}
+{% block body %}
+<div class="row">	
+	<div class="col-sm-12">
+	  	<div class="panel panel-default panel-table">
+	    	<div class="panel-heading" style="text-align: center;"><h2>Paramètrage</h2></div>
+		    	<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<a href="{{ path('Etablissement') }}"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Etablissement</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="{{ path('AnneeScolaire') }}"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Année<br>Scolaire</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="{{ path('CalendrierScolaire', {'step': 'step1'}) }}"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Calendrier<br>Scolaire</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="{{ path('ServicesProposes', {'id': 'new'}) }}"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Services<br>Proposés</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="{{ path('StructureScolaire', {'form': 'x', 'id': 'new'}) }}"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Structure<br>Scolaire</button></a>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Matières et<br>Disciplines</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="{{ path ('SalleEspaceMoyen', {'tab': 'x', 'id': 'new'}) }}"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Salles, espaces<br>et moyens</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Gestion des<br>règlements</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Administration<br> pédagogique</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Emplois du temps</button></a>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Absences</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Evaluations</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Cahier-journal</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Outils</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Gestion Ressources<br>humaines</button></a>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Import/Export</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres module<br>Gestion des<br>utilisateurs</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Villes, pays<br>et nationalités</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramètres de<br>sécurité</button></a>
+							</div>
+							<div class="col-sm-2">
+								<a href="#"><button style="width: 100%; height:100px; color:black; line-height: 15px" class="btn btn-space btn-warning ">Paramétrage<br>éditions</button></a>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-4"><h4><a href="#" style="text-decoration: underline;">Importer le fichier paramétrage</a></h4></div>
+							<div class="col-sm-3"></div>
+							<div class="col-sm-4"><h4><a href="#" style="text-decoration: underline;">Exporter le fichier paramétrage</a></h4></div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+$( ".SelYear" ).change(function() {
+  $( "#SelYearFrom" ).submit();
+});
+</script>
+{% endblock %}

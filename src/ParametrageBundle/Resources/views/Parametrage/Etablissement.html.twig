@@ -1,0 +1,504 @@
+{% extends '@Parametrage/Parametrage/base.html.twig' %}
+{% block titre %}Paramétrage | Al Amana{% endblock %}
+{% block selectAnneeScolaire %}
+<form method="post" action="{{ path('parametrage_homepage') }}" id="SelYearFrom" style="display: inline-block; width:40%; margin-left:15px;">
+	<select class="form-control input-sm SelYear" name="YearSelected">
+	{% for year in years %}
+		<option value="{{ year.getAnnee() }}" {% if year.getIsActive == 1 %} selected {% endif %}>
+			{{ year.getAnnee() }} / {{ year.getAnnee() + 1 }}
+		</option>
+	{% endfor %}
+	</select>
+</form>
+{% endblock %}
+{% block body %}
+<style type="text/css">
+#info{visibility: hidden;}
+.modal {
+	display:none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 4% auto 15% auto;
+    border: 1px solid #888;
+    width: 40%; 
+	padding-bottom: 30px;
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+.close:hover,.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    animation: zoom 0.6s
+}
+@keyframes zoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+
+
+.form-cards{
+	text-align: center;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	line-height: 35px; /* changer par la hauteur */
+	box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+	-webkit-transition: opacity .5s, background .5s;
+	transition: opacity .5s, background .5s;
+	background-color: rgba(10,10,150,0.99);	
+}
+
+.TextCard{
+	font-weight: bold;
+	font-size: 15px;
+	color: white;
+}
+
+.container { width: 100% }
+</style>
+<form action="{{ path('Etablissement') }}" method="post">
+<div class="row">
+	<div class="col-sm-12">
+	  	<div class="panel panel-default panel-table">
+	    	<div class="panel-heading" style="text-align: center;">
+	    		<a href="{{ path('parametrage_homepage')}}"><i class="mdi mdi-rotate-left" style="font-size: 50px; float: left;"></i></a>
+	    		<h2>Paramètres liés à l'établissement</h2>
+	    	</div>
+            <div class="tab-container">
+				<ul class="nav nav-tabs nav-tabs-warning">
+            	    <li class="active"><a href="#FicheEcole" data-toggle="tab">Fiche école</a></li>
+                    <li><a href="#Directeur" data-toggle="tab">Directeur(trice)</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="FicheEcole" class="tab-pane active cont">
+ 		         	 	<div class="panel-body">
+				 	   		<div class="row">
+								<div class="col-sm-12">
+									<div class="col-sm-1"></div>
+									<div class="col-sm-5">
+						      			<div class="form-group xs-pt-10">
+					        				<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong>Nom</strong></label>
+								          	</div>
+								          	<div class="col-sm-8">
+								            	<input type="text" name="nom" title="Ex: Ecole keltoum de tanger..." placeholder="Ex: Ecole keltoum de tanger..." class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement  %}{{ Etablissement.getNom() }}{% endif%}">
+								          	</div>
+					          			</div>
+						          		<div class="form-group xs-pt-10">
+							        		<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong>Adresse</strong></label>
+								          	</div>
+								          	<div class="col-sm-8">
+								            	<input type="text" name="adresse" title="Ex: 2 rue de Belgique..." placeholder="Ex: 2 rue de Belgique..." class="form-control input-sm" style="margin: 0px; margin-bottom:3px; "value="{% if Etablissement %}{{ Etablissement.getAdresse() }}{% endif%}">
+								          	</div>
+						          		</div>
+						          		<div class="form-group xs-pt-10">
+						        			<div class="col-sm-4">
+						        				<label class="control-label" for="textinput"><strong>Ville</strong></label>
+						          			</div>
+						          			<div class="col-sm-8">
+						            			<input type="text" name="ville" title="Ex: Tanger" placeholder="Ex: Tanger" class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getVille() }}{% endif%}">
+						          			</div>
+						          		</div>
+									</div>
+									<div class="col-sm-5">
+							      		<div class="form-group xs-pt-10">
+						          			<div class="col-sm-8">
+						            			<input type="text" name="nomAr" title="مؤسسة كلثوم الخصوصية" placeholder="مؤسسة كلثوم الخصوصية" class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getNomAr() }}{% endif%}">
+						          			</div>
+							        		<div class="col-sm-4">
+							        			<label class="control-label" for="textinput"><strong>الملؤسسة</strong></label>
+							          		</div>
+						          		</div>
+					          			<div class="form-group xs-pt-10">
+						          			<div class="col-sm-8">
+						            			<input type="text" name="adresseAr" title="2 شارع بلجيكا" placeholder="2 شارع بلجيكا" class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getAdresseAr() }}{% endif%}">
+						          			</div>
+						        			<div class="col-sm-4">
+						        				<label class="control-label" for="textinput"><strong>العنوان</strong></label>
+						          			</div>
+					          			</div>
+						          		<div class="form-group xs-pt-10">
+						          			<div class="col-sm-8">
+							            		<input type="text" name="villeAr" title="طنجة" placeholder="طنجة" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;" value="{% if Etablissement %}{{ Etablissement.getVilleAr() }}{% endif%}">
+							          		</div>
+								        	<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong>المدينة</strong></label>
+								          	</div>
+							            </div>
+									</div>
+									<div class="col-sm-1"></div>
+								</div>
+								<div class="col-sm-12">
+									<div class="col-sm-1"></div>
+									<div class="col-sm-5">
+							      		<div class="form-group xs-pt-10">
+								        	<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong>Tél</strong></label>
+								          	</div>
+								          	<div class="col-sm-8">
+								            	<input type="text" name="tel" title="Ex: 05 39 93 02 08..." placeholder="Ex: 05 39 93 02 08..." class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getTel() }}{% endif%}">
+								          	</div>
+								        </div>
+						          		<div class="form-group xs-pt-10">
+								        	<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong><strong>Site Web</strong></strong></label>
+								          	</div>
+								          	<div class="col-sm-8">
+								            	<input type="text" name="site" title="Ex: www.ecolekeltoum.ma ..." placeholder="Ex: www.ecolekeltoum.ma ..." class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getSite() }}{% endif%}">
+								          	</div>
+						          		</div>
+	  					          		<div class="form-group xs-pt-10">
+						        			<div class="col-sm-4">
+						        				<label class="control-label" for="textinput"><strong>Académie</strong></label>
+						          			</div>
+							          		<div class="col-sm-8">
+							            		<input type="text" name="academie" title="Tanger- Tétouan - Al Hociema" placeholder="Tanger - Tetouan -El Houssima" class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getAcademie() }}{% endif%}">
+							          		</div>
+						          		</div>
+									</div>
+									<div class="col-sm-5">
+							      		<div class="form-group xs-pt-10">
+						        			<div class="col-sm-4">
+						        				<label class="control-label" for="textinput"><strong>Fax</strong></label>
+						          			</div>
+						          			<div class="col-sm-8">
+						            			<input type="text" name="fax" title="..." placeholder="..." class="form-control input-sm" style="margin: 0px; margin-bottom:3px;" value="{% if Etablissement %}{{ Etablissement.getFax() }}{% endif%}">
+								          	</div>
+								        </div>
+						          		<div class="form-group xs-pt-10">
+						        			<div class="col-sm-4">
+						        				<label class="control-label" for="textinput"><strong>E-mail</strong></label>
+						          			</div>
+							          		<div class="col-sm-8">
+							            		<input type="text" name="email" title="direction@ecolekeltoum.ma" placeholder="direction@ecolekeltoum.ma" class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getEmail() }}{% endif%}">
+							          		</div>
+						          		</div>
+	  					          		<div class="form-group xs-pt-10">
+								          	<div class="col-sm-8">
+								            	<input type="text" name="academieAr" title="طنجة-تطوان-الحسيمة" placeholder="طنجة-تطوان-الحسيمة" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;" value="{% if Etablissement %}{{ Etablissement.getAcademieAr() }}{% endif%}">
+								          	</div>
+								        	<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong>اكاديمية</strong></label>
+								          	</div>
+						         		</div>
+									</div>
+									<div class="col-sm-1"></div>
+								</div>
+								<div class="col-sm-12">
+									<div class="col-sm-1"></div>
+									<div class="col-sm-5">
+							      		<div class="form-group xs-pt-10">
+								        	<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong>N° autorisation</strong></label>
+								          	</div>
+								          	<div class="col-sm-8">
+								            	<input type="text" name="NumAutorisation" title="Ex: C631.17" placeholder="Ex: 05 39 93 02 08..." class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getNumAutorisation() }}{% endif%}">
+								          	</div>
+						          		</div>
+						          		<div class="form-group xs-pt-10">
+						        			<div class="col-sm-4">
+						        				<label class="control-label" for="textinput"><strong>Logo école</strong></label>
+						          			</div>
+						          			<div class="col-sm-8">
+						            			<button type="button" class="btn btn-space btn-primary" onclick="document.getElementById('modal-wrapper').style.display='block'" style="width: 100%">Inserer</button>
+						            			<textarea name="LogoEcole" id="LogoEcole" style="display:none"></textarea>
+						          			</div>
+						          		</div>
+						          		<div class="form-group xs-pt-10">
+						        			<div class="col-sm-3"></div>
+						        			<div class="col-sm-6">
+						        				{% if not Etablissement or Etablissement.getLogoEcole() == "" %}
+													<img src="{{ asset('img/140x140.png') }}" alt="Placeholder" class="img-rounded xs-mr-10" id="setLogo">
+						        				{% else %}
+													<img src="{{ asset('images/'~Etablissement.getLogoEcole() ) }}" alt="Placeholder" class="img-rounded xs-mr-10" id="setLogo" width="150" height="80">
+						        				{% endif %}
+						          			</div>
+						          			<div class="col-sm-3"></div>
+						          		</div>
+									</div>
+									<div class="col-sm-5">
+							      		<div class="form-group xs-pt-10">
+						        			<div class="col-sm-4">
+						        				<label class="control-label" for="textinput"><strong>Identifiant</strong></label>
+						          			</div>
+								          	<div class="col-sm-8">
+								            	<input type="text" name="identifiant" title="5086X" placeholder="Ex: 5086X" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;" value="{% if Etablissement %}{{ Etablissement.getIdentifiant() }}{% endif%}">
+								          	</div>
+						          		</div>
+						          		<div class="form-group xs-pt-10">
+								        	<div class="col-sm-1"><span class="mdi mdi-info-outline" style="color:blue; font-size: 28px;cursor: pointer" onmouseout="document.getElementById('info').style.visibility ='hidden';" onmouseover="document.getElementById('info').style.visibility ='visible';"></span></div>
+								        	<div class="col-sm-3">
+								        		<label class="control-label" for="textinput"><strong>Logo académie</strong></label>
+								          	</div>
+								          	<div class="col-sm-8">
+								            	<button type="button" class="btn btn-space btn-primary" onclick="document.getElementById('modal-wrapper2').style.display='block'" style="width: 100%">Inserer</button>
+								            	<textarea name="LogoAcademie" id="LogoAcademie" style="display:none"></textarea>
+								          	</div>
+						          		</div>
+						          		<div class="form-group col-sm-12">
+						        			<div id="info" class="col-sm-6">
+									  			<div class="panel panel-full-primary" style="margin-left: -30px;"">
+						                			<div class="panel-heading">Information</div>
+					                				<div class="panel-body" style="margin: auto; width:80%; text-align: justify;">
+					                  					<p>Pour ne pas avoir de déformation dans l'impression du logo, insérez une image carrée</p>
+					                				</div>
+					              				</div>
+						        			</div>
+						        			<div class="col-sm-6">
+						        				{%  if not Etablissement or Etablissement.getLogoAcademie() == "" %}
+													<img src="{{ asset('img/140x140.png') }}" alt="Placeholder" class="img-rounded xs-mr-10" id="setLogo2">
+						        				{% else %}
+													<img src="{{ asset('images/'~Etablissement.getLogoAcademie() ) }}" alt="Placeholder" class="img-rounded xs-mr-10" id="setLogo2"  width="240" height="60" style="margin-left: -25px">
+						        				{% endif %}
+						          			</div>
+						          		</div>
+									</div>
+									<div class="col-sm-1"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <div id="Directeur" class="tab-pane cont">
+                    	<div class="panel-body">
+				 	   		<div class="row">
+								<div class="col-sm-12">
+									<div class="col-sm-1"></div>
+									<div class="col-sm-5">
+					      				<div class="form-group xs-pt-10">
+								        	<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong>Nom</strong></label>
+								          	</div>
+								          	<div class="col-sm-8">
+								            	<input type="text" name="nomDir" title="Alaoui..." placeholder="Alaoui..." class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getNomDir() }}{% endif%}">
+								          	</div>
+				          				</div>
+				          				<div class="form-group xs-pt-10">
+								        	<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong>Prénom</strong></label>
+								          	</div>
+								          	<div class="col-sm-8">
+								            	<input type="text" name="prenomDir" title="Oussama..." placeholder="Oussama..." class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getPrenomDir() }}{% endif%}">
+								          	</div>
+								        </div>
+					          				<div class="form-group xs-pt-10">
+								        	<div class="col-sm-4">
+								        		<label class="control-label" for="textinput"><strong>Fichier signature:</strong></label>
+								          	</div>
+								          	<div class="col-sm-8">
+								            	<button type="button" class="btn btn-space btn-primary" onclick="document.getElementById('modal-wrapper3').style.display='block'" style="width: 100%">Inserer</button>
+								            	<textarea name="FichierSignature" id="F_signature" style="display:none"></textarea>
+								          	</div>
+								        </div>
+								        <div class="form-group xs-pt-10">
+								        	<div class="col-sm-3"></div>
+								        	<div class="col-sm-6">
+						        				{% if not Etablissement or Etablissement.getLogoAcademie() == "" %}
+													<img src="{{ asset('img/140x140.png') }}" alt="Placeholder" class="img-rounded xs-mr-10" id="setLogo3">
+						        				{% else %}
+													<img src="{{ asset('images/'~Etablissement.getFichierSignature() ) }}" alt="Placeholder" class="img-rounded xs-mr-10" id="setLogo3">
+						        				{% endif %}
+								          	</div>
+								          	<div class="col-sm-3"></div>
+								        </div>
+									</div>
+									<div class="col-sm-5">
+					      				<div class="form-group xs-pt-10">
+				          					<div class="col-sm-8">
+								            	<input type="text" name="nomDirAr" title="العلوي"placeholder="العلوي" class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getNomDirAr() }}{% endif%}">
+				          					</div>
+				        					<div class="col-sm-4">
+				        						<label class="control-label" for="textinput"><strong>الاسم العائلي</strong></label>
+				          					</div>
+				          				</div>
+				          				<div class="form-group xs-pt-10">
+				          					<div class="col-sm-8">
+				            					<input type="text" name="prenomDirAr" title="اسامة" placeholder="اسامة" class="form-control input-sm" style="margin: 0px; margin-bottom:3px; " value="{% if Etablissement %}{{ Etablissement.getPrenomDirAr() }}{% endif%}">
+				          					</div>
+					        				<div class="col-sm-4">
+					        					<label class="control-label" for="textinput"><strong>الاسم الشخصي</strong></label>
+					          				</div>
+				          				</div>
+									</div>
+									<div class="col-sm-1"></div>
+								</div>
+							</div>
+						</div>
+                	</div>
+              	</div>
+            </div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-11">
+					<button type="reset" class="btn btn-space btn-danger">Annuler</button>
+					<button type="submit" class="btn btn-space btn-primary">Valider</button>
+				</div>
+			</div>
+			<div class="row"><div class="col-sm-11"><br></div></div>
+        </div>
+    </div>
+</div>
+</form>
+
+</form>
+<div id="modal-wrapper" class="modal">
+	<form class="modal-content animate">
+		<div class="imgcontainer">
+			<span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
+			<h1 style="text-align:center">Choisie un logo école</h1>
+    	</div>
+		<div class="container">
+			<div class="clr">
+				<label class="control-label" for="textinput">Logo</label>
+				<input type="file" name="logoecole" id="logo" onchange="getLogo('setLogo-for-1');" class="form-control input-xs" accept="image/*">
+    		</div>
+    		<div class="col-sm-12">
+	    		<div class="col-sm-4">
+	 			   	<div class="clr"><button type="button" onclick="getLogo('ecole');" class="btn btn-space btn-success" style="margin-top:5px; width:80%; height:40px;">Valider</button></div>
+	 			</div>
+	 			<div class="col-sm-8">
+					<img src="{{ asset('img/140x140.png') }}" id="setLogo-for-1" alt="Placeholder" class="img-rounded xs-mr-10">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="modal-wrapper2" class="modal">
+	<form class="modal-content animate">
+		<div class="imgcontainer">
+			<span onclick="document.getElementById('modal-wrapper2').style.display='none'" class="close" title="Close PopUp">&times;</span>
+			<h1 style="text-align:center">Choisie un logo académie</h1>
+    	</div>
+		<div class="container">
+			<div class="clr">
+				<label class="control-label" for="textinput">Logo</label>
+				<input type="file" name="logoautre" id="logo2" onchange="getLogo('setLogo-for-2');" class="form-control input-xs" accept="image/*">
+    		</div>
+    		<div class="col-sm-12">
+	    		<div class="col-sm-4">
+	 			   	<div class="clr"><button type="button" onclick="getLogo('autre');" class="btn btn-space btn-success" style="margin-top:5px; width:80%; height:40px;">Valider</button></div>
+	 			</div>
+	 			<div class="col-sm-8">
+					<img src="{{ asset('img/140x140.png') }}" id="setLogo-for-2" alt="Placeholder" class="img-rounded xs-mr-10">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="modal-wrapper3" class="modal">
+	<form class="modal-content animate">
+		<div class="imgcontainer">
+			<span onclick="document.getElementById('modal-wrapper3').style.display='none'" class="close" title="Close PopUp">&times;</span>
+			<h1 style="text-align:center">Choisie votre fichier signature</h1>
+    	</div>
+		<div class="container">
+			<div class="clr">
+				<label class="control-label" for="textinput">Logo</label>
+				<input type="file" name="logoautre" id="logo3" onchange="getLogo('setLogo-for-3');" class="form-control input-xs" accept="image/*">
+    		</div>
+    		<div class="col-sm-12">
+	    		<div class="col-sm-4">
+	 			   	<div class="clr"><button type="button" onclick="getLogo('signature');" class="btn btn-space btn-success" style="margin-top:5px; width:80%; height:40px;">Valider</button></div>
+	 			</div>
+	 			<div class="col-sm-8">
+					<img src="{{ asset('img/140x140.png') }}" id="setLogo-for-3" alt="Placeholder" class="img-rounded xs-mr-10">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+var modal = document.getElementById('modal-wrapper');
+var modal2 = document.getElementById('modal-wrapper2');
+var modal3 = document.getElementById('modal-wrapper3');
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    if (event.target == modal2) {
+        modal2.style.display = "none";
+    }
+    if (event.target == modal3) {
+        modal3.style.display = "none";
+    }
+}
+
+function getLogo($id=null){
+	if ($id=='ecole'){
+		if (document.getElementById('setLogo-for-1').clientWidth > 350 
+			|| document.getElementById('setLogo-for-1').clientHeight > 350){
+			alert('Essayer de choisir une image plus petite ou égale à 350x350');
+		}
+		else{
+		    document.getElementById('modal-wrapper').style.display = "none";
+			PreviewImage('logo', 'setLogo');
+			setTimeout(function(){setdatalogo('LogoEcole', 'setLogo')}, 400);
+		}
+	}
+	else if($id=="autre"){
+		if (document.getElementById('setLogo-for-2').clientWidth > 1000 
+			|| document.getElementById('setLogo-for-2').clientHeight > 300){
+			alert('Essayer de choisir une image plus petite ou égale à 1000x300');
+		}
+		else{
+		    document.getElementById('modal-wrapper2').style.display = "none";
+			PreviewImage('logo2', 'setLogo2');
+			setTimeout(function(){setdatalogo('LogoAcademie', 'setLogo2')}, 400);
+		}
+	}
+	else if($id=="signature"){
+		if (document.getElementById('setLogo-for-3').clientWidth > 350 
+			|| document.getElementById('setLogo-for-3').clientHeight > 350){
+			alert('Essayer de choisir une image plus petite ou égale à 350x350');
+		}
+		else{
+		    document.getElementById('modal-wrapper3').style.display = "none";
+			PreviewImage('logo3', 'setLogo3');
+			setTimeout(function(){setdatalogo('F_signature', 'setLogo3')}, 400);
+		}
+	}
+	else if($id == 'setLogo-for-1'){
+		PreviewImage('logo', $id);
+	}
+	else if($id == 'setLogo-for-2'){
+		PreviewImage('logo2', $id);
+	}
+	else if($id == 'setLogo-for-3'){
+		PreviewImage('logo3', $id);
+	}
+}
+function setdatalogo($id1, $id2){
+	document.getElementById($id1).innerHTML = document.getElementById($id2).src;
+}
+</script>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+$( ".SelYear" ).change(function() {
+  $( "#SelYearFrom" ).submit();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,31 @@
+ParametrageBundle\Entity\SalleEspace:
+    type: entity
+    table: null
+    repositoryClass: ParametrageBundle\Repository\SalleEspaceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        salleEspace:
+            type: string
+            length: 255
+            column: SalleEspace
+        code:
+            type: string
+            length: 255
+            column: Code
+        localisation:
+            type: string
+            length: 255
+            column: Localisation
+        nature:
+            type: string
+            length: 255
+            column: Nature
+        annee:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

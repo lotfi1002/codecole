@@ -1,0 +1,32 @@
+ParametrageBundle\Entity\Classe:
+    type: entity
+    table: null
+    repositoryClass: ParametrageBundle\Repository\ClasseRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        idNiveauScolaire:
+            type: string
+            length: 255
+            column: id_NiveauScolaire
+        codeFr:
+            type: string
+            length: 255
+            column: CodeFr
+        codeAr:
+            type: string
+            length: 255
+            column: CodeAr
+        classeFr:
+            type: string
+            length: 255
+            column: ClasseFr
+        classeAr:
+            type: string
+            length: 255
+            column: ClasseAr
+    lifecycleCallbacks: {  }

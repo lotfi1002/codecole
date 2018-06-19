@@ -1,0 +1,252 @@
+{% extends '@Parametrage/Parametrage/base.html.twig' %}
+{% block titre %}Paramétrage | Al Amana{% endblock %}
+{% block selectAnneeScolaire %}
+<form method="post" action="{{ path('parametrage_homepage') }}" id="SelYearFrom" style="display: inline-block; width:40%; margin-left:15px;">
+	<select class="form-control input-sm SelYear" name="YearSelected">
+	{% for year in years %}
+		<option value="{{ year.getAnnee() }}" {% if year.getIsActive == 1 %} selected {% endif %}>
+			{{ year.getAnnee() }} / {{ year.getAnnee() + 1 }}
+		</option>
+	{% endfor %}
+	</select>
+</form>
+{% endblock %}
+{% block body %}
+<style type="text/css">
+.Months{
+	display: inline-block;
+	width: 100%;
+	margin: auto;
+}
+.Month{
+	width: 60px;
+	background-color: darkgray;
+	text-align: center;
+	color:black;
+	border:1px solid gray;
+	border-radius: 2px 2px 2px 2px;
+}
+.Month:hover{background-color: gray; cursor: pointer;}
+
+table {max-width :100%; min-width :100%}
+table th{
+	font-weight: bold;
+	font-size: 14px;
+}
+table tr td {
+	font-weight: bold;
+	font-size: 12px;
+}
+table th, table tr td {
+	border:1px solid darkgrey;
+	text-align: center;
+	width: 12.5%;
+	height: 50px;
+	line-height: 20px;
+	color:black;
+}
+.Weeks{
+	font-family:  'Times New Roman', sans-serif;
+	font-weight: bold;
+	font-size: 16px;	
+}
+.activeDay{
+	border:1px solid darkgrey;
+	text-align: center;
+	width: 12.5%;
+	height: 50px;
+	line-height: 20px;
+	color:black;
+}
+.activeDay:hover {
+	border:1px solid #eb6357;
+	background: #eb6357;
+	cursor: pointer;
+}
+.not-day{
+	background: lightgrey;
+}
+.non-active{
+	background: grey;
+}
+.not-day2{
+	background-image: url('{{ asset('assets/img/NO-X.png') }}');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+.MonthCalender{
+	display: none;
+}
+
+</style>
+<div class="row">	
+	<div class="col-sm-12">
+	  	<div class="panel panel-default panel-table">
+	    	<div class="panel-heading" style="text-align: center;">
+	    		<a href="{{ path('parametrage_homepage')}}"><i class="mdi mdi-rotate-left" style="font-size: 50px; float: left;"></i></a>
+	    		<h2>Paramètrer le calendrier scolaire</h2>
+	    	</div>
+	    	<div class="panel-body">
+    			<div class="col-sm-12" style="margin: auto; text-align: center;"><h3 class="text-muted">Calendrier Scolaire</h3></div>
+	    		<div class="col-sm-1"></div>
+	    		<div class="col-sm-11">
+	    			<label class="control-label text-primary col-sm-6">Vous pouvez sélectionner en rouge les jours fériés et les vacances scolaires</label>
+		    		<div class="col-sm-6">
+		    			<label class="control-label text-primary col-sm-4">Les Jours feries En :</label>
+		          		<div class="col-sm-2"><a href="{{ path('index2') }}"><button class="btn btn-space btn-warning">PDF</button></a></div>
+		          		<div class="col-sm-2"><button class="btn btn-space btn-warning">XSL</button></div>
+		          	</div>
+	    		</div>
+				<div class="col-sm-12">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-10">
+						<div class="Months">
+							{% for days in daysArray %}
+							<a onclick="showMonth('{{days[0]}}')"><label for="month" class="Month">{{days[0]}}</label></a>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				{% set days_x = 1 %}
+				{% set tr = 1 %}
+				{% set first = 0 %}
+				{% for days in daysArray %}
+					{% for day in days[1] %}
+						{% set dayInfo = day|split(' ')%}
+						{% if days_x == 1 %}
+							<div id="{{ days[0] }}" class="MonthCalender" style="display: {% if first == 0 %}
+							{% set first = 1 %}block {% else %}none{% endif %};">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10">
+									<table border="1" width="700">
+									    <thead>
+									        <th>Semaines</th>
+									        <th class="{% if 'Lundi' not in jours %}non-active{% endif %}">Lundi</th>
+									        <th class="{% if 'Mardi' not in jours %}non-active{% endif %}">Mardi</th>
+									        <th class="{% if 'Mercredi' not in jours %}non-active{% endif %}">Mercredi</th>
+									        <th class="{% if 'Jeudi' not in jours %}non-active{% endif %}">Jeudi</th>
+									        <th class="{% if 'Vendredi' not in jours %}non-active{% endif %}">Vendredi</th>
+									        <th class="{% if 'Samedi' not in jours %}non-active{% endif %}">Samedi</th>
+									        <th class="{% if 'Dimanche' not in jours %}non-active{% endif %}">Dimanche</th>
+									    </thead>
+									    <tbody>
+						{% endif %}
+						{% if tr == 1 %}<tr><td class="Weeks">{% if dayInfo[3] == 0%}-{% else %}<strong>S{{ dayInfo[3] }}</strong>{% endif %}</td>{% endif %}			
+						<td onclick="SetInModale('{{dayInfo[6]}}','{{dayInfo[4]}}')" class="{{dayInfo[2]}} {% if days[0] != dayInfo[1] %}not-day{% endif %} {% if dayInfo[2] not in jours %}non-active{% endif %} {{dayInfo[5]}} {% if dayInfo[5] == ''  and days[0] == dayInfo[1] and dayInfo[2] in jours %}activeDay md-trigger{% endif %}" style='{% if dayInfo[4] != "" %}background: #eb6357{% endif %}' id="{{dayInfo[0]}}{{dayInfo[1]}}" data-modal="colored-danger">
+								{{dayInfo[0]}} {{dayInfo[1]}}<br>{{dayInfo[4]}}
+						</td>			
+						{% if tr == 7 %}</tr>{% set tr = 0 %}{% endif %}
+						{% if days_x == 42 %}	
+							    </tbody>
+							</table><br>
+							{% set days_x = 0 %}
+						{% endif %}
+						{% set days_x = days_x+1 %}
+						{% set tr = tr+1 %}
+							</div>
+						</div>
+					{% endfor %}
+				{% endfor %}
+				<div class="col-sm-12"><br></div>
+	    	</div>
+	    </div>
+	</div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+$( ".SelYear" ).change(function() {
+  $( "#SelYearFrom" ).submit();
+});
+
+function SetInModale($dt,$lib) {
+	var dbShow = document.getElementById('debutShow');
+	var fnShow = document.getElementById('finShow');
+	var db = document.getElementById('debut');
+	var fn = document.getElementById('fin');
+	var lb = document.getElementById('libelle');
+	var dd = document.getElementById('diff_days');
+	db.value = $dt;	fn.value = $dt; dbShow.value = $dt;	fnShow.value = $dt;	lb.value = $lib; dd.value = 1;
+}
+function setDates() {
+	var db = new Date(document.getElementById('debut').value);
+	var dd = document.getElementById('diff_days').value;
+	db.setDate(db.getDate() + parseInt(dd) - 1);
+	document.getElementById('finShow').value = toStringDate(db); 
+	document.getElementById('fin').value = toStringDate(db); 
+}
+function toStringDate($date) {
+	var year = $date.getFullYear().toString();
+	var month = ($date.getMonth() + 1).toString();
+	var day = $date.getDate().toString();
+	if (month.length < 2) month = "0" + month;
+	if (day.length < 2) day = "0" + day;
+	return year+"-"+month+"-"+day;
+}
+
+function showMonth($id) {
+	var elements = document.getElementsByClassName("MonthCalender");
+	for (var i = 0; i < elements.length; i++)	elements[i].style.display = 'none';
+	document.getElementById($id).style.display = "block";
+}
+</script>
+{% endblock %}
+{% block modals %}
+<div id="colored-danger" class="modal-container colored-header colored-header-danger modal-effect-10">
+	<div class="modal-content" style="width: 100%">
+	  <form action="{{ path('CalendrierScolaire', {'step': 'AddFreeDay'}) }}" method="post">
+		<div class="modal-header">
+    		<button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close"><span class="mdi mdi-close"></span></button>
+    		<h3 class="modal-title" style="text-align: center">Vacances et jours fériés</h3>
+  		</div>
+  		<div class="modal-body">
+    		<div clas="row">
+    			<div class="col-sm-12">
+    				<div class="col-sm-2"></div>
+    				<div class="col-sm-4">
+    					<label class="control-label" for="dateinput">Férié du</label>
+    				</div>
+    				<div class="col-sm-4">
+    					<input type="date" class="form-control input-xs" style="border: 1px solid gray;" id="debutShow" disabled>
+    					<input type="date" style="border: 1px solid gray; display: none;" name="FD" id="debut">
+    				</div>
+    			</div>
+    			<div class="col-sm-12">
+    				<div class="col-sm-2"></div>
+    				<div class="col-sm-4">
+    					<label class="control-label" for="dateinput">Au</label>
+    				</div>
+    				<div class="col-sm-4">
+    					<input type="date" class="form-control input-xs" style="border: 1px solid gray;" id="finShow" disabled>
+    					<input type="date" style="border: 1px solid gray; display: none" name="FF" id="fin">
+    				</div>
+    			</div>
+    			<div class="col-sm-12">
+    				<div class="col-sm-2"></div>
+    				<div class="col-sm-4">
+    					<label class="control-label" for="dateinput">Durée (Jours)</label>
+    				</div>
+    				<div class="col-sm-4">
+    					<input type="number" min="1" max="100" class="form-control input-xs" style="border: 1px solid gray;" name="Dur" id="diff_days" onchange="setDates()">
+    				</div>
+    			</div>
+    			<div class="col-sm-12">
+    				<div class="col-sm-2"></div>
+    				<div class="col-sm-4">
+    					<label class="control-label" for="dateinput">Libellé</label>
+    				</div>
+    				<div class="col-sm-4">
+    					<input class="form-control input-xs" style="border: 1px solid gray;" name="FL" id="libelle">
+    				</div>
+    			</div>
+    		</div>
+	    </div>
+		<div class="modal-footer">
+	    	<button type="button" data-dismiss="modal" class="btn btn-default modal-close">Annuler</button>
+		    <button type="submit" data-dismiss="modal" class="btn btn-danger modal-close">Valider</button>
+  		</div>
+  	  </form>
+	</div>
+</div>
+<div class="modal-overlay"></div>
+{% endblock %}

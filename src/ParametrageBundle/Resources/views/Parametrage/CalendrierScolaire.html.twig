@@ -1,0 +1,421 @@
+{% extends '@Parametrage/Parametrage/base.html.twig' %}
+{% block titre %}Paramétrage | Al Amana{% endblock %}
+{% block selectAnneeScolaire %}
+<form method="post" action="{{ path('parametrage_homepage') }}" id="SelYearFrom" style="display: inline-block; width:40%; margin-left:15px;">
+	<select class="form-control input-sm SelYear" name="YearSelected">
+	{% for year in years %}
+		<option value="{{ year.getAnnee() }}" {% if year.getIsActive == 1 %} selected {% endif %}>
+			{{ year.getAnnee() }} / {{ year.getAnnee() + 1 }}
+		</option>
+	{% endfor %}
+	</select>
+</form>
+{% endblock %}
+{% block body %}
+{% set ThisYear = 0 %}
+{% for year in years %}
+	{% if year.getIsActive == 1 %}
+		{% set ThisYear = year.getAnnee() %}
+	{% endif %}
+{% endfor %}
+<!-- link href="{{ asset ('bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css" -->
+<script src="{{ asset ('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset ('js/jquery-1.11.1.min.js') }}"></script>
+<style type="text/css">
+.Mounths{
+	display: inline-block;
+	width: 100%;
+	margin: auto;
+}
+.Mounth{
+	width: 60px;
+	background-color: darkgray;
+	text-align: center;
+	color:black;
+	border:1px solid gray;
+	border-radius: 2px 2px 2px 2px;
+}
+.Day{
+	width: 95px;
+	text-align: center;
+	color:black;
+	border:1px solid gray;
+	border-radius: 1px 1px 1px 1px;
+}
+.Day:hover{
+	opacity: 0.9
+}
+.periode{
+	width: 100px;
+	text-align: center;
+	color:black;
+	border:1px solid gray;
+	border-radius: 1px 1px 1px 1px;
+}
+.periode:hover{
+	opacity: 0.9
+}
+.table th, .table td{
+	text-align: center;
+}
+</style>
+<div class="row">	
+	<div class="col-sm-12">
+	  	<div class="panel panel-default panel-table">
+	    	<div class="panel-heading" style="text-align: center;">
+	    		<a href="{{ path('parametrage_homepage')}}"><i class="mdi mdi-rotate-left" style="font-size: 50px; float: left;"></i></a>
+	    		<h2>Paramètrer le calendrier scolaire</h2>
+	    	</div>
+			  <div class="row wizard-row">
+			    <div class="col-md-12 fuelux">
+			      <div class="block-wizard panel panel-default">
+			        <div id="wizard1" class="wizard wizard-ux no-steps-container">
+			          <ul class="steps" style="margin-left: 0">
+			            <li class="{% if step == 'step2' or step == 'step3' %}complete{% else %}active{% endif %}">Step 1<span class="chevron"></span></li></a>
+			            <li class="{% if step == 'step3' %}complete{% else %}active{% endif %}">Step 2<span class="chevron"></span></li></a>
+			            <li class="active">Step 3<span class="chevron"></span></li></a>
+			          </ul>
+			          <div class="step-content">
+			            <div id="1" class="step-pane {% if step == 'step1' %}active{% endif %}">
+			              <form action="{{ path('CalendrierScolaire', {'step': 'step2'}) }}" method="post">
+							<div class="col-sm-12">
+								<div class="col-sm-4">
+							      	<div class="form-group xs-pt-10">
+						        		<div class="col-sm-4">
+						        			<label class="control-label" for="textinput"><strong>Année scolaire</strong></label>
+							          	</div>
+							          	<div class="col-sm-8">
+							            	<input type="text" name="AnneeScolaire" style="display: none" value="{{ ThisYear }}">
+							            	<input type="text" title="Annee Scolaier" placeholder="{{ThisYear}} / {{ThisYear+1}}" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;" disabled>
+							          	</div>
+						            </div>
+						      	</div>
+						      	<div class="col-sm-4">
+							      	<div class="form-group xs-pt-10">
+						        		<div class="col-sm-4">
+						        			<label class="control-label" for="textinput"><strong>Du</strong></label>
+							          	</div>
+							          	<div class="col-sm-8">
+							            	<input type="date" name="debut" title="debut" id="dateDebut" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;" min="{{ThisYear}}-09-01" max="{{ThisYear + 1}}-07-30" value='{{ThisYear}}-09-01' onchange="setMounth();"">
+							          	</div>
+							        </div>
+							    </div>
+						      	<div class="col-sm-4">
+							      	<div class="form-group xs-pt-10">
+						        		<div class="col-sm-4">
+						        			<label class="control-label" for="textinput"><strong>Au</strong></label>
+							          	</div>
+							          	<div class="col-sm-8">
+							            	<input type="date" name="fin" title="fin" id="dateFin" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;"  min="{{ThisYear}}-09-01" max="{{ThisYear + 1}}-07-31" value='{{ThisYear + 1}}-07-30' onchange="setMounth();">
+							          	</div>
+							        </div>
+							    </div>
+							</div>
+							<div class="col-sm-12">
+								<div class="col-sm-2"></div>
+								<div class="col-sm-10">
+									<div class="Mounths">
+										<label for="mounth" class="Mounth" id="m-9">Sept</label>
+										<label for="mounth" class="Mounth" id="m-10">Oct.</label>
+										<label for="mounth" class="Mounth" id="m-11">Nov.</label>
+										<label for="mounth" class="Mounth" id="m-12">Déc.</label>
+										<label for="mounth" class="Mounth" id="m-1">Janv.</label>
+										<label for="mounth" class="Mounth" id="m-2">Fév.</label>
+										<label for="mounth" class="Mounth" id="m-3">Mars</label>
+										<label for="mounth" class="Mounth" id="m-4">Avr.</label>
+										<label for="mounth" class="Mounth" id="m-5">Mai</label>
+										<label for="mounth" class="Mounth" id="m-6">Juin</label>
+										<label for="mounth" class="Mounth" id="m-7">Juil.</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12"><br></div>
+							<div class="col-sm-12"><br></div>
+							<div class="col-sm-12">
+								<div class="col-sm-8"></div>
+								<div class="col-sm-2"><button type="reset" class="btn btn-space btn-warning" style="width:80%">Annuler</button></div>
+								<div class="col-sm-2"><button type="submit" class="btn btn-space btn-primary" style="width:80%">Suivant</button></div>
+							</div>
+			              </form>
+			            </div>
+			            <div data-step="2" class="step-pane {% if step == 'step2' %}active{% endif %}">
+			              <form action="{{ path('CalendrierScolaire', {'step': 'step3'}) }}" method="post">
+			              	{% if err is defined %}
+			              	<div role="alert" class="alert alert-danger alert-icon alert-dismissible">
+			                    <div class="icon"><span class="mdi mdi-close-circle-o"></span></div>
+			                    <div class="message">
+			                      <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><strong>Danger!</strong>Les jours sélectionnés doivent être consécutifs.
+			                    </div>
+			                </div>
+			              	{% endif %}
+			              	<div class="col-sm-12">
+									<div class="col-sm-12">
+					        			<label class="control-label text-primary" for="textinput">Choisissez vos jours en blanc</label>
+					        		</div>
+									<div class="col-sm-12">
+										<div class="col-sm-2">
+									      	<div class="form-group xs-pt-10">
+							        			<label class="control-label" for="textinput"><strong>Jours ouvrés</strong></label>
+									         </div>
+									    </div>
+									    <input type="text" name="debut" value="{% if debut is defined %}{{debut}}{% endif %}" style="display: none">
+									    <input type="text" name="fin" value="{% if fin is defined %}{{fin}}{% endif %}" style="display: none">
+									    <input type="text" name="diff" value="{% if diff is defined %}{{diff}}{% endif %}" style="display: none">
+							          	<div class="col-sm-10">
+							            	<div class="Mounths">
+												<a onclick="changeDays('lundi')"><label id="lundi" for="Day" class="Day" disabled='false'>Lundi</label></a>
+												<a onclick="changeDays('mardi')"><label id="mardi" for="Day" class="Day" disabled='false'>Mardi</label></a>
+												<a onclick="changeDays('mercredi')"><label id="mercredi" for="Day" class="Day" disabled='false'>Mercredi</label></a>
+												<a onclick="changeDays('jeudi')"><label id="jeudi" for="Day" class="Day" disabled='false'>Jeudi</label></a>
+												<a onclick="changeDays('vendredi')"><label id="vendredi" for="Day" class="Day" disabled='false'>Vendredi</label></a>
+												<a onclick="changeDays('samedi')"><label id="samedi" for="Day" class="Day" disabled='true' style="background: rgba(0,0,0,0.2)">Samedi</label></a>
+												<a onclick="changeDays('dimanche')"><label id="dimanche" for="Day" class="Day" disabled='true' style="background: rgba(0,0,0,0.2)">Dimanche</label></a>
+												<input type="text" name="jours" value="Lundi-Mardi-Mercredi-Jeudi-Vendredi-" id="inp-days" style="display: none">
+											</div>
+							          	</div>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="col-sm-12">
+					        			<label class="control-label text-primary" for="textinput">Choisissez vos périodes scolaires en blanc</label>
+					        		</div>
+									<div class="col-sm-12">
+										<div class="col-sm-2">
+									      	<div class="form-group xs-pt-10">
+							        			<label class="control-label" for="textinput"><strong>Périodes scolaires</strong></label>
+									         </div>
+									    </div>
+							          	<div class="col-sm-10">
+							            	<div class="Mounths">
+												<a onclick="changePeriode('2s')"><label for="periode" class="periode" id="2s" disabled='false'>2 Semestres</label></a>
+												<a onclick="changePeriode('3s')"><label for="periode" class="periode" id="3s" disabled='true' style="background: rgba(0,0,0,0.2)">3 Semestres</label></a>
+												<a onclick="changePeriode('4p')"><label for="periode" class="periode" id="4p" disabled='true' style="background: rgba(0,0,0,0.2)">4 Périodes</label></a>
+												<a onclick="changePeriode('5p')"><label for="periode" class="periode" id="5p" disabled='true' style="background: rgba(0,0,0,0.2)">5 Périodes</label></a>
+												<input type="text" name="periode" value="2s" id="inp-periods"  style="display: none">
+											</div>
+							          	</div>
+									</div>
+								</div>
+							<div class="col-sm-12">
+								<div class="col-sm-6"></div>
+								<div class="col-sm-3"><button type="reset" class="btn btn-space btn-danger" style="width:100%">Annuler</button></div>
+								<div class="col-sm-3"><button type="submit" class="btn btn-space btn-primary" style="width:100%">Suivant</button></div>
+							</div>
+			              </form>
+			            </div>
+			            <div data-step="3" class="step-pane {% if step == 'step3' %}active{% endif %}">
+			              <form action="{{ path('CalendrierScolaire', {'step': 'fin'}) }}" method="post">              	
+							    
+							    <input type="text" name="debut" value="{% if debut is defined %}{{debut}}{% endif %}" style="display: none">
+							    <input type="text" name="fin" value="{% if fin is defined %}{{fin}}{% endif %}" style="display: none">
+							    <input type="text" name="diff" value="{% if diff is defined %}{{diff}}{% endif %}" style="display: none">
+							    <input type="text" name="periode" value="{% if periode is defined %}{{periode}}{% endif %}" style="display: none">
+							    <input type="text" name="jours" value="{% if jours is defined %}{{jours}}{% endif %}" style="display: none">
+
+								<div class="col-sm-12">
+									<div class="col-sm-12">
+										<div class="col-sm-2"></div>
+							          	<div class="col-sm-10">
+			                               <table class="table">
+						                    <thead>
+						                      <tr>
+						                        <th style="width:10%;">Coul.</th>
+						                        <th style="width:20%;"></th>
+						                        <th style="width:35%;">Date de début</th>
+						                        <th style="width:35%;">Date de fin</th>
+						                        <th style="width:10%;">Semaines</th>
+						                      </tr>
+						                    </thead>
+						                    <tbody>
+						                    	<!-- step - diff - debut - fin - periode - jours -->
+						                      {% if periode is defined %}
+						                      {% for i in 1..periode %}
+						                      <tr>
+						                        <td style="background: pink"></td>
+						                        <td>
+						                        	{% if periode <= 3 %}Semestre {{i}}{% else %}Période {{i}}{% endif %}
+						                        </td>
+						                        <td id="debut-S1">
+						                        	{% if i == 1 %}
+						                        	<input type="date" id="DS{{i}}" title="début" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;border: 0px solid;" value='{{ debut }}' disabled>
+						                        	<input type="date" name="DS{{i}}" id="DS{{i}}" title="début" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;border: 0px solid; display: none;" value='{{ debut }}'>
+						                        	{% else %}
+						                        	<input type="date" name="DS{{i}}" id="DS{{i}}" title="début" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;border: 0px solid;" value='' min="{{ThisYear}}-09-01" max="{{ThisYear + 1}}-07-30">
+						                        	{% endif %}
+						                        </td>
+						                        <td id="Fin-S1">
+						                        	{% if i == periode %}
+									            	<input type="date" id="FS{{i}}" title="Fin" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;border: 0px solid;" value='{{ fin }}' disabled>
+									            	<input type="date" name="FS{{i}}" id="FS{{i}}" title="Fin" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;border: 0px solid;display: none" value='{{ fin }}'>
+						                        	{% else %}
+						                        	<input type="date" name="FS{{i}}" id="FS{{i}}" title="Fin" class="form-control input-sm" style="margin: 0px; margin-bottom:3px;" value='' onchange="FinSemestre({{i}}, '{{jours}}', 'nbrSemaine{{i}}', 'nbrSemaine{{i+1}}')" min="{{ThisYear}}-09-01" max="{{ThisYear + 1}}-07-30">
+						                        	{% endif %}
+						                        </td>
+						                        <td id="nbrSemaine{{i}}" semaines="0"></td>
+						                      </tr>
+						                      {% endfor %}
+						                      {% endif %}
+						                    </tbody>
+						                  </table>
+							          	</div>
+							          	<div class="col-sm-12"><br><br></div>
+							          	<div class="col-sm-12"><label class="control-label" style="font-size: 11.5px; text-align: justify;">Vacances et jours fériés</label></div>
+							          	<div class="col-sm-10">
+			                               <table class="table" id="worked" style="border:1px solid gray"  id="tb" nb="1">
+						                    <thead>
+						                      <tr>
+						                        <th style="width:30%;">Férié du</th>
+						                        <th style="width:30%;">Au</th>
+						                        <th style="width:35%;">Libellé</th>
+						                        <th style="width:5%;"><i class="mdi mdi-delete" style="font-size:25px; color: gray"></i></th>
+						                      </tr>
+						                    </thead>
+						                    <tbody>
+						                    </tbody>
+						                  </table>
+						                 <input type="text" id='nbjf' name="nbjf" value="0" style="display: none">
+						                  <div style="width:100%;height:25px;text-align:right;background:gray">
+						                  		<button type="button" class="add-row" style="color:lightgreen; font-size: 25px; cursor: pointer; background: transparent; margin-top:-6px; border: 0px;"">+</button>
+						                  </div>
+							          	</div>
+							          	<div class="col-sm-2">
+							          		<label class="control-label" style="font-size: 14px; text-align: justify-all;">Imprimer la liste des vacances et des jours fériés</label>
+							          		<div class="col-sm-5"><button class="btn btn-space btn-warning">PDF</button></div>
+							          		<div class="col-sm-5"><button class="btn btn-space btn-warning">XSL</button></div>
+							          	</div>
+							          	<div class="col-sm-12"><br><br></div>
+									</div>
+								</div>
+							<div class="col-sm-12">
+								<div class="col-sm-6"></div>
+								<div class="col-sm-3"><button type="reset" class="btn btn-space btn-danger" style="width:100%">Annuler</button></div>
+								<div class="col-sm-3"><button type="submit" class="btn btn-space btn-success" style="width:100%">FIN</button></div>
+							</div>
+			              </form>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>			
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+function changePeriode($id){
+	var elements = document.getElementsByClassName('periode');
+	for (var i = 0; i < elements.length; i++) {
+		elements[i].style.background = 'rgba(0,0,0,0.2)';
+		elements[i].setAttribute('disabled', 'true');
+	}
+	document.getElementById($id).style.background = '';
+	document.getElementById($id).setAttribute('disabled', 'false');
+	document.getElementById('inp-periods').value=$id;
+}
+function changeDays($id){
+	if(document.getElementById($id).getAttribute('disabled') == 'true'){
+		document.getElementById($id).style.background = '';
+		document.getElementById($id).setAttribute('disabled', 'false');
+	}
+	else{
+		document.getElementById($id).style.background = 'rgba(0,0,0,0.2)';
+		document.getElementById($id).setAttribute('disabled', 'true');	
+	}
+	var elements = document.getElementsByClassName('Day');
+	var x = "";
+	for (var i = 0; i < elements.length; i++) 
+		if(elements[i].getAttribute('disabled') == 'false')	x += elements[i].innerHTML+"-";
+	document.getElementById('inp-days').value = x;
+}
+
+function diff_weeks(dt2, dt1) 
+{
+	var date1 = new Date(dt1);
+	var date2 = new Date(dt2);
+	var diff =(date2.getTime() - date1.getTime()) / 1000;
+	diff /= (60 * 60 * 24 * 7);
+	return Math.abs(Math.round(diff)); 
+}
+
+function FinSemestre($FS, $jrs, $sm1, $sm2){
+	var days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+	var d = new Date(document.getElementById('FS'.concat($FS) ).value);
+	var daysIn = $jrs.substring(0, $jrs.length-1).split("-");
+	d.setDate(d.getDate() + 1);
+	while (daysIn.indexOf(days[d.getDay()]) == -1)	d.setDate(d.getDate() + 1);
+	document.getElementById('DS'.concat($FS + 1)).value = toStringDate(d);
+	var diff1 =diff_weeks (
+	document.getElementById('FS'.concat($FS)).value,
+	document.getElementById('DS'.concat($FS)).value) ;
+	var diff2 = diff_weeks(
+	document.getElementById('FS'.concat($FS+1)).value,
+	document.getElementById('DS'.concat($FS+1)).value);
+	document.getElementById($sm1).innerHTML = diff1;
+	document.getElementById($sm2).innerHTML = diff2;
+	document.getElementById($sm1).setAttribute('semaines', diff1) ;
+	document.getElementById($sm2).setAttribute('semaines', diff2) ;
+}
+function setMounth(){
+	var date1 = new Date(document.getElementById('dateDebut').value);
+	var date2 = new Date(document.getElementById('dateFin').value);
+	if (date1 > date2) {
+		alert('La date du début doit être inférieur à la date du fin');
+		date1 = date2;
+		date1.setDate(date1.getDate() - 1);
+		document.getElementById('dateDebut').value = toStringDate(date1);
+	}
+	var elements = document.getElementsByClassName('Mounth');
+	var month1 = (date1.getMonth() + 1);
+	var month2 = (date2.getMonth() + 1);
+	var dif = month1 <= month2 ? month2-month1 : 12 - (month1-month2);
+	for (var i = 0; i < elements.length; i++) elements[i].style.visibility = 'hidden';
+	for (var i = month1; i <= month1+dif; i++){
+		if(i > 12) document.getElementById('m-'+(i - 12)).style.visibility = "visible";
+		else document.getElementById('m-'+i).style.visibility = "visible";
+	}
+}
+function toStringDate($date){
+	var year = $date.getFullYear().toString();
+	var month = ($date.getMonth() + 1).toString();
+	var day = $date.getDate().toString();
+	if (month.length < 2) month = "0" + month;
+	if (day.length < 2) day = "0" + day;
+	return year+"-"+month+"-"+day;
+}
+</script>
+{% endblock %}
+{% block js %}
+{% set ThisYear = 0 %}
+{% for year in years %}
+	{% if year.getIsActive == 1 %}
+		{% set ThisYear = year.getAnnee() %}
+	{% endif %}
+{% endfor %}
+<script type="text/javascript">
+function changeNameInputes(){
+	var elements = document.getElementsByClassName('JVF');
+	var x = 0;
+	for (var i = 0; i < elements.length; i++) {
+		x = i%3 == 0 || i == 0 ? x+1 : x;
+		elements[i].setAttribute('name',elements[i].getAttribute('name').substring(0, 3).concat(x));
+	}
+}
+$(function () {
+    $('.add-row').click(function () {
+        $('#nbjf').attr("value", ""+(parseInt($('#nbjf').attr('value'))+1)+"");
+    	var nb = parseInt($('#nbjf').attr('value'))+1;
+        var template = "<tr><td><input type='date' class='form-control input-xs JVF' style='border: 1px solid gray;' min='{{ThisYear}}-09-01' max='{{ThisYear + 1}}-07-30' name='DF-"+nb+"'></td><td><input type='date' class='form-control input-xs JVF' style='border: 1px solid gray;' min='{{ThisYear}}-09-01' max='{{ThisYear + 1}}-07-30' name='FF-"+nb+"'></td><td><input class='form-control input-xs JVF' style='border: 1px solid gray;' name='LF-"+nb+"'></td><td><button type='button' class='delete-row' style='color:red; font-size: 35px; cursor: pointer; background: transparent; margin-top:-3px; border: 0px;'>-</button></td></tr>";
+        $('#worked tbody').append(template);
+        changeNameInputes();
+    });
+    $('#worked').on('click', '.delete-row', function () {
+        $(this).parent().parent().remove();
+        $('#nbjf').attr("value", ""+(parseInt($('#nbjf').attr('value'))-1)+"");
+        changeNameInputes();
+    });
+})
+$( ".SelYear" ).change(function() {
+  $( "#SelYearFrom" ).submit();
+});
+</script>
+{% endblock %}

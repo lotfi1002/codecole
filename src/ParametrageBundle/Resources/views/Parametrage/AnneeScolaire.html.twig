@@ -1,0 +1,136 @@
+{% extends '@Parametrage/Parametrage/base.html.twig' %}
+{% block titre %}Paramétrage | Al Amana{% endblock %}
+{% block selectAnneeScolaire %}
+<form method="post" action="{{ path('parametrage_homepage') }}" id="SelYearFrom" style="display: inline-block; width:40%; margin-left:15px;">
+	<select class="form-control input-sm SelYear" name="YearSelected">
+	{% for year in years %}
+		<option value="{{ year.getAnnee() }}" {% if year.getIsActive == 1 %} selected {% endif %}>
+			{{ year.getAnnee() }} / {{ year.getAnnee() + 1 }}
+		</option>
+	{% endfor %}
+	</select>
+</form>
+{% endblock %}
+{% block body %}
+<style type="text/css">
+.border-label-type{
+	border: 1px solid orange;
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-weight: bold;
+}
+.border-label-type2{
+	border: 1px solid orange;
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-weight: bold;
+}
+
+.border-label-type3{
+	background: #9CBEE5;
+	border: 1px solid darkblue;
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-weight: bold;
+	color: black;
+}
+
+.border-label-type2:hover{
+	opacity: 0.95;
+	cursor: pointer;
+	background: lightgrey;
+}
+</style>
+<div class="row">	
+	<div class="col-sm-12">
+	  	<div class="panel panel-default panel-table">
+	    	<div class="panel-heading" style="text-align: center;">
+	    		<a href="{{ path('parametrage_homepage')}}"><i class="mdi mdi-rotate-left" style="font-size: 50px; float: left;"></i></a>
+	    		<h2>Paramètres liés à l’année scolaire</h2>
+	    	</div>
+	    	<div class="panel-body">
+	    		<div class="col-sm-12">
+	    			{% if err is defined %}
+	    			<div role="alert" class="alert alert-warning alert-icon alert-dismissible">
+	                    <div class="icon"><span class="mdi mdi-alert-triangle"></span></div>
+	                    <div class="message">
+	                      	<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><strong>Erreur !<br></strong>{{err}}
+	                    </div>
+                  	</div>
+	    			{% endif %}
+	    			<div class="col-sm-12" class="border-label-type">
+	     			  <form action="{{ path('AnneeScolaire') }}" method="post" id="addyr">
+		    			<div class="col-sm-1">
+		    				<label class="control-label border-label-type2 addyrBtn" style="margin-left:28px "><strong>+</strong></label>
+		    			</div>
+		    			<div class="col-sm-4">
+		    				<label class="control-label border-label-type2 addyrBtn">Nouvelle année scolaire</label>
+		    			</div>
+		    		  </form>
+		    		</div>	    			
+	    			<div class="col-sm-12">
+		    			<div class="col-sm-1"></div>
+		    			<div class="col-sm-3">
+		    				{% set x = 0 %}
+		    				{% for year in years %}
+		    				{% set x = year.getAnnee() %}
+		    				<label class="control-label border-label-type3" x="{{ year.getAnnee() }}">{{ year.getAnnee() }} / {{ year.getAnnee() + 1 }}</label>
+		    				{% endfor %}
+		    			</div>
+		    		</div>
+	    			<div class="col-sm-12">
+		    			<div class="col-sm-4">
+		    				<label class="control-label border-label-type">Année scolaire de départ de Ksms</label>
+		    			</div>
+		    			<div class="col-sm-2">
+		    				<label class="control-label border-label-type2 md-trigger" data-modal="md-superScaled">{% if x != 0 %}{{ x }} / {{ x + 1 }}{% else %}Ex : 2014 / 2015{% endif %}</label>
+		    			</div>
+		    		</div>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+$( ".addyrBtn" ).click(function() {
+  $( "#addyr" ).submit();
+});
+$( ".SelYear" ).change(function() {
+  $( "#SelYearFrom" ).submit();
+});
+function addyear(){
+	document.getElementById('as+1').innerHTML = parseInt(document.getElementById('anneescolaire').value)+1;
+}
+</script>
+{% endblock %}
+{% block modals %}
+<div id="md-superScaled" class="modal-container modal-effect-11">
+	<div class="modal-content" style="width: 100%">
+	  <div class="modal-header">
+	    <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close" style="margin-top: 15px"><span class="mdi mdi-close"></span></button>
+	  </div>
+	  <div class="modal-body">
+	    <div class="text-center">
+	      <div class="text-primary"><span class="modal-main-icon mdi mdi-check"></span></div>
+	      <form action="{{ path('AnneeScolaire') }}" method="post">
+	      <h3><input type="number" name="anneescolaire" id="anneescolaire" style="width:25%" min="1975" max="2050" onchange="addyear()"> / <span id="as+1"></span></h3>
+	      <div class="xs-mt-50">
+	        <button type="reset" data-dismiss="modal" class="btn btn-default btn-space modal-close">Annuler</button>
+	        <button type="submit" data-dismiss="modal" class="btn btn-primary btn-space modal-close">Valider</button>
+	      </div>
+	      </form>
+	    </div>
+	  </div>
+	  <div class="modal-footer"></div>
+	</div>
+</div>
+<div class="modal-overlay"></div>
+{% endblock %}

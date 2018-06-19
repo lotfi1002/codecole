@@ -1,0 +1,37 @@
+ParametrageBundle\Entity\CalendrierScolaire:
+    type: entity
+    table: null
+    repositoryClass: ParametrageBundle\Repository\CalendrierScolaireRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        anneeScolaire:
+            type: integer
+            unique: true
+        debut:
+            type: string
+            length: 255
+        fin:
+            type: string
+            length: 255
+        jours:
+            type: string
+            length: 255
+        periode:
+            type: string
+            length: 255
+        semestres:
+            type: string
+            length: 255
+        nbrJoursFerie:
+            type: string
+            length: 255
+            column: NbrJoursFerie
+        listeFeries:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

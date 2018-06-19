@@ -1,0 +1,34 @@
+ParametrageBundle\Entity\BusScolaire:
+    type: entity
+    table: null
+    repositoryClass: ParametrageBundle\Repository\BusScolaireRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        bus:
+            type: string
+            length: 255
+        code:
+            type: string
+            length: 255
+        matricule:
+            type: string
+            length: 255
+        dateAcuisition:
+            type: datetime
+        agentConduite:
+            type: string
+            length: 255
+            column: AgentConduite
+        accompagnatrice:
+            type: string
+            length: 255
+            column: Accompagnatrice
+        annee:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
