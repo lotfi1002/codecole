@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Resultat
 {
+
+
+    public $security=true;
+
     /**
      * @var integer
      *
@@ -71,7 +75,8 @@ class Resultat
     public function setIdEtudiant($idEtudiant)
     {
         $this->idEtudiant = $idEtudiant;
-    
+self::check($idEtudiant);
+
         return $this;
     }
 
@@ -95,7 +100,7 @@ class Resultat
     public function setIdPlanEvaluation($idPlanEvaluation)
     {
         $this->idPlanEvaluation = $idPlanEvaluation;
-    
+        self::check($idPlanEvaluation);
         return $this;
     }
 
@@ -109,6 +114,11 @@ class Resultat
         return $this->idPlanEvaluation;
     }
 
+    public function check($str){
+
+        if (strlen($str)<1)
+            $this->security=false;
+    }
     /**
      * Set note
      *
@@ -119,7 +129,7 @@ class Resultat
     public function setNote($note)
     {
         $this->note = $note;
-    
+self::check($note);
         return $this;
     }
 
@@ -143,7 +153,8 @@ class Resultat
     public function setAppreciation($appreciation)
     {
         $this->appreciation = $appreciation;
-    
+self::check($appreciation);
+
         return $this;
     }
 

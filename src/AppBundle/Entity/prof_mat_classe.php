@@ -1,0 +1,112 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * prof_mat_classe
+ */
+class prof_mat_classe
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var int
+     */
+    private $idProfesseur;
+
+    /**
+     * @var int
+     */
+    private $idMatiere;
+
+    /**
+     * @var int
+     */
+    private $idClasse;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idProfesseur
+     *
+     * @param integer $idProfesseur
+     *
+     * @return prof_mat_classe
+     */
+    public function setIdProfesseur($idProfesseur)
+    {
+        $this->idProfesseur = $idProfesseur;
+
+        return $this;
+    }
+
+    /**
+     * Get idProfesseur
+     *
+     * @return int
+     */
+    public function getIdProfesseur()
+    {
+        return $this->idProfesseur;
+    }
+
+    /**
+     * Set idMatiere
+     *
+     * @param integer $idMatiere
+     *
+     * @return prof_mat_classe
+     */
+    public function setIdMatiere($idMatiere)
+    {
+        $this->idMatiere = $idMatiere;
+
+        return $this;
+    }
+
+    /**
+     * Get idMatiere
+     *
+     * @return int
+     */
+    public function getIdMatiere()
+    {
+        return $this->idMatiere;
+    }
+
+    /**
+     * Set idClasse
+     *
+     * @param integer $idClasse
+     *
+     * @return prof_mat_classe
+     */
+    public function setIdClasse($idClasse)
+    {
+        $this->idClasse = $idClasse;
+
+        return $this;
+    }
+
+    /**
+     * Get idClasse
+     *
+     * @return int
+     */
+    public function getIdClasse()
+    {
+        return $this->idClasse;
+    }
+}

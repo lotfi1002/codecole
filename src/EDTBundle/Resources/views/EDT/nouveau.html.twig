@@ -1,0 +1,148 @@
+{% extends '@EDT/EDT/layout.html.twig' %}
+{% block body%}
+<h3 class="page-title page-head-title">Création d'un nouveau Emploi Du Temps</h3><br><br>
+{% if err is defined %}
+<div role="alert" class="alert alert-danger alert-icon alert-dismissible">
+	<div class="icon"><span class="mdi mdi-info-outline"></span></div>
+	<div class="message">
+		<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><strong>Error :</strong> 
+		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Toutes les champs sont <strong>obligatoires</strong>.
+	</div>
+</div>
+{% endif %}
+<form class="form-horizontal" id="my-form" role="form" action="{{ path('edt_nouveau') }}" method="post" novalidate="novalidate">
+	<div class="row">
+		<div class="col-md-12">
+		    <div class="panel panel-default panel-border-color panel-border-color-primary">
+			    <div class="panel-heading panel-heading-divider">
+			    	Informations Génarales sur le nouveau Emploi du temps
+					<div class="form-group xs-pt-10">
+			        	<div class="col-sm-3">
+			        		<label class="control-label" for="textinput">Nom emploi du temps</label>
+			          	</div>
+			          	<div class="col-sm-8">
+			            	<input type="text" name="nom" title="Entrer un nom pour ce emploi du temps" id="nom" placeholder="EXEMPLE : Amana_Primaire_2018" class="form-control">
+			          	</div>
+			        </div>
+			    </div>
+			    <div class="panel-body">
+			       	<div class="form-group xs-pt-10">
+			        	<div class="col-sm-2">
+			        		<label class="control-label" for="textinput">Année scolaire</label>
+			          	</div>
+			          	<div class="col-sm-4">
+			            	<input type="number" name="AnneeScolaire" title="2018 => 2018/2019" id="AnneeScolaire" min='1975' max="2025" placeholder="2018" class="form-control">
+			          	</div>
+			          	<div class="col-sm-2">
+			        		<label class="control-label" for="textinput">Nombre des jours par semaine</label>
+			          	</div>
+			          	<div class="col-sm-4">
+			            	<input type="number" name="joursParSemane" title="Jours/Semaine" id="joursParSemane" min='1' max="7" placeholder="Jours/Semaine" class="form-control">
+			          	</div>
+			        </div>
+			        <div class="form-group xs-pt-10">
+			        	<div class="col-sm-2">
+			        		<label class="control-label" for="textinput">Nombre des cours par jour</label>
+			          	</div>
+			          	<div class="col-sm-4">
+			            	<input type="number" name="coursParJour" title="cours/Jour" id="coursParJour" min='1' max="24" placeholder="cours/Jour" class="form-control">
+			          	</div>
+			          	<div class="col-sm-2">
+			        		<label class="control-label" for="textinput">Durée minimale d'un cours (min)</label>
+			          	</div>
+			          	<div class="col-sm-4">
+			          		<input type="number" min="1" max="60" name="minDuree" title="Durée minimale d'un cours (min)" id="minDuree" class="form-control">
+			          	</div>
+			          </div>
+    			      <div class="form-group xs-pt-10">
+  			          	<div class="col-sm-2">
+			        		<label class="control-label" for="textinput">Premier cours à</label>
+			          	</div>
+			          	<div class="col-sm-3">
+			          		<select  name="firsthour" title="le premier cours à (en heure)" id="firsthour" class="form-control">
+			          			{% for i in 1..24 %}<option value="{{ i }}">{{ i }}</option> {% endfor %}
+			          		</select>
+			          	</div>
+  			          	<div class="col-sm-1">
+			        		<label class="control-label" for="textinput">H</label>
+			          	</div>
+			          	<div class="col-sm-2">
+			        		<label class="control-label" for="textinput" style="font-size: 25px; font-weight: bold;">:</label>
+			          	</div>
+			          	<div class="col-sm-3" style="left: -15px;">
+			          		<select name="firstmin" title="le premier cours à (en minute)" id="firstmin" class="form-control">
+			          			{% for i in 0..60 %}<option value="{{ i }}">{{ i }}</option> {% endfor %}
+			          		</select>
+			          	</div>
+  			          	<div class="col-sm-1">
+			        		<label class="control-label" for="textinput">min</label>
+			          	</div>
+			        </div>
+			        <div class="form-group xs-pt-10">
+			        	<div class="col-sm-2">
+			        		<label class="control-label" for="textinput">Début de l'année Scolaire</label>
+			          	</div>
+			          	<div class="col-sm-10">
+			            	<input type="date" name="debutAnnee" title="Entréer le début de l'année 1 Septembre 2018" id="debutAnnee" min='1975-09-01' max="2022-09-01" placeholder="cours/Jour" class="form-control">
+			          	</div>
+			        </div>
+			        <div class="form-group xs-pt-10">
+			        	<div class="col-sm-2">
+			        		<label class="control-label" for="textinput">Nombre des Semaine dans l'année Scolaire</label>
+			          	</div>
+			          	<div class="col-sm-2">
+			            	<input type="number" name="semaineParAn" title="Semaine/An" id="semaineParAn" min='1' max="50" placeholder="semaine/AnnéeScolaire" class="form-control">
+			          	</div>
+			          	<div class="col-sm-1">
+			        		<label class="control-label" for="textinput">Cycle</label>
+			          	</div>
+			          	<div class="col-sm-2">
+			          		<select name="Cycle" title="Cycle" id="Cycle" class="form-control" onchange="CycleDis();">
+			          			<option value="Autre">Autre</option>
+			          			<optgroup label="L'enseignement préscolaire">
+			          				<option value="coranique" selected>coranique</option>
+			          				<option value="maternelle">maternelle</option>
+			          			</optgroup>
+			          			<optgroup label="primaire">
+			          				<option value="primaire-premier">premier cycle</option>
+			          				<option value="primaire-premier">second cycle</option>
+			          			</optgroup>
+			          			<optgroup label="Secondaire">
+			          				<option value="Secondaire-Collegial">Collegial</option>
+			          				<option value="Secondaire-Qualifiant">Qualifiant</option>
+			          			</optgroup>
+			          		</select>
+			          	</div>
+			          	<div class="col-sm-1">
+			        		<label class="control-label" for="textinput">Autre Précises</label>
+			          	</div>
+			          	<div class="col-sm-3" style="top:-6.5px;">
+			            	<input type="text" name="cycle2" disabled title="Entrer le nom du cycle" id="cycle2" placeholder="Entrer le nom du cycle" class="form-control">
+			          	</div>
+			        </div>
+			        <div class="form-group xs-pt-10">
+			        	<div class="col-sm-5">
+			        		<button type="submit" class="btn btn-primary" style="width: 100%">Créer un nouveau emploi du temps</button>
+			          	</div>
+			          	<div class="col-sm-5">
+			        		<button type="reset" class="btn btn-warning" style="width: 100%">Vider les champs</button>
+			          	</div>
+			        </div>
+			    </div>
+		  	</div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	function CycleDis(){
+		if (document.getElementById("Cycle").value == "Autre"){
+			document.getElementById("cycle2").disabled = false;
+			document.getElementById("cycle2").focus();
+		}
+		else {
+			document.getElementById('cycle2').disabled = true;
+			document.getElementById("cycle2").blur();
+		}
+	}
+</script>
+{% endblock %}

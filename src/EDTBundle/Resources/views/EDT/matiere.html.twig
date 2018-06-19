@@ -1,0 +1,74 @@
+{% extends '@EDT/EDT/layout.html.twig' %}
+{% block body%}
+{% if err is defined %}
+{% if err %}
+<div role="alert" class="alert alert-warning alert-icon alert-dismissible">
+	<div class="icon"><span class="mdi mdi-alert-triangle"></span></div>
+	<div class="message">
+		<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><strong>Champs vides !!</strong> 
+		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <strong>tout les champs sont obligatoires veuillez saisie les information de la salle à nouveau !</strong>.
+	</div>
+</div>
+{% endif %}
+{% endif %}
+{% if err2 is defined %}
+{% if err2 %}
+<div role="alert" class="alert alert-warning alert-icon alert-dismissible">
+	<div class="icon"><span class="mdi mdi-alert-triangle"></span></div>
+	<div class="message">
+		<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><strong>Nom Existe</strong> 
+		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <strong>Le nom de la matière que vous avez entré existe déjà !</strong>.
+	</div>
+</div>
+{% endif %}
+{% endif %}
+<div class="row">	
+	<div class="col-sm-12">
+	  <div class="panel panel-default panel-table">
+	    <div class="panel-heading">Gestion des matières</div>
+	    <div class="panel-body">
+	      <form action="{{ path('edt_matiere') }}" method="post" novalidate="novalidate">
+		      <div class="form-group xs-pt-10">
+	        	<div class="col-sm-3">
+	        		<label class="control-label" for="textinput">Nom de la matière</label>
+	          	</div>
+	          	<div class="col-sm-6">
+	            	<input type="text" name="nom" title="ex: Arabe, Francais..." id="nom" placeholder="ex: Arabe, Francais..." class="form-control">
+	          	</div>
+	          	<div class="col-sm-3">
+					<button class="btn btn-space btn-success" type="submit" name="submit" style="width:100px; height: 45px;">Ajouter !</button>
+	          	</div>
+	          </div>
+	          <div class="form-group xs-pt-10" style="width: 99.99%; display: inline-block;">
+	        	<div role="alert" class="alert alert-primary alert-icon alert-dismissible">
+					<div class="icon"><span class="mdi mdi-info-outline"></span></div>
+					<div class="message">
+						<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><strong>Information !</strong> 
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <strong>les abréviations sont générer automatiquement lors la saisie d'une nouvelle matière, vous pouvez changer et pérsonaliser les abréviation dans la gestion des cartes.</strong>.
+					</div>
+				</div>
+	          </div>
+          </form>
+	      <table class="table table-striped table-borderless">
+	        <thead>
+	          <tr>
+	            <th style="width: 50%;">Nom</th>
+	            <th style="width: 40%;">Abréviation</th>
+	            <th style="width: 10%;" class="actions">Supprimer</th>
+	          </tr>
+	        </thead>
+	        <tbody class="no-border-x">
+	        	{% for mat in mats %}
+		          <tr>
+		            <td>{{ mat.getNom() }}</td>
+		            <td>{{ mat.getAbreviation() }}</td>
+		            <td class="actions"><a href="/EDT/matiere/{{ mat.getId() }}" id="{{ mat.getId() }}" class="icon"><i class="mdi mdi-delete"></i></a></td>
+		          </tr>
+		        {% endfor %}
+	        </tbody>
+	      </table>
+	    </div>
+	  </div>
+	</div>
+</div>
+{% endblock %}

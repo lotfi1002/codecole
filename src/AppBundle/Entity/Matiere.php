@@ -22,32 +22,18 @@ class Matiere
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_classe", type="integer", nullable=true)
-     */
-    private $idClasse;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_enseignant", type="integer", nullable=true)
-     */
-    private $idEnseignant;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=200, nullable=true)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="coef", type="integer", nullable=true)
+     * @ORM\Column(name="abreviation", type="string", length=5, nullable=false)
      */
-    private $coef;
+    private $abreviation;
 
 
 
@@ -62,54 +48,6 @@ class Matiere
     }
 
     /**
-     * Set idClasse
-     *
-     * @param integer $idClasse
-     *
-     * @return Matiere
-     */
-    public function setIdClasse($idClasse)
-    {
-        $this->idClasse = $idClasse;
-    
-        return $this;
-    }
-
-    /**
-     * Get idClasse
-     *
-     * @return integer
-     */
-    public function getIdClasse()
-    {
-        return $this->idClasse;
-    }
-
-    /**
-     * Set idEnseignant
-     *
-     * @param integer $idEnseignant
-     *
-     * @return Matiere
-     */
-    public function setIdEnseignant($idEnseignant)
-    {
-        $this->idEnseignant = $idEnseignant;
-    
-        return $this;
-    }
-
-    /**
-     * Get idEnseignant
-     *
-     * @return integer
-     */
-    public function getIdEnseignant()
-    {
-        return $this->idEnseignant;
-    }
-
-    /**
      * Set nom
      *
      * @param string $nom
@@ -119,7 +57,7 @@ class Matiere
     public function setNom($nom)
     {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
@@ -134,26 +72,26 @@ class Matiere
     }
 
     /**
-     * Set coef
+     * Set abreviation
      *
-     * @param integer $coef
+     * @param string $abreviation
      *
      * @return Matiere
      */
-    public function setCoef($coef)
+    public function setAbreviation($abreviation)
     {
-        $this->coef = $coef;
-    
+        $this->abreviation = $abreviation;
+
         return $this;
     }
 
     /**
-     * Get coef
+     * Get abreviation
      *
-     * @return integer
+     * @return string
      */
-    public function getCoef()
+    public function getAbreviation()
     {
-        return $this->coef;
+        return $this->abreviation;
     }
 }

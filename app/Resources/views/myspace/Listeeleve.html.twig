@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block body %}
           <h3 class="text-center"></h3>
@@ -40,24 +40,19 @@
                     </div>
                     <br>
                     <br>
-            <!--Default Tabs-->
             <div class="col-sm-12">
-
               <div class="panel panel-default">
-
                 <div class="panel-heading"></div>
-
                 <div class="tab-container">
                   <ul class="nav nav-tabs">
                     <li class="active"><a href="#tous" data-toggle="tab">Tous</a></li>
-                      <li><a href="#Inscrits" data-toggle="tab">Inscrits</a></li>
+                    <li><a href="#Inscrits" data-toggle="tab">Inscrits</a></li>
                     <li><a href="#Enattente" data-toggle="tab">En attente</a></li>
                     <li><a href="#Partis" data-toggle="tab">Partis</a></li>
                     <li><a href="#Radies" data-toggle="tab">Radiés</a></li>
                   </ul>
                   <div class="tab-content">
                     <div id="tous" class="tab-pane active cont">
-                      
                   <table id="table1" class="table table-striped table-hover table-fw-widget">
                     <thead>
                       <tr>
@@ -73,20 +68,22 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for etd in etds %}
                       <tr class="odd gradeX">
-                        <td>1325/02</td>
-                        <td>أمقران هدى </td>
-                        <td>Amakrane houda</td>
-                        <td>17/03/2007</td>
-                        <td>Fille</td>
-                        <td>3° Années Primaire Général</td>
-                        <td></td>
-                        <td>En attente</td>
-                        <td>Dossier élève</td>
+                        <td>{{ etd.getMatricule() }}</td>
+                        <td>{{ etd.getNom() }} {{ etd.getPrenom() }}</td>
+                        <td>{{ etd.getNomfr() }} {{ etd.getPrenomfr() }}</td>
+                        <td>{{ etd.getDate()|date('Y-m-d') }}</td>
+                        <td>{{ etd.getSex }}</td>
+                        <td>{{ etd.getNiveau2() }}</td>
+                        <td>{{ etd.getClasse() }}</td>
+                        <td>{{ etd.getStatut() }}</td>
+                        <td><a href="Ficheselevev3/{{ etd.getId() }}">Fiche eleve</a></td>
                       </tr>
+                      {% endfor %}
                       </tbody>
                     </table>
-                </div>
+                    </div>
                     <div id="Inscrits" class="tab-pane cont">
                        <table id="table1" class="table table-striped table-hover table-fw-widget">
                     <thead>
@@ -103,18 +100,22 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for etd in etds %}
+                        {% if etd.getStatut() == 'Inscrit' %}
                       <tr class="odd gradeX">
-                        <td>1325/02</td>
-                        <td>أمقران هدى </td>
-                        <td>Amakrane houda</td>
-                        <td>17/03/2007</td>
-                        <td>Fille</td>
-                        <td>3° Années Primaire Général</td>
-                        <td></td>
-                        <td>En attente</td>
-                        <td>Dossier élève</td>
+                        <td>{{ etd.getMatricule() }}</td>
+                        <td>{{ etd.getNom() }} {{ etd.getPrenom() }}</td>
+                        <td>{{ etd.getNomfr() }} {{ etd.getPrenomfr() }}</td>
+                        <td>{{ etd.getDate()|date('Y-m-d') }}</td>
+                        <td>{{ etd.getSex }}</td>
+                        <td>{{ etd.getNiveau2() }}</td>
+                        <td>{{ etd.getClasse() }}</td>
+                        <td>{{ etd.getStatut() }}</td>
+                        <td>Fiche élève</td>
                       </tr>
-                      </tbody>
+                      {% endif %}
+                      {% endfor %}
+                    </tbody>
                     </table>
                     </div>
                     <div id="Enattente" class="tab-pane cont">
@@ -133,17 +134,21 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="odd gradeX">
-                        <td>1325/02</td>
-                        <td>أمقران هدى </td>
-                        <td>Amakrane houda</td>
-                        <td>17/03/2007</td>
-                        <td>Fille</td>
-                        <td>3° Années Primaire Général</td>
-                        <td></td>
-                        <td>En attente</td>
-                        <td>Dossier élève</td>
+                      {% for etd in etds %}
+                        {% if etd.getStatut() == 'En attente' %}
+                        <tr class="odd gradeX">
+                        <td>{{ etd.getMatricule() }}</td>
+                        <td>{{ etd.getNom() }} {{ etd.getPrenom() }}</td>
+                        <td>{{ etd.getNomfr() }} {{ etd.getPrenomfr() }}</td>
+                        <td>{{ etd.getDate()|date('Y-m-d') }}</td>
+                        <td>{{ etd.getSex }}</td>
+                        <td>{{ etd.getNiveau2() }}</td>
+                        <td>{{ etd.getClasse() }}</td>
+                        <td>{{ etd.getStatut() }}</td>
+                        <td>Fiche élève</td>
                       </tr>
+                      {% endif %}
+                      {% endfor %}
                       </tbody>
                     </table>
                     </div>
@@ -163,17 +168,21 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="odd gradeX">
-                        <td>1325/02</td>
-                        <td>أمقران هدى </td>
-                        <td>Amakrane houda</td>
-                        <td>17/03/2007</td>
-                        <td>Fille</td>
-                        <td>3° Années Primaire Général</td>
-                        <td></td>
-                        <td>En attente</td>
-                        <td>Dossier élève</td>
+                      {% for etd in etds %}
+                        {% if etd.getStatut() == 'Partis' %}
+                        <tr class="odd gradeX">
+                        <td>{{ etd.getMatricule() }}</td>
+                        <td>{{ etd.getNom() }} {{ etd.getPrenom() }}</td>
+                        <td>{{ etd.getNomfr() }} {{ etd.getPrenomfr() }}</td>
+                        <td>{{ etd.getDate()|date('Y-m-d') }}</td>
+                        <td>{{ etd.getSex }}</td>
+                        <td>{{ etd.getNiveau2() }}</td>
+                        <td>{{ etd.getClasse() }}</td>
+                        <td>{{ etd.getStatut() }}</td>
+                        <td>Fiche élève</td>
                       </tr>
+                      {% endif %}
+                      {% endfor %}
                       </tbody>
                     </table>
                     </div>
@@ -193,16 +202,21 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for etd in etds %}
+                        {% if etd.getStatut() == 'Radiés' %}
                       <tr class="odd gradeX">
-                        <td>1325/02</td>
-                        <td>أمقران هدى </td>
-                        <td>Amakrane houda</td>
-                        <td>17/03/2007</td>
-                        <td>Fille</td>
-                        <td>3° Années Primaire Général</td>
-                        <td></td>
-                        <td>En attente</td>
-                        <td>Dossier élève</td>
+                        <td>{{ etd.getMatricule() }}</td>
+                        <td>{{ etd.getNom() }} {{ etd.getPrenom() }}</td>
+                        <td>{{ etd.getNomfr() }} {{ etd.getPrenomfr() }}</td>
+                        <td>{{ etd.getDate()|date('Y-m-d') }}</td>
+                        <td>{{ etd.getSex }}</td>
+                        <td>{{ etd.getNiveau2() }}</td>
+                        <td>{{ etd.getClasse() }}</td>
+                        <td>{{ etd.getStatut() }}</td>
+                        <td>Fiche élève</td>
+                      </tr>
+                      {% endif %}
+                      {% endfor %}
                       </tr>
                       </tbody>
                     </table>

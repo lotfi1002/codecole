@@ -57,7 +57,7 @@ class Cycle
     public function setIdEcole($idEcole)
     {
         $this->idEcole = $idEcole;
-    
+
         return $this;
     }
 
@@ -81,7 +81,7 @@ class Cycle
     public function setNom($nom)
     {
         $this->nom = $nom;
-    
+
         return $this;
     }
 

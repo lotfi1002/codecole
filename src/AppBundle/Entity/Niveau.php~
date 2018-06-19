@@ -36,5 +36,62 @@ class Niveau
     private $nom;
 
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idCycle
+     *
+     * @param integer $idCycle
+     *
+     * @return Niveau
+     */
+    public function setIdCycle($idCycle)
+    {
+        $this->idCycle = $idCycle;
+    
+        return $this;
+    }
+
+    /**
+     * Get idCycle
+     *
+     * @return integer
+     */
+    public function getIdCycle()
+    {
+        return $this->idCycle;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Niveau
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+}

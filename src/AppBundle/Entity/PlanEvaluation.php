@@ -57,7 +57,7 @@ class PlanEvaluation
     public function setIdEvaluation($idEvaluation)
     {
         $this->idEvaluation = $idEvaluation;
-    
+
         return $this;
     }
 
@@ -81,7 +81,7 @@ class PlanEvaluation
     public function setIdCompetance($idCompetance)
     {
         $this->idCompetance = $idCompetance;
-    
+
         return $this;
     }
 

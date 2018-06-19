@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Carte
+ *
+ * @ORM\Table(name="carte")
+ * @ORM\Entity
+ */
+class Carte
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_professeur", type="integer", nullable=false)
+     */
+    private $idProfesseur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_matiere", type="integer", nullable=false)
+     */
+    private $idMatiere;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_format", type="integer", nullable=false)
+     */
+    private $idFormat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="couleur", type="string", length=255, nullable=false)
+     */
+    private $couleur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="abreviation", type="string", length=255, nullable=false)
+     */
+    private $abreviation;
+
+
+}
+

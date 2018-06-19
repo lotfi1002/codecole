@@ -50,5 +50,110 @@ class Resultat
     private $appreciation;
 
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idEtudiant
+     *
+     * @param integer $idEtudiant
+     *
+     * @return Resultat
+     */
+    public function setIdEtudiant($idEtudiant)
+    {
+        $this->idEtudiant = $idEtudiant;
+    
+        return $this;
+    }
+
+    /**
+     * Get idEtudiant
+     *
+     * @return integer
+     */
+    public function getIdEtudiant()
+    {
+        return $this->idEtudiant;
+    }
+
+    /**
+     * Set idPlanEvaluation
+     *
+     * @param integer $idPlanEvaluation
+     *
+     * @return Resultat
+     */
+    public function setIdPlanEvaluation($idPlanEvaluation)
+    {
+        $this->idPlanEvaluation = $idPlanEvaluation;
+    
+        return $this;
+    }
+
+    /**
+     * Get idPlanEvaluation
+     *
+     * @return integer
+     */
+    public function getIdPlanEvaluation()
+    {
+        return $this->idPlanEvaluation;
+    }
+
+    /**
+     * Set note
+     *
+     * @param float $note
+     *
+     * @return Resultat
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return float
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * Set appreciation
+     *
+     * @param string $appreciation
+     *
+     * @return Resultat
+     */
+    public function setAppreciation($appreciation)
+    {
+        $this->appreciation = $appreciation;
+    
+        return $this;
+    }
+
+    /**
+     * Get appreciation
+     *
+     * @return string
+     */
+    public function getAppreciation()
+    {
+        return $this->appreciation;
+    }
+}

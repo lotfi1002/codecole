@@ -3,6 +3,7 @@
 {% block body %}
 
 {% set c = 0 %}
+{% set functions = [] %}
     <h1 class="well">résultat</h1>
    
                   <div class="col-sm-12">
@@ -73,6 +74,7 @@
                     {% endfor %}
 </tr>
                       {% for etudiant in etudiants[gid] %}
+                      {% set id_e = etudiant['id'] %}
                       <tr id='row{{etudiant['id']}}'>
                         
                         <td style="width:5%;" class="user-avatar cell-detail user-info"><img src="{{ asset('img/avatar6.png') }}" alt="Avatar"><span>{{etudiant['prenom']}} {{etudiant['nom']}}</span><span class="cell-detail-description">Developer</span>
@@ -80,7 +82,7 @@
                         </td>
                         
                         <td style="width:5%;" class="milestone" style="display:block;" ><div style="width:60%;" class="input-group xs-mb-5">
-                          <input style="height:30px;" id='n{{etudiant['id']}}' name='n{{etudiant['id']}}' oninput="bar({{etudiant['id']}});" type="number" class="form-control"><span class="input-group-btn">
+                          <input style="height:30px;" id='n{{etudiant['id']}}' name='n{{etudiant['id']}}' oninput="bar({{etudiant['id']}});" type="number" value="{% if resultats2[etudiant['id']] is defined %}{{resultats2[etudiant['id']]}}{% endif %}" class="form-control"><span class="input-group-btn">
                             <button  style="height:30px;" type="button" class="btn btn-primary">/ {{note}}</button></span>
                         </div>
                           <div class="progress">
@@ -92,6 +94,16 @@
                           <p class="xs-mt-10 xs-mb-10">
                             {% set c = 0 %}
                           {% for appr in apprs %}
+                            {% if resultats2[etudiant['id']] is defined %}
+                            
+                            {% if resultats[etudiant['id']~'-'~competance['id']].ap == appr['id'] %}
+                            
+                            {% set fc=c~"-e"~etudiant['id']~"-"~competance['id'] %}
+                            {% set functions = functions|merge([fc]) %}
+
+
+                            {% endif %}
+                            {% endif %}
 
                     <button  type='button' name='{{c}}-{{groupe['id']}}-{{competance['id']}}' id="{{c}}-e{{etudiant['id']}}-{{competance['id']}}" onclick='make_border(this.id);'  class="btn btn-space btn-primary" style="background-color: {{appr['color']}}; border:none; " title='{{appr['appreciation']}} - {{appr['niveauAc']}}' >{{appr['lettre']}}</button>
                     {% set c = c+1 %}
@@ -227,6 +239,12 @@
                       if(tds[j].id.startsWith('com')){
                         make_border(n+'-e'+id_r.split('w')[1]+'-'+tds[j].id.split('m')[1]);
 }}}}
+
+
+{% for fun in functions %}
+make_border('{{ fun }}');
+{% endfor %}
+
                     </script>
 
 

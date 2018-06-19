@@ -92,7 +92,7 @@ class Ecole
     public function setNom($nom)
     {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
@@ -116,7 +116,7 @@ class Ecole
     public function setAdresse($adresse)
     {
         $this->adresse = $adresse;
-    
+
         return $this;
     }
 
@@ -140,7 +140,7 @@ class Ecole
     public function setLogo($logo)
     {
         $this->logo = $logo;
-    
+
         return $this;
     }
 
@@ -164,7 +164,7 @@ class Ecole
     public function setNbrSemestre($nbrSemestre)
     {
         $this->nbrSemestre = $nbrSemestre;
-    
+
         return $this;
     }
 
@@ -188,7 +188,7 @@ class Ecole
     public function setNbrCycle($nbrCycle)
     {
         $this->nbrCycle = $nbrCycle;
-    
+
         return $this;
     }
 
@@ -212,7 +212,7 @@ class Ecole
     public function setNomAr($nomAr)
     {
         $this->nomAr = $nomAr;
-    
+
         return $this;
     }
 
@@ -236,7 +236,7 @@ class Ecole
     public function setAdresseAr($adresseAr)
     {
         $this->adresseAr = $adresseAr;
-    
+
         return $this;
     }
 

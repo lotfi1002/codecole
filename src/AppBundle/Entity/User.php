@@ -1,127 +1,117 @@
 <?php
-// src/AppBundle/Entity/User.php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
-
 
 /**
- * Compte
+ * User
  *
- * @ORM\Table()
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649F85E0677", columns={"username"}), @ORM\UniqueConstraint(name="UNIQ_8D93D649E7927C74", columns={"email"})})
  * @ORM\Entity
  */
-class User implements UserInterface 
+class User
 {
     /**
-	* test
-     * @ORM\Column(type="integer")
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=25, nullable=false)
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=64, nullable=false)
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=true)
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=60, nullable=false)
      */
     private $email;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
      */
     private $isActive;
-	
-	/**
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-	private $name ;
-	
-	 /**
-		 * @var string
-		 *
-		 * @ORM\Column(name="type", type="string", length=255, nullable=true)
-		 */
-			private $type;
-	
-	 /**
-		 * @var string
-		 *
-		 * @ORM\Column(name="role", type="string", length=255, nullable=true)
-		 */
-			private $role;
+    private $name;
 
-    public function __construct()
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=255, nullable=true)
+     */
+    private $role;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
     {
-        $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    public function getSalt()
-    {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
-        return null;
-    }
-
-
-    public function getRoles()
-    {
-        return array('ROLE_PROF','ROLE_ADMIN');
-    }
-
-    public function eraseCredentials()
-    {
+        return $this->id;
     }
 
     /**
-     * Set prenom
+     * Set username
      *
-     * @param string $prenom
+     * @param string $username
      *
-     * @return Compte
+     * @return User
      */
-    public function setName($name)
+    public function setUsername($username)
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get prenom
+     * Get username
      *
      * @return string
      */
-    public function getName()
+    public function getUsername()
     {
-        return $this->name;
+        return $this->username;
     }
-
-    
 
     /**
      * Set password
      *
      * @param string $password
      *
-     * @return Compte
+     * @return User
      */
     public function setPassword($password)
     {
@@ -139,13 +129,85 @@ class User implements UserInterface
     {
         return $this->password;
     }
-	
-	/**
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set type
      *
      * @param string $type
      *
-     * @return Compte
+     * @return User
      */
     public function setType($type)
     {
@@ -163,13 +225,13 @@ class User implements UserInterface
     {
         return $this->type;
     }
-	
-	/**
-     * Set type
+
+    /**
+     * Set role
      *
      * @param string $role
      *
-     * @return Compte
+     * @return User
      */
     public function setRole($role)
     {
@@ -179,7 +241,7 @@ class User implements UserInterface
     }
 
     /**
-     * Get type
+     * Get role
      *
      * @return string
      */
@@ -187,87 +249,8 @@ class User implements UserInterface
     {
         return $this->role;
     }
-	
-	
-	/**
-     * Set type
-     *
-     * @param string $isActive
-     *
-     * @return Compte
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
 
-        return $this;
-    }
-
-  
-/**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return Compte
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-   
-	
-	
-	public function setSalt($salt)
-    {
-        $this->salt = $salt;
-
-        return $this;
-    }
-	
-	/**
-     * Set type
-     *
-     * @param string $role
-     *
-     * @return Compte
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get isActive
-     *
-     * @return boolean
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
-    }
+    public function __toString() {
+    return "";
+}
 }

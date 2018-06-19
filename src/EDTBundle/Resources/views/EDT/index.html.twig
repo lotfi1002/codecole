@@ -1,0 +1,49 @@
+{% extends '@EDT/EDT/layout.html.twig' %}
+{% block body %}
+<table style="width:100%">
+	<tr style="height: 130px">
+		<td colspan="2">
+		    <div>
+		        <a href="{{ path ('homepage') }}"><button class="btn btn-space btn-warning btn-big"  style="width: 99%; height: 120px"><i class="icon mdi mdi-home"></i> Acceuil </button></a>
+		    </div>
+        </td>
+    </tr>
+    <tr style="height: 150px">
+		<td>
+			<div>
+			    <a href="{{ path ('edt_nouveau') }}"><button class="btn btn-space btn-primary btn-big" style="width: 98%; height: 139px"><i class="icon mdi mdi-open-in-new"></i> Nouveau Emploi du temps </button></a>
+			</div>
+		</td>
+		<td>
+		    <div>
+		        <a href="{{ path ('edt_charger_format') }}"><button class="btn btn-space btn-primary btn-big" style="width: 98%; height: 139px"><i class="icon mdi mdi-upload"></i> Charger Emploi du temps </button></a>
+			</div>
+		</td>
+    </tr>
+    <tr style="height: 150px">
+		<td>
+		    <div>
+		        <a href="{{ path ('edt_carte') }}"><button class="btn btn-space btn-danger btn-big" style="width: 98%; height: 139px"><i class="icon mdi mdi-card"></i> Gestion des cartes </button></a>
+			</div>
+		</td>
+		<td>
+		    <div>
+		        <a href="{{ path ('edt_salle') }}"><button class="btn btn-space btn-danger btn-big" style="width: 98%; height: 139px"><i class="icon mdi mdi-local-convenience-store"></i> Gestion des salles </button></a>
+			</div>
+		</td>
+    </tr>
+    <tr style="height: 150px">
+		<td>
+		    <div>
+		        <a href="{{ path ('edt_matiere') }}"><button class="btn btn-space btn-success btn-big" style="width: 98%; height: 139px"><i class="icon mdi mdi-language-html5"></i> Gestion des matières </button></a>
+			</div>
+		</td>
+		<td>
+		    <div>
+		        <a href="{{ path ('edt_prof') }}"><button class="btn btn-space btn-success btn-big" style="width: 98%; height: 139px"><i class="icon mdi mdi-folder-person"></i> Gestion des professeurs </button></a>
+			</div>
+		</td>
+
+    </tr>
+</table>
+{% endblock %}

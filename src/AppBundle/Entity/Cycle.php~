@@ -36,5 +36,62 @@ class Cycle
     private $nom;
 
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idEcole
+     *
+     * @param integer $idEcole
+     *
+     * @return Cycle
+     */
+    public function setIdEcole($idEcole)
+    {
+        $this->idEcole = $idEcole;
+    
+        return $this;
+    }
+
+    /**
+     * Get idEcole
+     *
+     * @return integer
+     */
+    public function getIdEcole()
+    {
+        return $this->idEcole;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Cycle
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+}

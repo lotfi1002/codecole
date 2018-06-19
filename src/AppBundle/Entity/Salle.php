@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Salle
  *
- * @ORM\Table(name="salle")
+ * @ORM\Table(name="salle", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_4E977E5C6C6E55B5", columns={"nom"})})
  * @ORM\Entity
  */
 class Salle
@@ -24,43 +24,17 @@ class Salle
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=200, nullable=true)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
-
-
     /**
-     * Get id
+     * @var string
      *
-     * @return integer
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $type;
 
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Salle
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-    
-        return $this;
-    }
 
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
 }
+

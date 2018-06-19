@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block body %}
           <section id="fh5co-contact" data-section="contact">
@@ -14,47 +14,51 @@
     </div>
 
 <br>
+{% if ErrTitle is defined %}
+<div role="alert" class="alert alert-danger alert-dismissible">
+  <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><span class="icon mdi mdi-close-circle-o"></span><strong>{{ ErrTitle }} </strong> {{ ErrMsg }}</div>
+{% endif %}
       <div class="row row-bottom-padded-md">
         <div class="col-md-6 to-animate">
-          <form class="form-horizontal" role="form">
+          <form class="form-horizontal" role="form" action="{{ path('ecolev3') }}" method="post">
               <div class="panel panel-default panel-border-color panel-border-color-primary">
                 <div class="panel-heading panel-heading-divider">Etat civil  <span class="panel-subtitle"></span></div>
                 <div class="panel-body"> 
                   <formaction="#" data-parsley-validate="" novalidate="">
                     <div class="form-group xs-pt-10">
-                     <label class="col-sm-2 control-label" for="textinput">C.N.E</label>
+                     <label class="col-sm-2 control-label"  for="textinput">C.N.E</label>
                       <div class="col-sm-4">
-                        <input type="text" placeholder="C.N.E" class="form-control">
+                        <input type="text" name="cne" placeholder="C.N.E" class="form-control">
                       </div>
                       <div class="col-sm-2">
                         <label class="control-label" for="textinput">Code Massar</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" placeholder="Autre?..." class="form-control">
+                        <input type="text" name="cmasar" placeholder="Code Massar" class="form-control">
                       </div>
                     </div>
             <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Nom</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Nom" class="form-control">
+              <input type="text" name="nom" placeholder="Nom" class="form-control">
             </div>
           </div>
-                             <div class="form-group">
+           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Prenom</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Prenom" class="form-control">
+              <input type="text" name="prenom" placeholder="Prenom" class="form-control">
             </div>
           </div>
                <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Nom (fr)</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Nom (fr)" class="form-control">
+              <input type="text" name="nomfr" placeholder="Nom (fr)" class="form-control">
             </div>
           </div>
                  <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Prenom (fr)</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Prenom(fr)" class="form-control">
+              <input type="text" name="prenomfr" placeholder="Prenom(fr)" class="form-control">
             </div>
           </div>
                  <div class="form-group">
@@ -66,37 +70,46 @@
                    
                       <div class="col-sm-4">
                         <div class="be-radio-icon inline">
-                          <input type="radio" checked="" name="rad1" id="rad1">
+                          <input type="radio" checked="" name="sex" id="rad1" value="female">
                           <label for="rad1"><span class="mdi mdi-female"></span></label>
                         </div>
                         <div class="be-radio-icon inline">
-                          <input type="radio" name="rad1" id="rad2">
+                          <input type="radio" name="sex" id="rad2" value="male">
                           <label for="rad2"><span class="mdi mdi-male-alt"></span></label>
                         </div>
                       </div>
                     </div>
                <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Lieu de naissance</label>
+            
             <div class="col-sm-4">
-              <input type="text" placeholder="Lieu de naissance" class="form-control">
+              <select name="lieu1" class="form-control">
+                <option value="Autre" selected>Autre</option>
+                <option value="Tetouan">Tetouan</option>
+                <option value="Tanger">Tanger</option>
+              </select>
             </div>
              <div class="col-sm-2">
                         <label class="control-label" for="textinput">Autre, précisez</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" placeholder="Autre..." class="form-control">
+                        <input type="text" name="autre1" placeholder="Autre..." class="form-control">
                       </div>
           </div>
                <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Lieu de naissance (fr)</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="lieu de naissance (fr)" class="form-control">
+              <select name="lieu2" class="form-control">
+                <option value="Autre" selected>Autre</option>
+                <option value="Tetouan">Tetouan</option>
+                <option value="Tanger">Tanger</option>
+              </select>
             </div>
                  <div class="col-sm-2">
                         <label class="control-label" for="textinput">Autre, précisez</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" placeholder="Autre..." class="form-control">
+                        <input type="text" name="autre2" placeholder="Autre..." class="form-control">
                       </div>
           </div>
                <div class="form-group">
@@ -104,123 +117,137 @@
             <label class="col-sm-2 control-label" for="textinput">Nationalité</label>
                   <div class="col-sm-6">
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad3" id="raD6" onclick= "DisabledAP()">
+                          <input type="radio" checked="" name="nat" value="marocaine" id="raD6" onclick= "DisabledAP()">
                           <label for="raD6">Marocaine</label>
                         </div>
                         <div class="be-radio inline">
-                          <input type="radio" name="rad3" id="raD7" onclick= "DisabledAP()">
+                          <input type="radio" name="nat" id="raD7" value ="autre" onclick= "DisabledAP()">
                           <label for="raD7">Autre</label>
                         </div>
                       </div>
             <div class="col-sm-4">
-              <input type="text" placeholder="Autre précisez" class="form-control" disabled id="AutreP">
+              <input type="text" placeholder="Autre précisez" name="nat2" class="form-control" disabled id="AutreP">
             </div>
           </div>
                <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">C.I.N</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="C.I.N" class="form-control">
+              <input type="text" name="cin" placeholder="C.I.N" class="form-control">
             </div>
           </div>
-             </form>
                 </div>
               </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 form-horizontal">
               <div class="panel panel-default panel-border-color panel-border-color-primary">
-    <div class="panel-heading panel-heading-divider">Situation Scolaire<span class="panel-subtitle"></span></div>
+               <div class="panel-heading panel-heading-divider">Situation Scolaire<span class="panel-subtitle"></span></div>
                 <div class="panel-body">
-                  <form class="form-horizontal">
+                  
                      <!-- Block image -->
                     <div class="user-display-info2">
                       <input type="file" id="a" class="form-control input-file-w65" accept="image/*" onchange="PreviewImage();">
                     </div>
                     <div class="user-display-avatar2">
                       <img id="b" src="{{ asset('img/avatar-150.png') }}" alt="Avatar">
+                      
                     </div>
                      <!-- Text input-->
                      <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">Matricule</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="Matricule" class="form-control">
+              <input type="text" name="matricule" placeholder="Matricule" class="form-control">
             </div>
              <div class="col-sm-2">
                         <label class="control-label" for="textinput">Statut</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" placeholder="Statut" class="form-control">
+                        <select name="statut" class="form-control">
+                <option value="Inscrits" selected>Inscrits</option>
+                <option value="En attente">En attente</option>
+                <option value="Partis">Partis</option>
+                <option value="Radiés">Radiés</option>
+              </select>
                       </div>
           </div>
                    <div class="form-group">
             <label class="col-sm-2 control-label">Niveau de scolarité actuelle </label>
               <div class="col-sm-10">
-                <select class="form-control">
-                  <option>primaire</option>
-                  <option>secondaire</option>
+                <select class="form-control" name="niveau">
+                  <option value="الأول">الأول</option>
+                  <option value ="الثاني">الثاني</option>
+                  <option value ="الثالث">الثالث</option>
+                  <option value ="الرابع">الرابع</option>
+                  <option value ="الخامس">الخامس</option>
+                  <option value ="السادس">السادس</option>
                 </select>
               </div>
           </div>
-                    <div class="form-group xs-pt-10">
-                     <label class="col-sm-2 control-label" for="textinput">Niveau scolaire actuel (fr)</label>
-            <div class="col-sm-10">
-              <input type="text" placeholder="Niveau scolaire actuel(fr)" class="form-control">
-            </div>
+                     <div class="form-group">
+            <label class="col-sm-2 control-label">Niveau de scolarité actuelle (fr)</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="niveau2">
+                  <option value="CP">CP</option>
+                  <option value="CE1">CE1</option>
+                  <option value="CE2">CE2</option>
+                  <option value="CM1">CM1</option>
+                  <option value="CM2">CEM2</option>
+                </select>
+              </div>
           </div>
            <div class="form-group">
             <label class="col-sm-2 control-label">Classe actuelle </label>
               <div class="col-sm-4">
-                <select class="form-control">
-                  <option>primaire</option>
-                  <option>secondaire</option>
+                <select class="form-control" name="classe">
+                  <option value="primaire">cp</option>
+                  <option value="secondaire">cpe</option>
                 </select>
               </div>
                <div class="col-sm-2">
                         <label class="control-label" for="textinput">Redoublant</label>
                       </div>
                       <div class="col-sm-2">
-                        <input type="text" placeholder="" class="form-control">
+                        <input type="text" name="red" placeholder="" class="form-control">
                       </div>
           </div>   <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">Transport scolaire</label>
             <div class="col-sm-2">
-              <input type="text" placeholder="" class="form-control">
+              <input type="text" name="transport" placeholder="" class="form-control">
             </div>
           </div>
               <div class="form-group">
                 <label for="date" class="col-sm-2 control-label">Date d'entrée'</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" id="date" name="date">
+                    <input type="date" class="form-control" id="date" name="date2">
                     </div>
                      <label class="col-sm-2 control-label">Niveau scolaire d'entrée </label>
               <div class="col-sm-4">
-                <select class="form-control">
-                  <option>primaire</option>
-                  <option>secondaire</option>
+                <select class="form-control" name="niveau3">
+                  <option value="primaire">primaire</option>
+                  <option value="secondaire">secondaire</option>
                 </select>
               </div> 
             </div>
-               </form>
                 </div>
               </div>
            </div>
           
-            <div class="col-sm-6">
+            <div class="col-sm-6 form-horizontal">
               <div class="panel panel-default panel-border-color panel-border-color-primary">
              <div class="panel-heading panel-heading-divider">Etablissement d'origine<span class="panel-subtitle"></span></div>
                 <div class="panel-body">
-                  <form class="form-horizontal">
+                  
                          <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">Etablissement d'origine</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="Etablissement d'origine" class="form-control">
+              <input type="text" name="etablissement" placeholder="Etablissement d'origine" class="form-control">
             </div>
                   <div class="col-sm-6">
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad3" id="Rad6">
+                          <input type="radio" checked="" name="rad3" id="Rad6" value="public">
                           <label for="Rad6">public</label>
                         </div>
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad3" id="Rad7">
+                          <input type="radio" checked="" name="rad3" id="Rad7" value="prive">
                           <label for="Rad7">privé</label>
                         </div>
                       </div>
@@ -228,13 +255,13 @@
              <div class="form-group">
                      <label class="col-sm-2 control-label" for="textinput">Code d'Etablissement d'origine</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="Code" class="form-control">
+              <input type="text" name="code" placeholder="Code" class="form-control">
             </div>
              <label class="col-sm-2 control-label"> Ville</label>
               <div class="col-sm-4">
-                <select class="form-control">
-                  <option>Tanger</option>
-                  <option>Tetouan</option>
+                <select class="form-control" name="ville">
+                  <option value="tanger">Tanger</option>
+                  <option value="tanger">Tetouan</option>
                 </select>
           </div>
         </div>
@@ -244,13 +271,13 @@
                 <input type="file" class="form-control">
                 </div>
              </div>
-        </form>
+      
                 </div>
               </div>
             </div>
       <div class="row row-bottom-padded-md">
-        <div class="col-md-6 to-animate">
-          <form class="form-horizontal" role="form">
+        <div class="col-md-6 form-horizontal">
+          
               <div class="panel panel-default panel-border-color panel-border-color-primary">
                  <div class="panel-heading panel-heading-divider">Adresse de communication <span class="panel-subtitle"></span></div>
                 <div class="panel-body">
@@ -258,64 +285,64 @@
                       <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">Adresse domicile</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Adresse domicile" class="form-control">
+              <input type="text" name="adresse" placeholder="Adresse domicile" class="form-control">
             </div>
           </div>
              <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">Téléphone domicile</label>
                       <div class="col-sm-4">
-                        <input type="text" placeholder="téléphone" class="form-control">
+                        <input type="text" name="telephone" placeholder="téléphone" class="form-control">
                       </div>
                       <div class="col-sm-2">
                         <label class="control-label" for="textinput">Portable élève</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" placeholder="Portable" class="form-control">
+                        <input type="text" name="portable" placeholder="Portable" class="form-control">
                       </div>
                     </div>
              
               <div class="form-group xs-pt-10">
                      <label class="col-sm-2 control-label" for="textinput">E-mail élève</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="E-mail élève" class="form-control">
+              <input type="text" name="email" placeholder="E-mail élève" class="form-control">
             </div>
           </div>
-</form>
+
                 </div>
               </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 form-horizontal">
               <div class="panel panel-default panel-border-color panel-border-color-primary">
                 <div class="panel-heading panel-heading-divider">Départ<span class="panel-subtitle"></span></div>
                 <div class="panel-body">
-                  <form class="form-horizontal">
+                  
                          <div class="form-group xs-pt-10">
                       
                 <label for="date" class="col-sm-2 control-label">Date de sortie</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" id="date" name="date">
+                    <input type="date" class="form-control" id="date" name="date3">
                   </div>
                    <label class="col-sm-2 control-label"> Motif de sortie </label>
               <div class="col-sm-4">
-                <select class="form-control">
-                  <option>xxxxx</option>
-                  <option>yyyyyy</option>
+                <select class="form-control"name="motif">
+                  <option value ="xxxxx">xxxxx</option>
+                  <option value="yyyyyy">yyyyyy</option>
                 </select>
           </div> 
         </div>
             <div class="form-group ">
                      <label class="col-sm-2 control-label" for="textinput">Etablissement d'accueil</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="Etablissement d'accueil" class="form-control">
+              <input type="text" placeholder="Etablissement d'accueil" class="form-control" name="etablissement2">
             </div>
            
-                      <div class="col-sm-6">
+                      <div class="col-sm-6 form-horizontal">
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad3" id="rad6">
+                          <input type="radio" checked="" name="rad10" id="rad6" value="public">
                           <label for="rad6">public</label>
                         </div>
                         <div class="be-radio inline">
-                          <input type="radio" checked="" name="rad3" id="rad7">
+                          <input type="radio" checked="" name="rad10" id="rad7" value="prive">
                           <label for="rad7">privé</label>
                         </div>
                       </div>
@@ -323,21 +350,41 @@
             <div class="form-group">
                      <label class="col-sm-2 control-label" for="textinput">Code Etablissement d'accueil</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="Code etablissement" class="form-control">
+              <input type="text" placeholder="Code etablissement" class="form-control" name="code2">
             </div>
              <label class="col-sm-2 control-label"> Ville </label>
               <div class="col-sm-4">
-                <select class="form-control">
-                  <option>Tanger</option>
-                  <option>Tetouan</option>
+                <select class="form-control" name="ville2">
+                  <option value="tanger">Tanger</option>
+                  <option value="tetouan">Tetouan</option>
                 </select>
               </div>
           </div>
-            </form>
                 </div>
               </div>
             </div>
           </div>
-  
-  
+<style type="text/css">
+.ce_btn_elv{
+  border:none;
+  background: transparent;
+}
+</style>
+          <div class="row">
+            <div class="form-group xs-pt-10">
+              <div class="icon-container col-sm-3">
+                <button class="ce_btn_elv" type="submit"><div class="icon"><span class="mdi mdi-check"></span></div><span class="icon-class"> Enregistrer </span></button>
+              </div>
+              <div class="icon-container col-sm-3">
+                <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-plus"></span></div><span class="icon-class">Ajouter nouvelle fiche</span></button>
+              </div>
+              <div class="icon-container col-sm-3">
+                <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-print"></span></div><span class="icon-class">Imprimer fiche</span></button>
+              </div>
+              <div class="icon-container col-sm-3">
+                <button class="ce_btn_elv" type="button"><div class="icon"><span class="mdi mdi-delete"></span></div><span class="icon-class">Supprimer</span></button>
+              </div>
+            </div>
+          </div>
+        </form>
   {% endblock %}

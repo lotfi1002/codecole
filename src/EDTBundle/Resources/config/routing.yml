@@ -1,0 +1,32 @@
+edt_homepage:
+    path:     /
+    defaults: { _controller: EDTBundle:EDT:index }
+
+
+edt_nouveau:
+    path:     /Nouveau
+    defaults: { _controller: EDTBundle:EDT:nouveau }
+
+edt_charger_format:
+    path: /charger
+    defaults: { _controller: EDTBundle:EDT:charger }
+
+edt_carte:
+    path: /carte
+    defaults: { _controller: EDTBundle:EDT:carte }
+
+edt_matiere:
+    path: /matiere
+    defaults: { _controller: EDTBundle:EDT:matiere }
+
+edt_prof:
+    path: /professeur
+    defaults: { _controller: EDTBundle:EDT:prof }
+
+edt_salle:
+    path: /salle
+    defaults: { _controller: EDTBundle:EDT:salle }
+
+edt_salle_del:
+    path: /{type}/{id}
+    defaults: { _controller: EDTBundle:EDT:del }
