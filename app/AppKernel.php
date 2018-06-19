@@ -23,7 +23,8 @@ public function __construct($enviroment,$debug){
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-            new EDTBundle\EDTBundle(),
+            new ParametrageBundle\ParametrageBundle(),
+           
             
         ];
 

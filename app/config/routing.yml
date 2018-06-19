@@ -1,6 +1,7 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
-edt:
-    resource: '@EDTBundle/Resources/Config/routing.yml'
-    prefix : /EDT
+
+parametrage:
+    resource: "@ParametrageBundle/Resources/config/routing.yml"
+    prefix:   /parametrage

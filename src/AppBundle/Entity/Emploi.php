@@ -50,14 +50,6 @@ class Emploi
     private $seance;
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-
-=======
-=======
->>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
-
     /**
      * Get idEmploi
      *
@@ -164,7 +156,4 @@ class Emploi
         return $this->seance;
     }
 }
-<<<<<<< HEAD
->>>>>>> 33e83534a769e9c71dd87b68c5cfaf3c0e95f088
-=======
->>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
+

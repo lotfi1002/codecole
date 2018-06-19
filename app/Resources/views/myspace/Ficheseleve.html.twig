@@ -49,11 +49,9 @@
                         <td>{{ etd.getSex }}</td>
                         <td>{{ etd.getNiveau2() }}</td>
                         <td>{{ etd.getClasse() }}</td>
-<<<<<<< HEAD
-                        <td>{{ etd.getStatut() }}</td>
-=======
+
                         <td ondblclick="ChangeStatut('CS-{{ etd.getId() }}')" id="CS-{{ etd.getId() }}">{{ etd.getStatut() }}</td>
->>>>>>> d835e4bf48e234f6d1edba8bb55ae50324c50620
+
                         <td><a href="Ficheselevev3/{{ etd.getId() }}">Fiche eleve</a></td>
                       </tr>
                       {% endfor %}
